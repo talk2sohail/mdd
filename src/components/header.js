@@ -1,12 +1,25 @@
 import React, { Component } from "react";
 import HeadBar from "./headBar";
 import Logo from "../assets/images/logo.png";
+import collaborate from "../assets/images/icons/collaborate.svg";
+import whatsapp from "../assets/images/icons/whatsapp.png";
 export default class Header extends Component {
 	componentDidMount() {
+		//Sticky Header
 		window.$(window).on("scroll load", function() {
 			window.$(window).scrollTop() > window.$(".siteHeader").outerHeight()
 				? window.$(".siteHeader").addClass("sticky")
 				: window.$(".siteHeader").removeClass("sticky");
+		});
+
+		// mobile menu js
+		window.$(".mobileMenuTrigger").click(function() {
+			window.$(".mobileMenuWrapperOuter").addClass("on");
+			window.$("body").addClass("mobileMenuActive");
+		});
+		window.$(".mobileMenuCloseWrapper").click(function() {
+			window.$(".mobileMenuWrapperOuter").removeClass("on");
+			window.$("body").removeClass("mobileMenuActive");
 		});
 	}
 	render() {
@@ -143,11 +156,94 @@ export default class Header extends Component {
 										href="https://wa.me/7278885292?text=I'm%20interested%20in%20your%20car%20for%20sale"
 										target="_blank"
 									>
-										<img src="assets/images/icons/whatsapp.png" alt="" />
+										<img src={whatsapp} alt="" />
 									</a>
 									<span className="pulse-ring"></span>
 								</div>
 							</div>
+						</div>
+					</div>
+					<div className="mobileMenuWrapperOuter d-lg-none">
+						<div className="mobileMenuWrapper">
+							<div className="mobile-menu-wrapper-header d-flex align-items-center position-relative">
+								<a
+									className="mobileMenuCloseWrapper"
+									href="javascript:void(0);"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="18"
+										viewBox="0 0 18 18"
+										fill="#fff"
+									>
+										<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+									</svg>
+								</a>
+								<img src={collaborate} width="100" alt="" />
+								<div className="mobile-menu-header-inner">
+									<a href="javascript:void(0)">Hey Javed,</a>
+									<span>Welcome back</span>
+
+									<a
+										href=""
+										className="d-none"
+										data-toggle="modal"
+										data-target="#loginModalCenter"
+									>
+										Login / Signup
+									</a>
+								</div>
+							</div>
+							<nav className="mobileMenu d-flex flex-column">
+								<div className="borders">
+									<a href="index.html" className="mobileMenuLink">
+										Home
+									</a>
+									<a href="about.html" className="mobileMenuLink">
+										About Us
+									</a>
+									<a href="repair.html" className="mobileMenuLink">
+										Repair
+									</a>
+									<a href="javascript:void(0)" className="mobileMenuLink">
+										Brand
+									</a>
+									<a href="javascript:void(0)" className="mobileMenuLink">
+										New Offers
+									</a>
+									<a href="javascript:void(0)" className="mobileMenuLink">
+										Our Stores
+									</a>
+								</div>
+								<div className="borders">
+									<a href="profile.html" className="mobileMenuLink">
+										Profile
+									</a>
+									<a href="appointments.html" className="mobileMenuLink">
+										Repair Appointments
+									</a>
+									<a href="address.html" className="mobileMenuLink">
+										Saved Address
+									</a>
+								</div>
+								<div className="borders">
+									<a href="javascript:void(0)" className="mobileMenuLink">
+										Collaborate
+									</a>
+									<a href="javascript:void(0)" className="mobileMenuLink">
+										Blog
+									</a>
+								</div>
+								<div className="borders">
+									<a href="faq.html" className="mobileMenuLink">
+										FAQs
+									</a>
+									<a href="javascript:void(0)" className="mobileMenuLink">
+										Feedback
+									</a>
+								</div>
+							</nav>
 						</div>
 					</div>
 				</header>

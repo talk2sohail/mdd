@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="mdds" lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,65 +28,15 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
 		/>
-		<!-- <link rel="stylesheet" href="assets/css/main.min.css" /> -->
+		<link rel="stylesheet" href="./css/main.min.css" />
 	</head>
 	<body>
-		<div id="root"></div>
+		<div id="root" class="site-wrapper"></div>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
 		<script src="assets/js/common.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.js"></script>
-		<script>
-			$(".bannerSingle").slick({
-				dots: true,
-				infinite: true,
-				speed: 1000,
-				slidesToShow: 1,
-				slidesToScroll: 1,
-				autoplay: true,
-				autoplaySpeed: 2500
-			});
-			$(".services").slick({
-				dots: false,
-				infinite: false,
-				nav: false,
-				speed: 300,
-				slidesToShow: 4,
-				slidesToScroll: 1,
-				variableWidth: true,
-				prevArrow: $(".prevAchieve"),
-				nextArrow: $(".nextAchieve"),
-				responsive: [
-					{
-						breakpoint: 1199,
-						settings: {
-							slidesToShow: 3,
-							slidesToScroll: 3
-						}
-					},
-					{
-						breakpoint: 991,
-						settings: {
-							slidesToShow: 3,
-							slidesToScroll: 2,
-							infinite: true,
-							variableWidth: false
-						}
-					},
-					{
-						breakpoint: 480,
-						settings: {
-							slidesToShow: 1,
-							slidesToScroll: 1
-						}
-					}
-					// You can unslick at a given breakpoint now by adding:
-					// settings: "unslick"
-					// instead of a settings object
-				]
-			});
-		</script>
 	</body>
 </html>

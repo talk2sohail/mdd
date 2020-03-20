@@ -8,23 +8,20 @@ import Services from "./components/services";
 import Brand from "./components/brandList";
 import Collabrate from "./components/collabrate";
 import Modal from "./components/modal";
-import "./assets/css/main.min.css";
 
 class App extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div className="site-wrapper">
-					<Header />
-					<Banner />
-					<HowToHelp />
-					<Procedure />
-					<Services />
-					<Brand />
-					<Collabrate />
-					<Footer />
-					<Modal />
-				</div>
+				<Header />
+				<Banner />
+				<HowToHelp />
+				<Procedure />
+				<Services />
+				<Brand />
+				<Collabrate />
+				<Footer />
+				<Modal />
 			</React.Fragment>
 			// </div>
 		);
