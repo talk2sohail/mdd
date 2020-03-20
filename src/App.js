@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Banner from "./components/banner";
@@ -12,18 +13,19 @@ import Modal from "./components/modal";
 class App extends Component {
 	render() {
 		return (
-			<React.Fragment>
-				<Header />
-				<Banner />
-				<HowToHelp />
-				<Procedure />
-				<Services />
-				<Brand />
-				<Collabrate />
-				<Footer />
-				<Modal />
-			</React.Fragment>
-			// </div>
+			<BrowserRouter>
+				<React.Fragment>
+					<Header />
+					<Banner />
+					<HowToHelp />
+					<Procedure />
+					<Services />
+					<Brand />
+					<Collabrate />
+					<Footer />
+					<Modal />
+				</React.Fragment>
+			</BrowserRouter>
 		);
 	}
 }

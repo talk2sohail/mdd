@@ -1,40 +1,40 @@
 import React, { Component } from "react";
-
+import google from "../assets/images/icons/google.png";
 export default class Modal extends Component {
 	render() {
 		return (
 			<React.Fragment>
 				<div
-					class="modal fade"
+					className="modal fade"
 					id="forgotPass"
 					tabindex="-1"
 					role="dialog"
 					aria-labelledby="forgotPassswordTitle"
 					aria-hidden="true"
 				>
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-body">
+					<div className="modal-dialog modal-dialog-centered" role="document">
+						<div className="modal-content">
+							<div className="modal-body">
 								<button
 									type="button"
-									class="close"
+									className="close"
 									data-dismiss="modal"
 									aria-label="Close"
 								>
-									<span aria-hidden="true" class="font-weight-light">
+									<span aria-hidden="true" className="font-weight-light">
 										&times;
 									</span>
 								</button>
 								<form action="#">
 									<h3>Forgot Password ?</h3>
-									<p class="mb-3">We will email you a link to reset it.</p>
+									<p className="mb-3">We will email you a link to reset it.</p>
 									<input type="email" placeholder="Email" />
-									<input type="submit" value="send" class="gradientBtn" />
+									<input type="submit" value="send" className="gradientBtn" />
 								</form>
-								<p class="font-weight-light">
+								<p className="font-weight-light">
 									Just remembered ?
 									<a
-										class="gradientText"
+										className="gradientText"
 										href="javascript:void(0)"
 										data-target="#loginModalCenter"
 										data-toggle="modal"
@@ -44,10 +44,10 @@ export default class Modal extends Component {
 									</a>
 									Instead
 								</p>
-								<p class="mb-0 font-weight-light">
+								<p className="mb-0 font-weight-light">
 									Don’t have an account ? Please
 									<a
-										class="gradientText"
+										className="gradientText"
 										href="javascript:void(0)"
 										data-target="#loginModalCenter"
 										data-toggle="modal"
@@ -62,17 +62,17 @@ export default class Modal extends Component {
 					</div>
 				</div>
 				<div
-					class="modal fade"
+					className="modal fade"
 					id="loginModalCenter"
 					tabindex="-1"
 					role="dialog"
 					aria-labelledby="loginModalCenterTitle"
 					aria-hidden="true"
 				>
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-body" id="container">
-								<div class="form-container sign-up-container">
+					<div className="modal-dialog modal-dialog-centered" role="document">
+						<div className="modal-content">
+							<div className="modal-body" id="container">
+								<div className="form-container sign-up-container">
 									<form action="#">
 										<h3>Create Account</h3>
 										<p>
@@ -88,15 +88,19 @@ export default class Modal extends Component {
 											maxlength="10"
 										/>
 
-										<input type="submit" value="sign up" class="gradientBtn" />
-										<p class="login-info-text">- OR -</p>
-										<a href="javascript:void(0)" class="gLogin">
-											<img src="assets/images/icons/google.png" alt="" />
+										<input
+											type="submit"
+											value="sign up"
+											className="gradientBtn"
+										/>
+										<p className="login-info-text">- OR -</p>
+										<a href="javascript:void(0)" className="gLogin">
+											<img src={google} alt="" />
 											sign in using gmail
 										</a>
 									</form>
 								</div>
-								<div class="form-container sign-in-container">
+								<div className="form-container sign-in-container">
 									<form action="#">
 										<h3>Sign in</h3>
 										<p>
@@ -107,32 +111,36 @@ export default class Modal extends Component {
 										<a
 											href="javascript:void(0)"
 											data-target="#forgotPass"
-											class="fogotPassword"
+											className="fogotPassword"
 											data-toggle="modal"
 											data-dismiss="modal"
 										>
 											Forgot your password?
 										</a>
 
-										<input type="submit" value="sign in" class="gradientBtn" />
-										<p class="login-info-text">- OR -</p>
-										<a href="javascript:void(0)" class="gLogin">
-											<img src="assets/images/icons/google.png" alt="" />
+										<input
+											type="submit"
+											value="sign in"
+											className="gradientBtn"
+										/>
+										<p className="login-info-text">- OR -</p>
+										<a href="javascript:void(0)" className="gLogin">
+											<img src={google} alt="" />
 											sign in using gmail
 										</a>
 									</form>
 								</div>
-								<div class="overlay-container">
+								<div className="overlay-container">
 									<button
 										type="button"
-										class="close"
+										className="close"
 										data-dismiss="modal"
 										aria-label="Close"
 									>
 										<span aria-hidden="true">&times;</span>
 									</button>
-									<div class="overlay">
-										<div class="overlay-panel overlay-left">
+									<div className="overlay">
+										<div className="overlay-panel overlay-left">
 											<h3>Welcome Back!</h3>
 											<p>
 												To keep connected with us please login with your
@@ -140,20 +148,20 @@ export default class Modal extends Component {
 											</p>
 											<a
 												href="javascript:void(0)"
-												class="ghost gradientBtn"
+												className="ghost gradientBtn"
 												id="signIn"
 											>
 												Sign In
 											</a>
 										</div>
-										<div class="overlay-panel overlay-right">
+										<div className="overlay-panel overlay-right">
 											<h3>Hello, Friend!</h3>
 											<p>
 												Enter your personal details and start journey with us
 											</p>
 											<a
 												href="javascript:void(0)"
-												class="ghost gradientBtn"
+												className="ghost gradientBtn"
 												id="signUp"
 											>
 												Sign Up

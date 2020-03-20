@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Link, Route } from "react-router-dom";
 import HeadBar from "./headBar";
+import About from "../components/Company/aboutUs";
 import Logo from "../assets/images/logo.png";
 import collaborate from "../assets/images/icons/collaborate.svg";
 import whatsapp from "../assets/images/icons/whatsapp.png";
@@ -51,10 +53,10 @@ export default class Header extends Component {
 							<div className="col-0 col-lg-10 containsBottomBar d-lg-block text-right">
 								<div className="menuWrapper d-none d-lg-inline-block">
 									<div className="menuItem">
-										<a href="about.html">About Us</a>
+										<Link to="/about">About Us</Link>
 									</div>
 									<div className="menuItem">
-										<a href="repair.html">Repair</a>
+										<Link to="/repair"></Link>
 									</div>
 									<div className="menuItem">
 										<a href="javascript:void(0);">Brands</a>
@@ -163,6 +165,7 @@ export default class Header extends Component {
 							</div>
 						</div>
 					</div>
+					{/* mobile menu modal */}
 					<div className="mobileMenuWrapperOuter d-lg-none">
 						<div className="mobileMenuWrapper">
 							<div className="mobile-menu-wrapper-header d-flex align-items-center position-relative">
@@ -246,6 +249,7 @@ export default class Header extends Component {
 							</nav>
 						</div>
 					</div>
+					<Route path="/about" exact component={About} />
 				</header>
 			</React.Fragment>
 		);

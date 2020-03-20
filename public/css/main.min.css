@@ -550,7 +550,7 @@ input[type="radio"]:checked + label:after {
 	top: 2px;
 	background: #56ccf2;
 	background: linear-gradient(-60deg, #2f80ed, #56ccf2);
-	-webkit-background-clip: text;
+	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 .buttons a:first-child {
@@ -732,7 +732,7 @@ input[type="radio"]:checked + label:after {
 @media (max-width: 991.98px) {
 	.siteHeader .containsBottomBar .iconsWrapper .iconsItem a.active i {
 		background: #2f80ed;
-		-webkit-background-clip: text;
+		background-clip: text;
 		-webkit-text-fill-color: transparent;
 		font-weight: 500;
 	}
@@ -1061,7 +1061,7 @@ input[type="radio"]:checked + label:after {
 }
 .bannerWrapper .bannerVector .bannerItem .buttons a:first-child span {
 	color: #fff;
-	-webkit-background-clip: unset;
+	background-clip: unset;
 	-webkit-text-fill-color: unset;
 }
 .howToHelpWrapper {
@@ -2976,7 +2976,7 @@ footer .absolutefooter .socialIconsWrapper .socialIcons + .socialIcons {
 .gradientText {
 	background: #56ccf2;
 	background: linear-gradient(-60deg, #2f80ed, #56ccf2);
-	-webkit-background-clip: text;
+	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 .profileWrapper {
@@ -3024,7 +3024,7 @@ footer .absolutefooter .socialIconsWrapper .socialIcons + .socialIcons {
 .profileWrapper .sideBarWrapper .sideBarBlock.active h3 {
 	background: #56ccf2;
 	background: linear-gradient(-60deg, #2f80ed, #56ccf2);
-	-webkit-background-clip: text;
+	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 .profileWrapper .userWrapper {
@@ -3070,7 +3070,7 @@ footer .absolutefooter .socialIconsWrapper .socialIcons + .socialIcons {
 .profileWrapper .userWrapper .userHeader a {
 	background: #56ccf2;
 	background: linear-gradient(-60deg, #2f80ed, #56ccf2);
-	-webkit-background-clip: text;
+	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 @media (max-width: 767.98px) {
@@ -3158,7 +3158,7 @@ footer .absolutefooter .socialIconsWrapper .socialIcons + .socialIcons {
 	font-size: 11px;
 	background: #56ccf2;
 	background: linear-gradient(-60deg, #2f80ed, #56ccf2);
-	-webkit-background-clip: text;
+	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	letter-spacing: 1px;
 }
@@ -4119,7 +4119,7 @@ footer .absolutefooter .socialIconsWrapper .socialIcons + .socialIcons {
 .faqsWrap .slider-nav .slick-slide.slick-current .faqNavBlock p {
 	background: #56ccf2;
 	background: linear-gradient(-60deg, #2f80ed, #56ccf2);
-	-webkit-background-clip: text;
+	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 .faqsWrap .slider-nav .slick-slide.slick-current .faqNavBlock p {
