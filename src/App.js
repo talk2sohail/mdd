@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import Banner from "./components/banner";
+import HowToHelp from "./components/howToHelp";
+import Procedure from "./components/procedure";
+import Services from "./components/services";
+import Brand from "./components/brandList";
+import Collabrate from "./components/collabrate";
+import Modal from "./components/modal";
+import "./assets/css/main.min.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	render() {
+		return (
+			<React.Fragment>
+				<div className="site-wrapper">
+					<Header />
+					<Banner />
+					<HowToHelp />
+					<Procedure />
+					<Services />
+					<Brand />
+					<Collabrate />
+					<Footer />
+					<Modal />
+				</div>
+			</React.Fragment>
+			// </div>
+		);
+	}
 }
-
 export default App;
