@@ -1,4 +1,12 @@
 import React, { Component } from "react";
+import samsung from "../../assets/images/brandLogos/repair/samsung.png";
+import oneplus from "../../assets/images/brandLogos/repair/oneplus.png";
+import realme from "../../assets/images/brandLogos/repair/realme.png";
+import oppo from "../../assets/images/brandLogos/repair/oppo.png";
+import vivo from "../../assets/images/brandLogos/repair/vivo.png";
+import motorola from "../../assets/images/brandLogos/repair/motorola.png";
+import honor from "../../assets/images/brandLogos/repair/honor.png";
+import search from "../../assets/images/icons/search.png";
 
 export default class RepairBanner extends Component {
 	render() {
@@ -16,11 +24,7 @@ export default class RepairBanner extends Component {
 								<form action="#" className="searchBar">
 									<input type="search" placeholder="Search Your Problem Here" />
 									<button type="submit">
-										<img
-											src="assets/images/icons/search.png"
-											alt=""
-											width={20}
-										/>
+										<img src={search} alt="" width={20} />
 									</button>
 								</form>
 							</div>
@@ -57,28 +61,25 @@ export default class RepairBanner extends Component {
 					<div className="sectionWrapper">
 						<div className="d-flex justify-content-around wrapper">
 							<div className="customerLogo">
-								<img alt="" src="assets/images/brandLogos/repair/samsung.png" />
+								<img alt="" src={samsung} />
 							</div>
 							<div className="customerLogo">
-								<img alt="" src="assets/images/brandLogos/repair/oneplus.png" />
+								<img alt="" src={oneplus} />
 							</div>
 							<div className="customerLogo">
-								<img alt="" src="assets/images/brandLogos/repair/realme.png" />
+								<img alt="" src={oppo} />
 							</div>
 							<div className="customerLogo">
-								<img alt="" src="assets/images/brandLogos/repair/oppo.png" />
+								<img alt="" src={vivo} />
 							</div>
 							<div className="customerLogo">
-								<img alt="" src="assets/images/brandLogos/repair/vivo.png" />
+								<img alt="" src={realme} />
 							</div>
 							<div className="customerLogo">
-								<img
-									alt=""
-									src="assets/images/brandLogos/repair/motorola.png"
-								/>
+								<img alt="" src={motorola} />
 							</div>
 							<div className="customerLogo">
-								<img alt="" src="assets/images/brandLogos/repair/honor.png" />
+								<img alt="" src={honor} />
 							</div>
 						</div>
 					</div>

@@ -249,7 +249,6 @@ export default class Header extends Component {
 							</nav>
 						</div>
 					</div>
-					<Route path="/about" exact component={About} />
 				</header>
 			</React.Fragment>
 		);

@@ -1,35 +1,40 @@
 import React, { Component } from "react";
+import { Route, Link, Switch, withRouter } from "react-router-dom";
+import search from "../../assets/images/icons/search.png";
+import BrandsSelection from "./brandsSelection";
+import MobileSelection from "./mobileSelection";
 
-export default class RepairSelection extends Component {
+class RepairSelection extends Component {
 	render() {
+		const { match } = this.props;
 		return (
 			<React.Fragment>
 				<section className="repairSelection">
 					<div className="sectionWrapper">
 						<div className="row no-gutters align-items-center justify-content-between">
 							<div className="col-4">
-								<a
+								<Link
 									className="text-center progressBooking"
-									href="javascript:void(0)"
+									to={`${match.url}/brands`}
 								>
 									Brand
-								</a>
+								</Link>
 							</div>
 							<div className="col-4">
-								<a
+								<Link
 									className="text-center progressBooking"
-									href="javascript:void(0)"
+									to={`${match.url}/mobiles`}
 								>
 									Mobile
-								</a>
+								</Link>
 							</div>
 							<div className="col-4">
-								<a
+								<Link
 									className="text-center progressBooking"
-									href="javascript:void(0)"
+									to={`${match.url}/issue`}
 								>
 									Issue
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="row no-gutters justify-content-start align-items-center selectOption">
@@ -44,19 +49,17 @@ export default class RepairSelection extends Component {
 										className="mt-0"
 									/>
 									<button type="submit">
-										<img
-											src="assets/images/icons/search.png"
-											alt=""
-											width={20}
-										/>
+										<img src={search} alt="" width={20} />
 									</button>
 								</form>
 							</div>
 						</div>
-						<div className="row no-gutters justify-content-start align-items-center selectOption"></div>
+						{/* <Route exact path={`/repair/brands`} component={BrandsSelection} /> */}
 					</div>
 				</section>
 			</React.Fragment>
 		);
 	}
 }
+
+export default withRouter(RepairSelection);

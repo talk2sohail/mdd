@@ -9,7 +9,6 @@ export default class About extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<HeadBar />
 				<Header />
 				<section className="aboutBannerWrap">
 					<div className="row align-items-center no-gutters">

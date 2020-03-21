@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import About from "./components/Company/aboutUs";
 import Repair from "./components/Repair/repair";
@@ -14,19 +14,15 @@ export default class Routes extends Component {
 	}
 	render() {
 		return (
-			<Fragment>
-				        
+			<React.Fragment>
 				<Router>
-					          
+					      
 					<Route exact path="/" component={App} />
-					                      
 					<Route exact path="/about" component={About} />
-					                      
+					               
 					<Route exact path="/repair" component={Repair} />
-					                      
 				</Router>
-				      
-			</Fragment>
+			</React.Fragment>
 		);
 	}
 }
