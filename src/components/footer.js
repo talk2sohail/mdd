@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Logo from "../assets/images/logo.png";
 import Facebook from "../assets/images/icons/facebook.png";
 import Twitter from "../assets/images/icons/twitter.png";
 import Instagram from "../assets/images/icons/instagram.png";
 
-export default class Footer extends Component {
+export default class Footer extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>

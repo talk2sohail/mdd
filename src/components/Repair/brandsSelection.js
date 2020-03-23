@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import honor from "../../assets/images/brandLogos/honor.png";
 import apple from "../../assets/images/brandLogos/apple.png";
 import samsung from "../../assets/images/brandLogos/samsung.png";
@@ -15,7 +15,7 @@ import mi from "../../assets/images/brandLogos/mi.png";
 import google from "../../assets/images/brandLogos/google.png";
 import lenovo from "../../assets/images/brandLogos/lenovo.png";
 
-export default class BrandsSelection extends Component {
+export default class BrandsSelection extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-export default class howToHelp extends Component {
+export default class howToHelp extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>

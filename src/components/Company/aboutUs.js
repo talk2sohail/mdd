@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Collaborate from "../collabrate";
-import HeadBar from "../headBar";
 import Header from "../header";
 import Footer from "../footer";
 import teamSpirit from "../../assets/images/icons/team_spirit.svg";
 import mobirepair from "../../assets/images/background/mobirepair.jpg";
-export default class About extends Component {
+export default class About extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>

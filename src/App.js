@@ -7,7 +7,6 @@ import Procedure from "./components/procedure";
 import Services from "./components/services";
 import Brand from "./components/brandList";
 import Collabrate from "./components/collabrate";
-import Modal from "./components/modal";
 
 class App extends Component {
 	render() {
@@ -21,7 +20,6 @@ class App extends Component {
 				<Brand />
 				<Collabrate />
 				<Footer />
-				<Modal />
 			</React.Fragment>
 		);
 	}

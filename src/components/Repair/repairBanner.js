@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import samsung from "../../assets/images/brandLogos/repair/samsung.png";
 import oneplus from "../../assets/images/brandLogos/repair/oneplus.png";
 import realme from "../../assets/images/brandLogos/repair/realme.png";
@@ -8,7 +8,7 @@ import motorola from "../../assets/images/brandLogos/repair/motorola.png";
 import honor from "../../assets/images/brandLogos/repair/honor.png";
 import search from "../../assets/images/icons/search.png";
 
-export default class RepairBanner extends Component {
+export default class RepairBanner extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import google from "../assets/images/icons/google.png";
-export default class Modal extends Component {
+export default class Modal extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Tilt from "react-tilt";
 import brokenScreen from "../assets/images/background/brokenscreen.jpg";
 import speakerRepair from "../assets/images/background/speakerrepair.png";
@@ -12,7 +12,7 @@ import backward from "../assets/images/icons/backward.png";
 import backpanel from "../assets/images/background/backpanel.png";
 import micrepair from "../assets/images/background/micrepair.png";
 
-export default class Services extends Component {
+export default class Services extends PureComponent {
 	componentDidMount() {
 		window.$(".services").slick({
 			dots: false,
@@ -71,7 +71,10 @@ export default class Services extends Component {
 							</div>
 						</div>
 						<div className="services">
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt
@@ -86,7 +89,10 @@ export default class Services extends Component {
 									</a>
 								</div>
 							</Tilt>
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt
@@ -101,7 +107,10 @@ export default class Services extends Component {
 									</a>
 								</div>
 							</Tilt>
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt
@@ -116,7 +125,10 @@ export default class Services extends Component {
 									</a>
 								</div>
 							</Tilt>
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt
@@ -131,7 +143,10 @@ export default class Services extends Component {
 									</a>
 								</div>
 							</Tilt>
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt
@@ -146,7 +161,10 @@ export default class Services extends Component {
 									</a>
 								</div>
 							</Tilt>
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt
@@ -161,7 +179,10 @@ export default class Services extends Component {
 									</a>
 								</div>
 							</Tilt>
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt
@@ -176,7 +197,10 @@ export default class Services extends Component {
 									</a>
 								</div>
 							</Tilt>
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt
@@ -191,7 +215,10 @@ export default class Services extends Component {
 									</a>
 								</div>
 							</Tilt>
-							<Tilt className="Tilt" options={{ max: 25, reverse: true }}>
+							<Tilt
+								className="Tilt"
+								options={{ max: 35, scale: 1, reverse: true }}
+							>
 								<div className="Tilt-inner">
 									<a
 										// data-tilt

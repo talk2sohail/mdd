@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-export default class HeadBar extends Component {
+export default class HeadBar extends PureComponent {
 	componentDidMount() {
 		//TOPBAR TEXT CHANGER
 		(function() {

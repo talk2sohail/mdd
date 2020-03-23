@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import oneplus6t from "../../assets/images/mobiles/oneplus/oneplussixt.png";
 
 export default class Appointments extends Component {
 	render() {
@@ -9,22 +11,22 @@ export default class Appointments extends Component {
 						<div className="row justify-content-center">
 							<div className="col-lg-3 col-12 d-none d-lg-block">
 								<div className="sideBarWrapper">
-									<a href="profile.html" className="sideBarBlock">
+									<Link to="/profile" className="sideBarBlock">
 										<h3>My Profile</h3>
 										<p>Your Name, Phone Number, Password, Gender,</p>
-									</a>
-									<a href="address.html" className="sideBarBlock">
+									</Link>
+									<Link to="/address" className="sideBarBlock">
 										<h3>My Address</h3>
 										<p>Add, Edit Addresses</p>
-									</a>
-									<a href="appointments.html" className="sideBarBlock active">
+									</Link>
+									<Link to="/appointments" className="sideBarBlock active">
 										<h3>My Repairs</h3>
 										<p>Status of Repair Appointments, Past Repairs</p>
-									</a>
-									<a href="javascript:void(0)" className="sideBarBlock">
+									</Link>
+									<Link to="" className="sideBarBlock">
 										<h3>Logout</h3>
 										<p>Logout of your account</p>
-									</a>
+									</Link>
 								</div>
 							</div>
 							<div className="col-lg-9 col-12">
@@ -34,12 +36,12 @@ export default class Appointments extends Component {
 									</div>
 									<div className="userDetails">
 										<div className="typesofAppointments d-flex align-items-center justify-content-start">
-											<a href="javascript:void(0)" className="active">
+											<Link to="" className="active">
 												All
-											</a>
-											<a href="javascript:void(0)">Completed</a>
-											<a href="javascript:void(0)">Cancelled</a>
-											<a href="javascript:void(0)">Revisions</a>
+											</Link>
+											<Link to="">Completed</Link>
+											<Link to="">Cancelled</Link>
+											<Link to="">Revisions</Link>
 										</div>
 										<div className="orderBlock">
 											<div className="orderHeader d-flex align-items-center justify-content-between">
@@ -53,17 +55,14 @@ export default class Appointments extends Component {
 													201485136
 												</p>
 												<div>
-													<a href="javascript:void(0)" className="gradientText">
+													<Link to="" className="gradientText">
 														Order Details
-													</a>
+													</Link>
 												</div>
 											</div>
 											<div className="orderBody d-flex justify-content-start flex-wrap ">
 												<div className="imgWrap">
-													<img
-														src="assets/images/mobiles/oneplus/oneplussixt.png"
-														alt=""
-													/>
+													<img src={oneplus6t} alt="" />
 												</div>
 												<div className="contentWrap">
 													<h3>OnePlus 6T</h3>
@@ -83,7 +82,7 @@ export default class Appointments extends Component {
 													</h3>
 													<p>Device given at shop</p>
 													<div className="buttons">
-														<a href="javascript:void(0)">Download Invoice</a>
+														<Link to="">Download Invoice</Link>
 													</div>
 												</div>
 											</div>
@@ -102,25 +101,21 @@ export default class Appointments extends Component {
 											<div className="orderHeader d-flex align-items-center justify-content-between">
 												<span className="orderStatus completed">Completed</span>
 												<p className="d-none d-lg-block">
-													<span>Order Time</span>
-													12-03-2020 02:28
+													<span>Order Time </span>12-03-2020 02:28
 												</p>
 												<p className="d-none d-lg-block">
-													<span>Order Number</span>
+													<span>Order Number </span>
 													201485136
 												</p>
 												<div>
-													<a href="javascript:void(0)" className="gradientText">
+													<Link to="" className="gradientText">
 														Order Details
-													</a>
+													</Link>
 												</div>
 											</div>
 											<div className="orderBody d-flex justify-content-start flex-wrap ">
 												<div className="imgWrap">
-													<img
-														src="assets/images/mobiles/oneplus/oneplussixt.png"
-														alt=""
-													/>
+													<img src={oneplus6t} alt="" />
 												</div>
 												<div className="contentWrap">
 													<h3>OnePlus 6T</h3>
@@ -140,7 +135,7 @@ export default class Appointments extends Component {
 													</h3>
 													<p>Device picked up from home</p>
 													<div className="buttons">
-														<a href="javascript:void(0)">Download Invoice</a>
+														<Link to="">Download Invoice</Link>
 													</div>
 												</div>
 											</div>
@@ -167,17 +162,14 @@ export default class Appointments extends Component {
 													201485136
 												</p>
 												<div>
-													<a href="javascript:void(0)" className="gradientText">
+													<Link to="" className="gradientText">
 														Order Details
-													</a>
+													</Link>
 												</div>
 											</div>
 											<div className="orderBody d-flex justify-content-start flex-wrap ">
 												<div className="imgWrap">
-													<img
-														src="assets/images/mobiles/oneplus/oneplussixt.png"
-														alt=""
-													/>
+													<img src={oneplus6t} alt="" />
 												</div>
 												<div className="contentWrap">
 													<h3>OnePlus 6T</h3>
@@ -220,17 +212,14 @@ export default class Appointments extends Component {
 													201485136
 												</p>
 												<div>
-													<a href="javascript:void(0)" className="gradientText">
+													<Link to="" className="gradientText">
 														Order Details
-													</a>
+													</Link>
 												</div>
 											</div>
 											<div className="orderBody d-flex justify-content-start flex-wrap ">
 												<div className="imgWrap">
-													<img
-														src="assets/images/mobiles/oneplus/oneplussixt.png"
-														alt=""
-													/>
+													<img src={oneplus6t} alt="" />
 												</div>
 												<div className="contentWrap">
 													<h3>OnePlus 6T</h3>
@@ -254,7 +243,7 @@ export default class Appointments extends Component {
 													</h3>
 													<p>Device picked up from home</p>
 													<div className="buttons">
-														<a href="javascript:void(0)">Download Invoice</a>
+														<Link to="">Download Invoice</Link>
 													</div>
 												</div>
 											</div>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Apple from "../assets/images/brandLogos/apple.png";
 import Realme from "../assets/images/brandLogos/realme.png";
 import Vivo from "../assets/images/brandLogos/vivo.png";
@@ -7,7 +7,7 @@ import OnePlus from "../assets/images/brandLogos/oneplus.png";
 import Xiaomi from "../assets/images/brandLogos/mi.png";
 import Oppo from "../assets/images/brandLogos/oppo.png";
 
-export default class BrandList extends Component {
+export default class BrandList extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>

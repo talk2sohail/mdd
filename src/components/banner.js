@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 // import Slider from "react-slick";
 import bannerOne from "../assets/images/banner/bannerOne.jpg";
 import bannerTwo from "../assets/images/banner/bannerTwo.jpg";
 
-export default class Banner extends Component {
+export default class Banner extends PureComponent {
 	componentDidMount() {
 		window.$(".bannerSingle").slick({
 			dots: true,

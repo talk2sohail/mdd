@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Link, Route } from "react-router-dom";
 import HeadBar from "./headBar";
-import About from "../components/Company/aboutUs";
 import Logo from "../assets/images/logo.png";
 import collaborate from "../assets/images/icons/collaborate.svg";
 import whatsapp from "../assets/images/icons/whatsapp.png";
-export default class Header extends Component {
+import Modal from "./modal";
+export default class Header extends PureComponent {
 	componentDidMount() {
 		//Sticky Header
 		window.$(window).on("scroll load", function() {
@@ -33,104 +33,101 @@ export default class Header extends Component {
 						<div className="row align-items-center justify-content-between no-gutters">
 							{/* <!-- hamburger --> */}
 							<div className="col-4 d-block d-lg-none">
-								<a href="javascript:void(0)" className="mobileMenuTrigger">
+								<Link href="javascript:void(0)" className="mobileMenuTrigger">
 									<button type="button" className="">
 										<span className="icon-bar top-bar"></span>
 										<span className="icon-bar middle-bar"></span>
 										<span className="icon-bar bottom-bar m-0"></span>
 									</button>
-								</a>
+								</Link>
 							</div>
 							{/* <!-- logo --> */}
 							<div className="col-4 col-lg-2">
 								<div className="logoWrapper">
-									<a href="../html/index.html">
+									<Link href="../html/index.html">
 										<img src={Logo} width="120" alt="" />
-									</a>
+									</Link>
 								</div>
 							</div>
 							{/* <!-- menu --> */}
 							<div className="col-0 col-lg-10 containsBottomBar d-lg-block text-right">
 								<div className="menuWrapper d-none d-lg-inline-block">
 									<div className="menuItem">
-										<Link to="/about">About Us</Link>
+										<Link to="Linkbout">About Us</Link>
 									</div>
 									<div className="menuItem">
-										<Link to="/repair"></Link>
+										<Link to="/repair">Repair</Link>
 									</div>
 									<div className="menuItem">
-										<a href="javascript:void(0);">Brands</a>
+										<Link href="javascript:void(0);">New Offers</Link>
 									</div>
 									<div className="menuItem">
-										<a href="javascript:void(0);">New Offers</a>
-									</div>
-									<div className="menuItem">
-										<a href="javascript:void(0);">Our Stores</a>
+										<Link href="javascript:void(0);">Our Stores</Link>
 									</div>
 									{/* <!-- <div className="menuItem">
-                <a href="javascript:void(0);">Collaborate</a>
+                <Link href="javascript:void(0);">Collaborate</Link>
               </div> -->
                 <!-- <div className="menuItem">
-                <a href="javascript:void(0);">Contact Us</a>
+                <Link href="javascript:void(0);">Contact Us</Link>
               </div> --> */}
 								</div>
 								<div className="iconsWrapper">
 									<div className="iconsItem d-inline-block d-md-block d-lg-none">
-										<a href="index.html" className="active">
+										<Link href="index.html" className="active">
 											<i className="glyph-icon flaticon-home-1"></i>
-										</a>
+										</Link>
 									</div>
 									<div className="iconsItem d-inline-block d-md-block d-lg-none">
-										<a href="repair.html">
+										<Link href="repair.html">
 											<i className="glyph-icon flaticon-settings"></i>
-										</a>
+										</Link>
 									</div>
 									<div className="iconsItem  d-lg-inline-block d-md-block  ">
-										<a
+										<Link
 											href="javascript:void(0)"
 											data-toggle="modal"
 											data-target="#loginModalCenter"
 											className="logInBtn"
 										>
 											<i className="glyph-icon flaticon-user"></i>
-										</a>
+										</Link>
 										<ul className="subMenu">
 											<li>
-												<a href="profile.html">My Profile</a>
+												<Link to="/profile">My Profile</Link>
 											</li>
 
 											<li className="rule"></li>
 											<li>
-												<a href="address.html">Saved Address</a>
+												<Link to="/address">Saved Address</Link>
 											</li>
 
 											<li className="rule"></li>
 											<li>
-												<a href="repair.html">Repair Appointments</a>
+												<Link to="/appointments">Repair Appointments</Link>
 											</li>
 
 											<li className="rule"></li>
 
 											<li>
-												<a href="javascript:void(0)">Log Out</a>
+												<Link to="/logout">Log Out</Link>
 											</li>
 										</ul>
 									</div>
 									<div className="iconsItem d-none d-lg-inline-block">
-										<a href="faq.html">
+										<Link href="faq.html">
 											<i className="glyph-icon flaticon-headphones"></i>
-										</a>
+										</Link>
 									</div>
 									<div className="iconsItem  d-lg-inline-block d-md-block hasItems">
-										<a href="checkout.html">
+										<Link href="checkout.html">
 											<i className="glyph-icon flaticon-note"></i>
 											<div className="circleWrapper">
 												<div className="circle"></div>
 											</div>
-										</a>
+										</Link>
 										<ul className="subMenu">
 											<li>
-												<a className="d-flex justify-content-center product">
+												<Link className="d-flex justify-content-center product">
 													<div className="imgWrap">
 														<img
 															src="assets/images/mobiles/oneplus/oneplussixt.png"
@@ -145,7 +142,7 @@ export default class Header extends Component {
 															Total Price: <span>Rs 1399</span>
 														</p>
 													</div>
-												</a>
+												</Link>
 											</li>
 										</ul>
 									</div>
@@ -154,22 +151,24 @@ export default class Header extends Component {
 							{/* <!-- whatsapp --> */}
 							<div className="col-4">
 								<div className="whatsappWrapper">
-									<a
+									<Link
 										href="https://wa.me/7278885292?text=I'm%20interested%20in%20your%20car%20for%20sale"
 										target="_blank"
 									>
 										<img src={whatsapp} alt="" />
-									</a>
+									</Link>
 									<span className="pulse-ring"></span>
 								</div>
 							</div>
 						</div>
 					</div>
+					{/* Signup modal */}
+					<Modal />
 					{/* mobile menu modal */}
 					<div className="mobileMenuWrapperOuter d-lg-none">
 						<div className="mobileMenuWrapper">
 							<div className="mobile-menu-wrapper-header d-flex align-items-center position-relative">
-								<a
+								<Link
 									className="mobileMenuCloseWrapper"
 									href="javascript:void(0);"
 								>
@@ -182,69 +181,69 @@ export default class Header extends Component {
 									>
 										<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
 									</svg>
-								</a>
+								</Link>
 								<img src={collaborate} width="100" alt="" />
 								<div className="mobile-menu-header-inner">
-									<a href="javascript:void(0)">Hey Javed,</a>
+									<Link href="javascript:void(0)">Hey Javed,</Link>
 									<span>Welcome back</span>
 
-									<a
+									<Link
 										href=""
 										className="d-none"
 										data-toggle="modal"
 										data-target="#loginModalCenter"
 									>
 										Login / Signup
-									</a>
+									</Link>
 								</div>
 							</div>
 							<nav className="mobileMenu d-flex flex-column">
 								<div className="borders">
-									<a href="index.html" className="mobileMenuLink">
+									<Link to="/" className="mobileMenuLink">
 										Home
-									</a>
-									<a href="about.html" className="mobileMenuLink">
+									</Link>
+									<Link to="Linkbout" className="mobileMenuLink">
 										About Us
-									</a>
-									<a href="repair.html" className="mobileMenuLink">
+									</Link>
+									<Link to="/repair" className="mobileMenuLink">
 										Repair
-									</a>
-									<a href="javascript:void(0)" className="mobileMenuLink">
+									</Link>
+									<Link to="/brands" className="mobileMenuLink">
 										Brand
-									</a>
-									<a href="javascript:void(0)" className="mobileMenuLink">
+									</Link>
+									<Link to="javascript:void(0)" className="mobileMenuLink">
 										New Offers
-									</a>
-									<a href="javascript:void(0)" className="mobileMenuLink">
+									</Link>
+									<Link to="javascript:void(0)" className="mobileMenuLink">
 										Our Stores
-									</a>
+									</Link>
 								</div>
 								<div className="borders">
-									<a href="profile.html" className="mobileMenuLink">
+									<Link to="/profile" className="mobileMenuLink">
 										Profile
-									</a>
-									<a href="appointments.html" className="mobileMenuLink">
+									</Link>
+									<Link to="appointments.html" className="mobileMenuLink">
 										Repair Appointments
-									</a>
-									<a href="address.html" className="mobileMenuLink">
+									</Link>
+									<Link to="address.html" className="mobileMenuLink">
 										Saved Address
-									</a>
+									</Link>
 								</div>
 								<div className="borders">
-									<a href="javascript:void(0)" className="mobileMenuLink">
+									<Link to="javascript:void(0)" className="mobileMenuLink">
 										Collaborate
-									</a>
-									<a href="javascript:void(0)" className="mobileMenuLink">
+									</Link>
+									<Link to="javascript:void(0)" className="mobileMenuLink">
 										Blog
-									</a>
+									</Link>
 								</div>
 								<div className="borders">
-									<a href="faq.html" className="mobileMenuLink">
+									<Link to="faq.html" className="mobileMenuLink">
 										FAQs
-									</a>
-									<a href="javascript:void(0)" className="mobileMenuLink">
+									</Link>
+									<Link to="javascript:void(0)" className="mobileMenuLink">
 										Feedback
-									</a>
+									</Link>
 								</div>
 							</nav>
 						</div>

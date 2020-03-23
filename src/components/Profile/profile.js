@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import EditProfile from "./editProfile";
 
 export default class Profile extends Component {
 	render() {
@@ -9,29 +11,32 @@ export default class Profile extends Component {
 						<div className="row justify-content-center">
 							<div className="col-lg-3 col-12 d-none d-lg-block">
 								<div className="sideBarWrapper">
-									<a href="profile.html" className="sideBarBlock active">
+									<Link to="/profile" className="sideBarBlock active">
 										<h3>My Profile</h3>
 										<p>Your Name, Phone Number, Password, Gender,</p>
-									</a>
-									<a href="address.html" className="sideBarBlock">
+									</Link>
+									<Link to="/address" className="sideBarBlock">
 										<h3>My Address</h3>
 										<p>Add, Edit Addresses</p>
-									</a>
-									<a href="appointments.html" className="sideBarBlock">
+									</Link>
+									<Link to="/appointments" className="sideBarBlock">
 										<h3>My Repairs</h3>
 										<p>Status of Repair Appointments, Past Repairs</p>
-									</a>
-									<a href="javascript:void(0)" className="sideBarBlock">
+									</Link>
+									<Link to="/logout" className="sideBarBlock">
 										<h3>Logout</h3>
 										<p>Logout of your account</p>
-									</a>
+									</Link>
 								</div>
 							</div>
+
 							<div className="col-lg-9 col-12">
 								<div className="userWrapper">
 									<div className="userHeader">
 										<h2>Profile Information</h2>
-										<a href="editprofile.html">Edit Info</a>
+										<Link to="/profile/editprofile" className="edit-click">
+											Edit Info
+										</Link>
 									</div>
 									<div className="userDetails">
 										<form>
@@ -103,12 +108,9 @@ export default class Profile extends Component {
 											<div className="formGroup row no-gutters justify-content-between">
 												<div className="col-5 col-lg-4">
 													<h3>Password</h3>
-													<a
-														href="javascript:void(0)"
-														className="changePassword"
-													>
+													<Link to="" className="changePassword">
 														(Change Password)
-													</a>
+													</Link>
 												</div>
 												<div className="col-7 col-lg-8">
 													<input

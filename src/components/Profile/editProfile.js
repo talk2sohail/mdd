@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import Header from "../header";
+import Footer from "../footer";
 
 export default class EditProfile extends Component {
 	render() {
 		return (
 			<React.Fragment>
+				<Header />
 				<section class="profileWrapper">
 					<div class="sectionWrapper">
 						<div class="row justify-content-center">
@@ -146,6 +149,7 @@ export default class EditProfile extends Component {
 						</div>
 					</div>
 				</section>
+				<Footer />
 			</React.Fragment>
 		);
 	}

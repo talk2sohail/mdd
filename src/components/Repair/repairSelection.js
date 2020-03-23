@@ -1,60 +1,61 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Route, Link, Switch, withRouter } from "react-router-dom";
-import search from "../../assets/images/icons/search.png";
+import IssueSelection from "./issueSelection";
 import BrandsSelection from "./brandsSelection";
 import MobileSelection from "./mobileSelection";
+import SearchBar from "./searchBar";
 
-class RepairSelection extends Component {
+class RepairSelection extends PureComponent {
+	state = {
+		componentNeedToRender: null,
+		search: true
+	};
+	componentDidMount() {
+		window.$(".brands").click(() => {
+			this.state.componentNeedToRender = <BrandsSelection />;
+			window.$(".mobiles").removeClass("active");
+			this.state.search = true;
+		});
+		window.$(".mobiles").click(() => {
+			this.state.componentNeedToRender = <MobileSelection />;
+			window.$(".brands").addClass("active");
+			window.$(".mobiles").removeClass("active");
+			this.state.search = true;
+		});
+		window.$(".issues").click(() => {
+			window.$(".brands").addClass("active");
+			window.$(".mobiles").addClass("active");
+			this.state.componentNeedToRender = <IssueSelection />;
+			this.state.search = false;
+		});
+	}
 	render() {
 		const { match } = this.props;
+		// console.log(match.url);
+		let componentToRender = this.state.componentNeedToRender;
 		return (
 			<React.Fragment>
 				<section className="repairSelection">
 					<div className="sectionWrapper">
 						<div className="row no-gutters align-items-center justify-content-between">
 							<div className="col-4">
-								<Link
-									className="text-center progressBooking"
-									to={`${match.url}/brands`}
-								>
+								<Link className="text-center progressBooking brands">
 									Brand
 								</Link>
 							</div>
 							<div className="col-4">
-								<Link
-									className="text-center progressBooking"
-									to={`${match.url}/mobiles`}
-								>
+								<Link className="text-center progressBooking mobiles">
 									Mobile
 								</Link>
 							</div>
 							<div className="col-4">
-								<Link
-									className="text-center progressBooking"
-									to={`${match.url}/issue`}
-								>
+								<Link className="text-center progressBooking issues">
 									Issue
 								</Link>
 							</div>
 						</div>
-						<div className="row no-gutters justify-content-start align-items-center selectOption">
-							<div className="col-12 col-md-6">
-								<h2>Select Your Mobile Brand</h2>
-							</div>
-							<div className="col-12 col-md-6 text-right mobileLeft">
-								<form action="#" className="searchBar">
-									<input
-										type="search"
-										placeholder="Search Your Mobile Here"
-										className="mt-0"
-									/>
-									<button type="submit">
-										<img src={search} alt="" width={20} />
-									</button>
-								</form>
-							</div>
-						</div>
-						{/* <Route exact path={`/repair/brands`} component={BrandsSelection} /> */}
+						{this.state.search ? <SearchBar /> : null}
+						{componentToRender}
 					</div>
 				</section>
 			</React.Fragment>
