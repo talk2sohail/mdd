@@ -6,7 +6,7 @@ import HowToHelp from "./components/howToHelp";
 import Procedure from "./components/procedure";
 import Services from "./components/services";
 import Brand from "./components/brandList";
-import Collabrate from "./components/collabrate";
+import CollaborateBanner from "./components/collabrateBanner";
 
 class App extends Component {
 	render() {
@@ -18,7 +18,7 @@ class App extends Component {
 				<Procedure />
 				<Services />
 				<Brand />
-				<Collabrate />
+				<CollaborateBanner />
 				<Footer />
 			</React.Fragment>
 		);

@@ -1,0 +1,7 @@
+IMPORTANT NOTES
+Copy Header, Footer, Topbar and Mobile Menu From Home Page.
+In header on class="logInBtn" click add class "modal-open" to body and add class "show" to modal with id="loginModalCenter"
+In modal with id="loginModalCenter", on class="fogotPassword" click the first modal closses and show is removed and second modal opens up. In doing so class "modal-open" should stay in body.
+In phones and tabs on class="mobileMenuTrigger" click, add class "mobileMenuActive" to body and class "on" in mobileMenuWrapperOuter. 
+In phones and tabs on class="mobileMenuCloseWrapper" click, remove class "mobileMenuActive" from body and class "on" from mobileMenuWrapperOuter. 
+In iconsWrapper div, in phone version first icon stands for home, second for repair, third for profile and fourth for repair appointments.

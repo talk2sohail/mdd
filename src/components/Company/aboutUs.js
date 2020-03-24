@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import Collaborate from "../collabrate";
+import collaborateBanner from "../collabrateBanner";
 import Header from "../header";
 import Footer from "../footer";
 
@@ -75,7 +75,7 @@ export default class About extends PureComponent {
 						</div>
 					</div>
 				</section>
-				<Collaborate />
+				<collaborateBanner />
 				<Footer />
 			</React.Fragment>
 		);

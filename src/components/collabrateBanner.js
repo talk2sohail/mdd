@@ -21,10 +21,10 @@ export default class Collabrate extends PureComponent {
 									aliquid repellendus asperiores quis
 								</p>
 								<div className="d-flex flex-wrap buttons justify-content-start">
-									<Link to="">
+									<Link to="/repair">
 										<span>repair now</span>
 									</Link>
-									<a href="javascript:void(0)">collaborate</a>
+									<Link to="/collaborate">collaborate</Link>
 								</div>
 							</div>
 						</div>

@@ -9,6 +9,10 @@ import Appointments from "./components/Profile/appointments";
 import EditProfile from "./components/Profile/editProfile";
 import AddAddress from "./components/Profile/addAddress";
 import Editaddress from "./components/Profile/editaddress";
+import Collaborate from "./components/collaborate";
+import Checkout from "./components/Company/Checkout/checkout";
+import Feedback from "./components/Company/feedback";
+import Faq from "./components/Company/faq";
 
 export default class Routes extends Component {
 	constructor(props) {
@@ -24,6 +28,10 @@ export default class Routes extends Component {
 				<React.Fragment>
 					<Route exact path="/" component={App} />
 					<Route exact path="/repair" component={Repair} />
+					<Route exact path="/collaborate" component={Collaborate} />
+					<Route exact path="/faq" component={Faq} />
+					<Route exact path="/feedback" component={Feedback} />
+					<Route exact path="/checkout" component={Checkout} />
 					<Route exact path="/about" component={About} />
 					<Route exact path="/profile" component={Profile} />
 					<Route exact path="/address" component={Address} />

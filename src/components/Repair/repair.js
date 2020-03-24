@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import RepairBanner from "../Repair/repairBanner";
 import RepairSelection from "../Repair/repairSelection";
-import Collabrate from "../collabrate";
+import collabrateBanner from "../collabrateBanner";
 import Footer from "../footer";
 import Header from "../header";
 import Services from "../services";
@@ -14,7 +14,7 @@ export default class Repair extends PureComponent {
 				<RepairBanner />
 				<RepairSelection />
 				<Services />
-				<Collabrate />
+				<collabrateBanner />
 				<Footer />
 			</React.Fragment>
 		);

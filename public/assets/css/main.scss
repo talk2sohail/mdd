@@ -1,16 +1,3 @@
-
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-}
-
-
-
 @import "_breakpoints", "_functions", "_variables";
 //++++Icons Font++++//
 @font-face {
@@ -3069,6 +3056,10 @@ footer {
         max-width: 32%;
         flex-basis: 32%;
         margin-left: auto;
+        @include breakpoint(xlr) {
+          max-width: 40%;
+          flex-basis: 40%;
+        }
         @include media-breakpoint-down(sm) {
           margin: 20px 0 0;
           max-width: 100%;
@@ -3082,6 +3073,14 @@ footer {
           margin: 0 0 2px;
           span {
             float: right;
+          }
+        }
+        .buttons {
+          a {
+            text-align: center;
+            margin: 19px 0 0 0;
+            display: block;
+            width: 100%;
           }
         }
       }
@@ -3251,6 +3250,12 @@ footer {
       .price {
         font-weight: 300;
         margin: 0 0 15px;
+        @include breakpoint(xlr) {
+          font-size: 13px;
+        }
+        @include media-breakpoint-down(md) {
+          font-size: 15px;
+        }
         span {
           font-weight: 400;
         }
@@ -3687,6 +3692,107 @@ footer {
       letter-spacing: 1.5px;
       font-family: $comfor;
       font-weight: 500;
+    }
+  }
+}
+//++++Collaborate Page++++//
+.collaborateBanner {
+  background: #56ccf2;
+  background: linear-gradient(-60deg, #2f80ed, #56ccf2);
+  .content {
+    padding: 0 0 0 50px;
+    @include media-breakpoint-down(md) {
+      padding: 60px 20px;
+    }
+    h1 {
+      color: color(font-white);
+      @include media-breakpoint-down(sm) {
+        font-size: 26px;
+        line-height: 35px;
+      }
+    }
+    p {
+      line-height: 26px;
+      margin-top: 15px;
+      color: color(font-white);
+      @include media-breakpoint-down(md) {
+        font-size: 15px;
+      }
+    }
+
+    .registerBtn {
+      background: color(font-white);
+      margin-top: 20px;
+      display: block;
+      width: max-content;
+      padding: 10px 20px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+  }
+  img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    object-position: center;
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+    @include media-breakpoint-down(md) {
+      clip-path: none;
+      height: 400px;
+    }
+    @include media-breakpoint-down(sm) {
+      height: 250px;
+    }
+  }
+}
+.whyCollaborate {
+  padding: 80px 0;
+  background: #f6fbfb;
+  .whyUsWrap {
+    background: color(font-white);
+    padding: 25px 20px;
+    max-width: 90%;
+    margin: 0 auto 45px;
+    border-radius: 4px;
+    box-shadow: 0px 9px 18px 2px rgba(171, 181, 189, 0.4);
+    @include media-breakpoint-down(md) {
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+    .content {
+      margin-left: 25px;
+      font-weight: 300;
+      @include media-breakpoint-down(sm) {
+        margin: 25px 0 0;
+      }
+      h3 {
+        font-size: 23px;
+        letter-spacing: 1px;
+        @include media-breakpoint-down(md) {
+          font-size: 19px;
+        }
+      }
+      p {
+        font-size: 17px;
+        line-height: 27px;
+        @include media-breakpoint-down(md) {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+.whatWeNeed {
+  padding: 100px 0 90px;
+  background-image: url("../images/background/bg_lline2.svg");
+  background-position: 50% 0%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  .needWrap {
+    padding: 0 20px;
+
+    @include media-breakpoint-down(md) {
+      margin: 0 0 25px;
     }
   }
 }
