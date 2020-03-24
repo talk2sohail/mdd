@@ -1,11 +1,5 @@
 import React, { PureComponent } from "react";
-import Apple from "../assets/images/brandLogos/apple.png";
-import Realme from "../assets/images/brandLogos/realme.png";
-import Vivo from "../assets/images/brandLogos/vivo.png";
-import Samsung from "../assets/images/brandLogos/samsung.png";
-import OnePlus from "../assets/images/brandLogos/oneplus.png";
-import Xiaomi from "../assets/images/brandLogos/mi.png";
-import Oppo from "../assets/images/brandLogos/oppo.png";
+import { Link } from "react-router-dom";
 
 export default class BrandList extends PureComponent {
 	render() {
@@ -27,34 +21,55 @@ export default class BrandList extends PureComponent {
 								<div className="brandsList">
 									<ul>
 										<li>
-											<img src={Apple} alt="Apple" />
+											<img
+												src="/assets/images/brandLogos/apple.png"
+												alt="Apple"
+											/>
 										</li>
 										<li>
-											<img src={Samsung} alt="Samsung" />
+											<img
+												src="/assets/images/brandLogos/samsung.png"
+												alt="Samsung"
+											/>
 										</li>
 
 										<li>
-											<img src={OnePlus} alt="One Plus" />
+											<img
+												src="/assets/images/brandLogos/oneplus.png"
+												alt="One Plus"
+											/>
 										</li>
 										<li>
-											<img src={Oppo} alt="Oppo" />
+											<img
+												src="/assets/images/brandLogos/oppo.png"
+												alt="Oppo"
+											/>
 										</li>
 										<li>
-											<img src={Vivo} alt="Vivo" />
+											<img
+												src="/assets/images/brandLogos/vivo.png"
+												alt="Vivo"
+											/>
 										</li>
 										<li>
-											<img src={Realme} alt="Realme" />
+											<img
+												src="/assets/images/brandLogos/realme.png"
+												alt="Realme"
+											/>
 										</li>
 										<li>
-											<img src={Xiaomi} alt="Xiaomi" />
+											<img
+												src="/assets/images/brandLogos/mi.png"
+												alt="Xiaomi"
+											/>
 										</li>
 									</ul>
-									<a
-										href="javascript:void(0)"
+									<Link
+										to=""
 										className="theme-btn theme-btn-green text-uppercase"
 									>
 										brands we repair
-									</a>
+									</Link>
 								</div>
 							</div>
 						</div>

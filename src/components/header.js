@@ -1,9 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link, Route } from "react-router-dom";
 import HeadBar from "./headBar";
-import Logo from "../assets/images/logo.png";
-import collaborate from "../assets/images/icons/collaborate.svg";
-import whatsapp from "../assets/images/icons/whatsapp.png";
 import Modal from "./modal";
 export default class Header extends PureComponent {
 	componentDidMount() {
@@ -44,8 +41,8 @@ export default class Header extends PureComponent {
 							{/* <!-- logo --> */}
 							<div className="col-4 col-lg-2">
 								<div className="logoWrapper">
-									<Link href="../html/index.html">
-										<img src={Logo} width="120" alt="" />
+									<Link to="/">
+										<img src="/assets/images/logo.png" width="120" alt="" />
 									</Link>
 								</div>
 							</div>
@@ -53,7 +50,7 @@ export default class Header extends PureComponent {
 							<div className="col-0 col-lg-10 containsBottomBar d-lg-block text-right">
 								<div className="menuWrapper d-none d-lg-inline-block">
 									<div className="menuItem">
-										<Link to="Linkbout">About Us</Link>
+										<Link to="/about">About Us</Link>
 									</div>
 									<div className="menuItem">
 										<Link to="/repair">Repair</Link>
@@ -130,7 +127,7 @@ export default class Header extends PureComponent {
 												<Link className="d-flex justify-content-center product">
 													<div className="imgWrap">
 														<img
-															src="assets/images/mobiles/oneplus/oneplussixt.png"
+															src="/assets/images/mobiles/oneplus/oneplussixt.png"
 															height="60"
 															alt=""
 														/>
@@ -155,7 +152,7 @@ export default class Header extends PureComponent {
 										href="https://wa.me/7278885292?text=I'm%20interested%20in%20your%20car%20for%20sale"
 										target="_blank"
 									>
-										<img src={whatsapp} alt="" />
+										<img src="/assets/images/icons/whatsapp.png" alt="" />
 									</Link>
 									<span className="pulse-ring"></span>
 								</div>
@@ -182,7 +179,11 @@ export default class Header extends PureComponent {
 										<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
 									</svg>
 								</Link>
-								<img src={collaborate} width="100" alt="" />
+								<img
+									src="/assets/images/icons/collaborate.svg"
+									width="100"
+									alt=""
+								/>
 								<div className="mobile-menu-header-inner">
 									<Link href="javascript:void(0)">Hey Javed,</Link>
 									<span>Welcome back</span>
@@ -202,14 +203,11 @@ export default class Header extends PureComponent {
 									<Link to="/" className="mobileMenuLink">
 										Home
 									</Link>
-									<Link to="Linkbout" className="mobileMenuLink">
+									<Link to="/about" className="mobileMenuLink">
 										About Us
 									</Link>
 									<Link to="/repair" className="mobileMenuLink">
 										Repair
-									</Link>
-									<Link to="/brands" className="mobileMenuLink">
-										Brand
 									</Link>
 									<Link to="javascript:void(0)" className="mobileMenuLink">
 										New Offers
@@ -222,10 +220,10 @@ export default class Header extends PureComponent {
 									<Link to="/profile" className="mobileMenuLink">
 										Profile
 									</Link>
-									<Link to="appointments.html" className="mobileMenuLink">
+									<Link to="/appointments" className="mobileMenuLink">
 										Repair Appointments
 									</Link>
-									<Link to="address.html" className="mobileMenuLink">
+									<Link to="/address" className="mobileMenuLink">
 										Saved Address
 									</Link>
 								</div>

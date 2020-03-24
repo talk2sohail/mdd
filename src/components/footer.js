@@ -1,8 +1,4 @@
 import React, { PureComponent } from "react";
-import Logo from "../assets/images/logo.png";
-import Facebook from "../assets/images/icons/facebook.png";
-import Twitter from "../assets/images/icons/twitter.png";
-import Instagram from "../assets/images/icons/instagram.png";
 
 export default class Footer extends PureComponent {
 	render() {
@@ -13,7 +9,7 @@ export default class Footer extends PureComponent {
 						<div className="footerWrapper d-flex flex-wrap justify-content-center">
 							<div className="footerComponent about">
 								<a href="javascript:void(0)" className="logo">
-									<img src={Logo} width="100" alt="" />
+									<img src="/assets/images/logo.png" width="100" alt="" />
 								</a>
 								<p>
 									Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -82,19 +78,31 @@ export default class Footer extends PureComponent {
 											href="javascript:void(0)"
 											className="d-block socialIcons"
 										>
-											<img src={Facebook} width="16" alt="" />
+											<img
+												src="/assets/images/icons/facebook.png"
+												width="16"
+												alt=""
+											/>
 										</a>
 										<a
 											href="javascript:void(0)"
 											className="d-block socialIcons"
 										>
-											<img src={Instagram} width="16" alt="" />
+											<img
+												src="/assets/images/icons/instagram.png"
+												width="16"
+												alt=""
+											/>
 										</a>
 										<a
 											href="javascript:void(0)"
 											className="d-block socialIcons"
 										>
-											<img src={Twitter} width="16" alt="" />
+											<img
+												src="/assets/images/icons/twitter.png"
+												width="16"
+												alt=""
+											/>
 										</a>
 									</div>
 								</div>

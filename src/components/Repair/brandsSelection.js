@@ -1,19 +1,4 @@
 import React, { PureComponent } from "react";
-import honor from "../../assets/images/brandLogos/honor.png";
-import apple from "../../assets/images/brandLogos/apple.png";
-import samsung from "../../assets/images/brandLogos/samsung.png";
-import oppo from "../../assets/images/brandLogos/oppo.png";
-import realme from "../../assets/images/brandLogos/realme.png";
-import vivo from "../../assets/images/brandLogos/vivo.png";
-import oneplus from "../../assets/images/brandLogos/oneplus.png";
-import motorola from "../../assets/images/brandLogos/motorola.png";
-import huawei from "../../assets/images/brandLogos/huawei.png";
-import nokia from "../../assets/images/brandLogos/nokia.png";
-import asus from "../../assets/images/brandLogos/asus.png";
-import poco from "../../assets/images/brandLogos/poco.png";
-import mi from "../../assets/images/brandLogos/mi.png";
-import google from "../../assets/images/brandLogos/google.png";
-import lenovo from "../../assets/images/brandLogos/lenovo.png";
 
 export default class BrandsSelection extends PureComponent {
 	render() {
@@ -26,7 +11,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={apple}
+									src="/assets/images/brandLogos/apple.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -39,7 +24,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={samsung}
+									src="/assets/images/brandLogos/samsung.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -51,7 +36,11 @@ export default class BrandsSelection extends PureComponent {
 					<div className="col-6 col-md-4 col-lg-2">
 						<div className="branWrap">
 							<div className="imgWrapBrand">
-								<img src={mi} className="d-block text-center mx-auto" alt="" />
+								<img
+									src="/assets/images/brandLogos/mi.png"
+									className="d-block text-center mx-auto"
+									alt=""
+								/>
 							</div>
 							<h3 className="text-center uppercase">Mi</h3>
 						</div>
@@ -61,7 +50,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={oppo}
+									src="/assets/images/brandLogos/oppo.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -74,7 +63,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={vivo}
+									src="/assets/images/brandLogos/vivo.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -87,7 +76,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={realme}
+									src="/assets/images/brandLogos/realme.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -100,7 +89,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={oneplus}
+									src="/assets/images/brandLogos/oneplus.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -113,7 +102,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={motorola}
+									src="/assets/images/brandLogos/motorola.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -126,7 +115,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={huawei}
+									src="/assets/images/brandLogos/huawei.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -139,7 +128,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={honor}
+									src="/assets/images/brandLogos/honor.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -152,7 +141,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={google}
+									src="/assets/images/brandLogos/google.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -165,7 +154,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={nokia}
+									src="/assets/images/brandLogos/nokia.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -178,7 +167,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={lenovo}
+									src="/assets/images/brandLogos/lenovo.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -191,7 +180,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={asus}
+									src="/assets/images/brandLogos/asus.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -204,7 +193,7 @@ export default class BrandsSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={poco}
+									src="/assets/images/brandLogos/poco.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>

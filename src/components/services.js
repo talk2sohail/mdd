@@ -1,16 +1,5 @@
 import React, { PureComponent } from "react";
 import Tilt from "react-tilt";
-import brokenScreen from "../assets/images/background/brokenscreen.jpg";
-import speakerRepair from "../assets/images/background/speakerrepair.png";
-import cameraRepair from "../assets/images/background/camerarepair.png";
-import battery from "../assets/images/background/battery.jpg";
-import waterdamage from "../assets/images/background/waterdamage.png";
-import chargingjack from "../assets/images/background/chargingjack.png";
-import receiverepair from "../assets/images/background/recieverepair.png";
-import forward from "../assets/images/icons/forward.png";
-import backward from "../assets/images/icons/backward.png";
-import backpanel from "../assets/images/background/backpanel.png";
-import micrepair from "../assets/images/background/micrepair.png";
 
 export default class Services extends PureComponent {
 	componentDidMount() {
@@ -82,7 +71,10 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										className="text-center"
 									>
-										<img src={brokenScreen} alt="" />
+										<img
+											src="/assets/images/background/brokenscreen.jpg"
+											alt=""
+										/>
 										<div class="content">
 											<h2 class="text-center">Broken Screen</h2>
 										</div>
@@ -100,7 +92,10 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										className="text-center"
 									>
-										<img src={speakerRepair} alt="" />
+										<img
+											src="/assets/images/background/speakerrepair.png"
+											alt=""
+										/>
 										<div className="content">
 											<h2 className="text-center">Speaker Repair</h2>
 										</div>
@@ -118,7 +113,10 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										className="text-center"
 									>
-										<img src={cameraRepair} alt="" />
+										<img
+											src="/assets/images/background/camerarepair.png"
+											alt=""
+										/>
 										<div className="content">
 											<h2 className="text-center">Camera Repair</h2>
 										</div>
@@ -136,7 +134,7 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										className="text-center"
 									>
-										<img src={battery} alt="" />
+										<img src="/assets/images/background/battery.jpg" alt="" />
 										<div className="content">
 											<h2 className="text-center">Battery Repair</h2>
 										</div>
@@ -154,7 +152,10 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										className="text-center"
 									>
-										<img src={chargingjack} alt="" />
+										<img
+											src="/assets/images/background/chargingjack.png"
+											alt=""
+										/>
 										<div className="content">
 											<h2 className="text-center">Charging Jack</h2>
 										</div>
@@ -172,7 +173,10 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										class="text-center"
 									>
-										<img src={waterdamage} alt="" />
+										<img
+											src="/assets/images/background/waterdamage.png"
+											alt=""
+										/>
 										<div className="content">
 											<h2 className="text-center">Water Damage Repair</h2>
 										</div>
@@ -190,7 +194,7 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										className="text-center"
 									>
-										<img src={micrepair} alt="" />
+										<img src="/assets/images/background/micrepair.png" alt="" />
 										<div className="content">
 											<h2 className="text-center">Mic Repair</h2>
 										</div>
@@ -208,7 +212,10 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										className="text-center"
 									>
-										<img src={receiverepair} alt="" />
+										<img
+											src="/assets/images/background/recieverepair.png"
+											alt=""
+										/>
 										<div className="content">
 											<h2 className="text-center">Receiver Repair</h2>
 										</div>
@@ -226,7 +233,10 @@ export default class Services extends PureComponent {
 										href="javascript:void(0)"
 										className="text-center"
 									>
-										<img src={backpanel} alt="" />
+										<img
+											src="/assets/images/background/shatteredback.png"
+											alt=""
+										/>
 										<div className="content">
 											<h2 className="text-center">Shattered Back</h2>
 										</div>
@@ -237,12 +247,12 @@ export default class Services extends PureComponent {
 						<div className="navWrapAchieve d-flex align-items-center justify-content-end">
 							<div className="prevAchieve slick-prev d-flex slick-slide">
 								<span>
-									<img src={backward} alt="" />
+									<img src="/assets/images/icons/backward.png" alt="" />
 								</span>
 							</div>
 							<div className="nextAchieve slick-next d-flex text-right slick-slide">
 								<span>
-									<img src={forward} alt="" />
+									<img src="/assets/images/icons/forward.png" alt="" />
 								</span>
 							</div>
 						</div>

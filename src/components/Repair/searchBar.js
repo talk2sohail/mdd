@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import search from "../../assets/images/icons/search.png";
 
 export default class SearchBar extends PureComponent {
 	render() {
@@ -17,7 +16,7 @@ export default class SearchBar extends PureComponent {
 								className="mt-0"
 							/>
 							<button type="submit">
-								<img src={search} alt="" width={20} />
+								<img src="/assets/images/icons/search.png" alt="" width={20} />
 							</button>
 						</form>
 					</div>

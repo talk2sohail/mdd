@@ -11,7 +11,7 @@ export default class AddDetails extends Component {
 					<p>10, Park Street, Kolkata-700 016. Park Street Police Station</p>
 					<p>Kolkata, West Bengal - 700016</p>
 					<div className="d-flex">
-						<Link to="/address/editaddress" className="gradientText">
+						<Link to="/editaddress" className="gradientText">
 							Edit
 						</Link>
 						<Link to="" className="delete">

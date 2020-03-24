@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import collaborate from "../assets/images/icons/collaborate.svg";
+import { Link } from "react-router-dom";
 export default class Collabrate extends PureComponent {
 	render() {
 		return (
@@ -8,7 +8,7 @@ export default class Collabrate extends PureComponent {
 					<div className="sectionWrapper">
 						<div className="row align-items-center justify-content-between">
 							<div className="col-12 col-lg-6 text-center d-none d-lg-block">
-								<img src={collaborate} alt="" />
+								<img src="/assets/images/icons/collaborate.svg" alt="" />
 							</div>
 							<div className="col-12 col-lg-6">
 								<p className="pill text-capitalize">repair</p>
@@ -21,9 +21,9 @@ export default class Collabrate extends PureComponent {
 									aliquid repellendus asperiores quis
 								</p>
 								<div className="d-flex flex-wrap buttons justify-content-start">
-									<a href="javascript:void(0);">
+									<Link to="">
 										<span>repair now</span>
-									</a>
+									</Link>
 									<a href="javascript:void(0)">collaborate</a>
 								</div>
 							</div>

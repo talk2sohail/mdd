@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import google from "../assets/images/icons/google.png";
 export default class Modal extends PureComponent {
 	render() {
 		return (
@@ -95,7 +94,7 @@ export default class Modal extends PureComponent {
 										/>
 										<p className="login-info-text">- OR -</p>
 										<a href="javascript:void(0)" className="gLogin">
-											<img src={google} alt="" />
+											<img src="/assets/images/icons/google.png" alt="" />
 											sign in using gmail
 										</a>
 									</form>
@@ -125,7 +124,7 @@ export default class Modal extends PureComponent {
 										/>
 										<p className="login-info-text">- OR -</p>
 										<a href="javascript:void(0)" className="gLogin">
-											<img src={google} alt="" />
+											<img src="/assets/images/icons/google.png" alt="" />
 											sign in using gmail
 										</a>
 									</form>

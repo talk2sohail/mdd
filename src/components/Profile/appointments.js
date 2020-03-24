@@ -1,34 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import oneplus6t from "../../assets/images/mobiles/oneplus/oneplussixt.png";
+
+import Sidebar from "./Sidebar";
+import Header from "../header";
+import Footer from "../footer";
 
 export default class Appointments extends Component {
 	render() {
 		return (
 			<React.Fragment>
+				<Header />
 				<section className="profileWrapper">
 					<div className="sectionWrapper">
 						<div className="row justify-content-center">
-							<div className="col-lg-3 col-12 d-none d-lg-block">
-								<div className="sideBarWrapper">
-									<Link to="/profile" className="sideBarBlock">
-										<h3>My Profile</h3>
-										<p>Your Name, Phone Number, Password, Gender,</p>
-									</Link>
-									<Link to="/address" className="sideBarBlock">
-										<h3>My Address</h3>
-										<p>Add, Edit Addresses</p>
-									</Link>
-									<Link to="/appointments" className="sideBarBlock active">
-										<h3>My Repairs</h3>
-										<p>Status of Repair Appointments, Past Repairs</p>
-									</Link>
-									<Link to="" className="sideBarBlock">
-										<h3>Logout</h3>
-										<p>Logout of your account</p>
-									</Link>
-								</div>
-							</div>
+							<Sidebar activeNumber="3" />
 							<div className="col-lg-9 col-12">
 								<div className="userWrapper">
 									<div className="userHeader">
@@ -62,7 +47,10 @@ export default class Appointments extends Component {
 											</div>
 											<div className="orderBody d-flex justify-content-start flex-wrap ">
 												<div className="imgWrap">
-													<img src={oneplus6t} alt="" />
+													<img
+														src="/assets/images/mobiles/oneplus/oneplussixt.png"
+														alt=""
+													/>
 												</div>
 												<div className="contentWrap">
 													<h3>OnePlus 6T</h3>
@@ -115,7 +103,10 @@ export default class Appointments extends Component {
 											</div>
 											<div className="orderBody d-flex justify-content-start flex-wrap ">
 												<div className="imgWrap">
-													<img src={oneplus6t} alt="" />
+													<img
+														src="/assets/images/mobiles/oneplus/oneplussixt.png"
+														alt=""
+													/>
 												</div>
 												<div className="contentWrap">
 													<h3>OnePlus 6T</h3>
@@ -169,7 +160,10 @@ export default class Appointments extends Component {
 											</div>
 											<div className="orderBody d-flex justify-content-start flex-wrap ">
 												<div className="imgWrap">
-													<img src={oneplus6t} alt="" />
+													<img
+														src="/assets/images/mobiles/oneplus/oneplussixt.png"
+														alt=""
+													/>
 												</div>
 												<div className="contentWrap">
 													<h3>OnePlus 6T</h3>
@@ -219,7 +213,10 @@ export default class Appointments extends Component {
 											</div>
 											<div className="orderBody d-flex justify-content-start flex-wrap ">
 												<div className="imgWrap">
-													<img src={oneplus6t} alt="" />
+													<img
+														src="/assets/images/mobiles/oneplus/oneplussixt.png"
+														alt=""
+													/>
 												</div>
 												<div className="contentWrap">
 													<h3>OnePlus 6T</h3>
@@ -264,6 +261,7 @@ export default class Appointments extends Component {
 						</div>
 					</div>
 				</section>
+				<Footer />
 			</React.Fragment>
 		);
 	}

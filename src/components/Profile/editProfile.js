@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Sidebar from "./Sidebar";
+import { Link, NavLink } from "react-router-dom";
 import Header from "../header";
 import Footer from "../footer";
 
@@ -7,73 +9,54 @@ export default class EditProfile extends Component {
 		return (
 			<React.Fragment>
 				<Header />
-				<section class="profileWrapper">
-					<div class="sectionWrapper">
-						<div class="row justify-content-center">
-							<div class="col-lg-3 col-12 d-none d-lg-block">
-								<div class="sideBarWrapper">
-									<a href="profile.html" class="sideBarBlock active">
-										<h3>My Profile</h3>
-										<p>Your Name, Phone Number, Password, Gender,</p>
-									</a>
-									<a href="address.html" class="sideBarBlock">
-										<h3>My Address</h3>
-										<p>Add, Edit Addresses</p>
-									</a>
-									<a href="appointments.html" class="sideBarBlock">
-										<h3>My Repairs</h3>
-										<p>Status of Repair Appointments, Past Repairs</p>
-									</a>
-									<a href="javascript:void(0)" class="sideBarBlock">
-										<h3>Logout</h3>
-										<p>Logout of your account</p>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-9 col-12">
-								<div class="userWrapper phoneFixed">
-									<div class="userHeader justify-content-start">
-										<a href="profile.html" class="d-block d-lg-none">
+				<section className="profileWrapper">
+					<div className="sectionWrapper">
+						<div className="row justify-content-center">
+							<Sidebar activeNumber="1" />
+							<div className="col-lg-9 col-12">
+								<div className="userWrapper phoneFixed">
+									<div className="userHeader justify-content-start">
+										<Link to="/profile" className="d-block d-lg-none">
 											<img
-												src="assets/images/icons/lessthan.png"
+												src="/assets/images/icons/lessthan.png"
 												width="22"
-												class="mr-2"
+												className="mr-2"
 											/>
-										</a>
+										</Link>
 										<h2>Profile Information</h2>
 									</div>
-									<div class="userDetails">
+									<div className="userDetails">
 										<form>
-											<div class="formGroup align-items-center row no-gutters justify-content-between">
-												<div class="col-12 col-md-4">
+											<div className="formGroup align-items-center row no-gutters justify-content-between">
+												<div className="col-12 col-md-4">
 													<h3>First Name</h3>
 												</div>
-												<div class="col-12 col-md-8">
+												<div className="col-12 col-md-8">
 													<input
 														type="text"
-														class="editProfileDetails"
+														className="editProfileDetails"
 														value="Md Javed"
 													/>
 												</div>
 											</div>
-											<div class="formGroup align-items-center row no-gutters justify-content-between">
-												<div class="col-12 col-md-4">
+											<div className="formGroup align-items-center row no-gutters justify-content-between">
+												<div className="col-12 col-md-4">
 													<h3>Last Name</h3>
 												</div>
-												<div class="col-12 col-md-8">
+												<div className="col-12 col-md-8">
 													<input
 														type="text"
-														class="editProfileDetails"
+														className="editProfileDetails"
 														value="Akhtar"
 													/>
 												</div>
 											</div>
-											<div class="formGroup align-items-center row no-gutters justify-content-between">
-												<div class="col-12 col-md-4">
+											<div className="formGroup align-items-center row no-gutters justify-content-between">
+												<div className="col-12 col-md-4">
 													<h3>Gender</h3>
 												</div>
-												<div class="col-12 col-md-8">
-													<select name="" id="" class="editProfileDetails">
+												<div className="col-12 col-md-8">
+													<select name="" id="" className="editProfileDetails">
 														<option value="Not Selected" disabled selected>
 															Select Gender
 														</option>
@@ -83,60 +66,66 @@ export default class EditProfile extends Component {
 													</select>
 												</div>
 											</div>
-											<div class="formGroup align-items-center row no-gutters justify-content-between">
-												<div class="col-12 col-md-4">
+											<div className="formGroup align-items-center row no-gutters justify-content-between">
+												<div className="col-12 col-md-4">
 													<h3>Email</h3>
 												</div>
-												<div class="col-12 col-md-8">
+												<div className="col-12 col-md-8">
 													<input
 														type="email"
-														class="editProfileDetails"
+														className="editProfileDetails"
 														readonly
 														value="javed@mailinator.com"
 													/>
 												</div>
 											</div>
-											<div class="formGroup align-items-center row no-gutters justify-content-between">
-												<div class="col-12 col-md-4 d-flex d-md-block">
+											<div className="formGroup align-items-center row no-gutters justify-content-between">
+												<div className="col-12 col-md-4 d-flex d-md-block">
 													<h3>Phone Number</h3>
-													<a href="javascript:void(0)" class="changePassword">
+													<a
+														href="javascript:void(0)"
+														className="changePassword"
+													>
 														(Send OTP)
 													</a>
 												</div>
-												<div class="col-12 col-md-8">
+												<div className="col-12 col-md-8">
 													<input
 														type="text"
 														id="phonenumber"
-														class="editProfileDetails"
+														className="editProfileDetails"
 														value="9831983198"
 														pattern="[1-9]{1}[0-9]{9}"
 														maxlength="10"
 													/>
 												</div>
 											</div>
-											<div class="formGroup align-items-center row no-gutters justify-content-between">
-												<div class="col-12 col-md-4 d-flex d-md-block">
+											<div className="formGroup align-items-center row no-gutters justify-content-between">
+												<div className="col-12 col-md-4 d-flex d-md-block">
 													<h3>Enter OTP</h3>
-													<a href="javascript:void(0)" class="changePassword">
+													<Link
+														to="javascript:void(0)"
+														className="changePassword"
+													>
 														(Resend OTP)
-													</a>
+													</Link>
 												</div>
-												<div class="col-12 col-md-8">
+												<div className="col-12 col-md-8">
 													<input
 														type="text"
-														class="editProfileDetails"
+														className="editProfileDetails"
 														value=""
 														pattern="[0-9]{1}[0-9]{9}"
 														maxlength="4"
 													/>
 												</div>
 											</div>
-											<div class="formGroup align-items-center row no-gutters justify-content-between">
-												<div class="col-12">
+											<div className="formGroup align-items-center row no-gutters justify-content-between">
+												<div className="col-12">
 													<input
 														type="submit"
 														name=""
-														class=""
+														className=""
 														id=""
 														value="Save Changes"
 													/>

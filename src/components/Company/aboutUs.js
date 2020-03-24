@@ -2,8 +2,7 @@ import React, { PureComponent } from "react";
 import Collaborate from "../collabrate";
 import Header from "../header";
 import Footer from "../footer";
-import teamSpirit from "../../assets/images/icons/team_spirit.svg";
-import mobirepair from "../../assets/images/background/mobirepair.jpg";
+
 export default class About extends PureComponent {
 	render() {
 		return (
@@ -23,7 +22,7 @@ export default class About extends PureComponent {
 							</div>
 						</div>
 						<div className="col-12 col-lg-6">
-							<img src={mobirepair} alt="" />
+							<img src="/assets/images/background/mobirepair.jpg" alt="" />
 						</div>
 					</div>
 					<div className="floatingCont">
@@ -68,7 +67,7 @@ export default class About extends PureComponent {
 							<div className="col-12 col-lg-6">
 								<img
 									className="d-block mx-auto img-fluid"
-									src={teamSpirit}
+									src="/assets/images/icons/team_spirit.svg"
 									alt=""
 									height={400}
 								/>

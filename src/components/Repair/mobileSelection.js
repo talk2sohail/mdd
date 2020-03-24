@@ -1,6 +1,4 @@
 import React, { PureComponent } from "react";
-import search from "../../assets/images/icons/search.png";
-import oneplus6t from "../../assets/images/mobiles/oneplus/oneplussixt.png";
 export default class MobileSelection extends PureComponent {
 	render() {
 		return (
@@ -18,7 +16,7 @@ export default class MobileSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={oneplus6t}
+									src="/assets/images/mobiles/oneplus/oneplussixt.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -30,7 +28,7 @@ export default class MobileSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={oneplus6t}
+									src="/assets/images/mobiles/oneplus/oneplussixt.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>
@@ -42,7 +40,7 @@ export default class MobileSelection extends PureComponent {
 						<div className="branWrap">
 							<div className="imgWrapBrand">
 								<img
-									src={oneplus6t}
+									src="/assets/images/mobiles/oneplus/oneplussixt.png"
 									className="d-block text-center mx-auto"
 									alt=""
 								/>

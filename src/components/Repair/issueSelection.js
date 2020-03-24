@@ -1,6 +1,4 @@
 import React, { PureComponent } from "react";
-import brokenPhone from "../../assets/images/icons/broken-phone.png";
-import microPhone from "../../assets/images/icons/microphone.png";
 
 export default class IssueSelection extends PureComponent {
 	render() {
@@ -18,7 +16,7 @@ export default class IssueSelection extends PureComponent {
 					<div className="col-12 col-md-6 col-lg-4">
 						<div className="branWrap ">
 							<div className="iconWrap">
-								<img src={brokenPhone} alt="" />
+								<img src="/assets/images/icons/broken-phone.png" alt="" />
 							</div>
 							<div className="contentWrap">
 								<h4>Broken Screen</h4>
@@ -48,7 +46,7 @@ export default class IssueSelection extends PureComponent {
 					<div className="col-12 col-md-6 col-lg-4">
 						<div className="branWrap ">
 							<div className="iconWrap">
-								<img src={microPhone} alt="" />
+								<img src="/assets/images/icons/	microphone.png" alt="" />
 							</div>
 							<div className="contentWrap">
 								<h4>Microphone Repair</h4>

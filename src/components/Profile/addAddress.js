@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { PureComponent } from "react";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
 import Header from "../header";
 import Footer from "../footer";
-
-export default class Editaddress extends Component {
+export default class AddAddress extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>
@@ -23,8 +22,8 @@ export default class Editaddress extends Component {
 												class="mr-2"
 											/>
 										</Link>
-										<h2>Edit Address</h2>
-										{/* <!-- <a href="javascript:void(0)">Edit Info</a> --> */}
+										<h2>Add Address</h2>
+										{/* <!-- <Link href="javascript:void(0)">Edit Info</a> --> */}
 									</div>
 									<div class="userDetails addressChange">
 										<form>
@@ -33,7 +32,7 @@ export default class Editaddress extends Component {
 													<input
 														type="text"
 														class="editProfileDetails"
-														value="Md Javed"
+														value=""
 														placeholder="First Name"
 													/>
 												</div>
@@ -41,7 +40,7 @@ export default class Editaddress extends Component {
 													<input
 														type="text"
 														class="editProfileDetails"
-														value="Akhtar"
+														value=""
 														placeholder="Last Name"
 													/>
 												</div>
@@ -51,7 +50,7 @@ export default class Editaddress extends Component {
 													<input
 														type="text"
 														class="editProfileDetails"
-														value="700016"
+														value=""
 														placeholder="Pincode"
 														pattern="[0-9]{1}[0-9]{9}"
 														maxlength="4"
@@ -61,7 +60,7 @@ export default class Editaddress extends Component {
 													<input
 														type="text"
 														class="editProfileDetails"
-														value="Park Street"
+														value=""
 														placeholder="Locality"
 													/>
 												</div>
@@ -75,9 +74,7 @@ export default class Editaddress extends Component {
 														rows="4"
 														class="mb-0"
 														placeholder="Address (Area & Street)"
-													>
-														10, Park Street, Kolkata-700 016.
-													</textarea>
+													></textarea>
 												</div>
 											</div>
 											<div class="formGroup no-gutters align-items-center row  justify-content-between">
@@ -85,7 +82,7 @@ export default class Editaddress extends Component {
 													<input
 														type="text"
 														class="editProfileDetails"
-														value="9831983198"
+														value=""
 														pattern="[0-9]{1}[0-9]{9}"
 														maxlength="10"
 														placeholder="Phone Number"
@@ -95,7 +92,7 @@ export default class Editaddress extends Component {
 													<input
 														type="email"
 														class="editProfileDetails"
-														value="javed@mailinator.com"
+														value=""
 														placeholder="Email Address"
 													/>
 												</div>

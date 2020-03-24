@@ -1,7 +1,4 @@
 import React, { PureComponent } from "react";
-// import Slider from "react-slick";
-import bannerOne from "../assets/images/banner/bannerOne.jpg";
-import bannerTwo from "../assets/images/banner/bannerTwo.jpg";
 
 export default class Banner extends PureComponent {
 	componentDidMount() {
@@ -21,16 +18,16 @@ export default class Banner extends PureComponent {
 				<section className="bannerWrapper">
 					<div className="bannerSingle">
 						<div className="bannerItem">
-							<img src={bannerOne} alt="" />
+							<img src="/assets/images/banner/bannerOne.jpg" alt="" />
 						</div>
 						<div className="bannerItem">
-							<img src={bannerTwo} alt="" />
+							<img src="/assets/images/banner/bannerTwo.jpg" alt="" />
 						</div>
 						<div className="bannerItem">
-							<img src={bannerOne} alt="" />
+							<img src="/assets/images/banner/bannerOne.jpg" alt="" />
 						</div>
 						<div className="bannerItem">
-							<img src={bannerTwo} alt="" />
+							<img src="/assets/images/banner/bannerTwo.jpg" alt="" />
 						</div>
 					</div>
 				</section>
