@@ -1,69 +1,15 @@
 import React, { PureComponent } from "react";
+import ForgotPassModal from "./forgotPassModal";
+import { Link } from "react-router-dom";
 export default class Modal extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>
-				<div
-					className="modal fade"
-					id="forgotPass"
-					tabindex="-1"
-					role="dialog"
-					aria-labelledby="forgotPassswordTitle"
-					aria-hidden="true"
-				>
-					<div className="modal-dialog modal-dialog-centered" role="document">
-						<div className="modal-content">
-							<div className="modal-body">
-								<button
-									type="button"
-									className="close"
-									data-dismiss="modal"
-									aria-label="Close"
-								>
-									<span aria-hidden="true" className="font-weight-light">
-										&times;
-									</span>
-								</button>
-								<form action="#">
-									<h3>Forgot Password ?</h3>
-									<p className="mb-3">We will email you a link to reset it.</p>
-									<input type="email" placeholder="Email" />
-									<input type="submit" value="send" className="gradientBtn" />
-								</form>
-								<p className="font-weight-light">
-									Just remembered ?
-									<a
-										className="gradientText"
-										href="javascript:void(0)"
-										data-target="#loginModalCenter"
-										data-toggle="modal"
-										data-dismiss="modal"
-									>
-										Log in
-									</a>
-									Instead
-								</p>
-								<p className="mb-0 font-weight-light">
-									Don’t have an account ? Please
-									<a
-										className="gradientText"
-										href="javascript:void(0)"
-										data-target="#loginModalCenter"
-										data-toggle="modal"
-										data-dismiss="modal"
-									>
-										Sign up
-									</a>
-									for exciting offers
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
+				<ForgotPassModal />
 				<div
 					className="modal fade"
 					id="loginModalCenter"
-					tabindex="-1"
+					tabIndex="-1"
 					role="dialog"
 					aria-labelledby="loginModalCenterTitle"
 					aria-hidden="true"
@@ -84,7 +30,7 @@ export default class Modal extends PureComponent {
 											type="text"
 											placeholder="Phone Number"
 											pattern="[1-9]{1}[0-9]{9}"
-											maxlength="10"
+											maxLength="10"
 										/>
 
 										<input
@@ -93,10 +39,10 @@ export default class Modal extends PureComponent {
 											className="gradientBtn"
 										/>
 										<p className="login-info-text">- OR -</p>
-										<a href="javascript:void(0)" className="gLogin">
+										<Link to="" className="gLogin">
 											<img src="/assets/images/icons/google.png" alt="" />
-											sign in using gmail
-										</a>
+											&nbsp;&nbsp;sign in using gmail
+										</Link>
 									</form>
 								</div>
 								<div className="form-container sign-in-container">
@@ -107,15 +53,16 @@ export default class Modal extends PureComponent {
 										</p>
 										<input type="email" placeholder="Email" />
 										<input type="password" placeholder="Password" />
-										<a
-											href="javascript:void(0)"
+										<Link
+											// href="javascript:void(0)"
+											to=""
 											data-target="#forgotPass"
 											className="fogotPassword"
 											data-toggle="modal"
 											data-dismiss="modal"
 										>
 											Forgot your password?
-										</a>
+										</Link>
 
 										<input
 											type="submit"
@@ -123,10 +70,10 @@ export default class Modal extends PureComponent {
 											className="gradientBtn"
 										/>
 										<p className="login-info-text">- OR -</p>
-										<a href="javascript:void(0)" className="gLogin">
+										<Link to="" className="gLogin">
 											<img src="/assets/images/icons/google.png" alt="" />
-											sign in using gmail
-										</a>
+											&nbsp;&nbsp;sign in using gmail
+										</Link>
 									</form>
 								</div>
 								<div className="overlay-container">
@@ -145,26 +92,28 @@ export default class Modal extends PureComponent {
 												To keep connected with us please login with your
 												personal info
 											</p>
-											<a
-												href="javascript:void(0)"
+											<Link
+												to=""
+												// href="javascript:void(0)"
 												className="ghost gradientBtn"
 												id="signIn"
 											>
 												Sign In
-											</a>
+											</Link>
 										</div>
 										<div className="overlay-panel overlay-right">
 											<h3>Hello, Friend!</h3>
 											<p>
 												Enter your personal details and start journey with us
 											</p>
-											<a
-												href="javascript:void(0)"
+											<Link
+												to=""
+												// href="javascript:void(0)"
 												className="ghost gradientBtn"
 												id="signUp"
 											>
 												Sign Up
-											</a>
+											</Link>
 										</div>
 									</div>
 								</div>

@@ -6,34 +6,51 @@ import Footer from "../../footer";
 import Header from "../../header";
 
 export default class Checkout extends Component {
+	state = {
+		isFormOneLoaded: false,
+		isFormTwoLoaded: false,
+		cssColor: "selected",
+	};
+	formOneHandler = () => {
+		this.setState({
+			isFormOneLoaded: !this.state.isFormOneLoaded,
+			cssColor: this.state.isLoaded ? "selected" : "",
+		});
+	};
+	formTwoHandler = () => {
+		this.setState({
+			isFormTwoLoaded: !this.state.isFormTwoLoaded,
+			cssColor: this.state.isLoaded ? "selected" : "",
+		});
+	};
 	render() {
 		return (
 			<React.Fragment>
 				<Header />
-				<section class="checkoutWrapper profileWrapper">
-					<div class="sectionWrapper">
-						<div class="row justify-content-center">
-							<div class="col-12 col-lg-8">
-								<div class="userWrapper">
-									<div class="userHeader">
+				<section className="checkoutWrapper profileWrapper">
+					<div className="sectionWrapper">
+						<div className="row justify-content-center">
+							<div className="col-12 col-lg-8">
+								<div className="userWrapper">
+									<div className="userHeader">
 										<h2>My Cart</h2>
 									</div>
 									<Carts />
 								</div>
-								<div class="userWrapper mt-4">
-									<div class="userHeader">
+								<div className="userWrapper mt-4">
+									<div className="userHeader">
 										<h2>Pickup at home or Drop at shop</h2>
 									</div>
-									<div class="userDetails addressChange">
-										<div class="pickdrropWrap">
+									<div className="userDetails addressChange">
+										<div className="pickdrropWrap">
 											<ul
-												class="nav nav-tabs mb-4 pb-2"
+												className="nav nav-tabs mb-4 pb-2"
 												id="myTab"
 												role="tablist"
 											>
-												<li class="nav-item">
+												<li className="nav-item">
 													<a
-														class="nav-link active"
+														className="nav-link active"
 														id="home-tab"
 														data-toggle="tab"
 														href="#home"
@@ -44,9 +61,9 @@ export default class Checkout extends Component {
 														Pickup
 													</a>
 												</li>
-												<li class="nav-item ml-3">
+												<li className="nav-item ml-3">
 													<a
-														class="nav-link"
+														className="nav-link"
 														id="profile-tab"
 														data-toggle="tab"
 														href="#profile"
@@ -58,16 +75,16 @@ export default class Checkout extends Component {
 													</a>
 												</li>
 											</ul>
-											<div class="tab-content" id="myTabContent">
+											<div className="tab-content" id="myTabContent">
 												<div
-													class="tab-pane fade show active"
+													className="tab-pane fade show active"
 													id="home"
 													role="tabpanel"
 													aria-labelledby="home-tab"
 												>
 													<a
-														class="addAddress d-block gradientText"
-														href="javasscript:void(0)"
+														className="addAddress d-block gradientText"
+														onClick={this.formOneHandler}
 													>
 														<svg
 															xmlns="http://www.w3.org/2000/svg"
@@ -80,117 +97,125 @@ export default class Checkout extends Component {
 														</svg>
 														ADD NEW ADDRESS
 													</a>
-													<AddDetails />
-													<form class="mt-4">
-														<div class="formGroup no-gutters align-items-center row justify-content-between">
-															<div class="col-lg-6">
-																<input
-																	type="text"
-																	class="editProfileDetails"
-																	value=""
-																	placeholder="First Name"
-																/>
+													<AddDetails
+														cls={this.state.cssColor}
+														loadEditDelete="0"
+													/>
+													{this.state.isFormOneLoaded ? (
+														<form className="mt-4">
+															<div className="formGroup no-gutters align-items-center row justify-content-between">
+																<div className="col-lg-6">
+																	<input
+																		type="text"
+																		className="editProfileDetails"
+																		value=""
+																		placeholder="First Name"
+																	/>
+																</div>
+																<div className="col-lg-6">
+																	<input
+																		type="text"
+																		className="editProfileDetails"
+																		value=""
+																		placeholder="Last Name"
+																	/>
+																</div>
 															</div>
-															<div class="col-lg-6">
-																<input
-																	type="text"
-																	class="editProfileDetails"
-																	value=""
-																	placeholder="Last Name"
-																/>
+															<div className="formGroup no-gutters align-items-center row justify-content-between">
+																<div className="col-lg-6">
+																	<input
+																		type="text"
+																		className="editProfileDetails"
+																		value=""
+																		placeholder="Pincode"
+																		pattern="[0-9]{1}[0-9]{9}"
+																		maxLength="4"
+																	/>
+																</div>
+																<div className="col-lg-6">
+																	<input
+																		type="text"
+																		className="editProfileDetails"
+																		value=""
+																		placeholder="Locality"
+																	/>
+																</div>
 															</div>
-														</div>
-														<div class="formGroup no-gutters align-items-center row justify-content-between">
-															<div class="col-lg-6">
-																<input
-																	type="text"
-																	class="editProfileDetails"
-																	value=""
-																	placeholder="Pincode"
-																	pattern="[0-9]{1}[0-9]{9}"
-																	maxlength="4"
-																/>
+															<div className="formGroup no-gutters align-items-center row justify-content-start">
+																<div className="col-12">
+																	<textarea
+																		name=""
+																		id=""
+																		cols="30"
+																		rows="4"
+																		className="mb-0"
+																		placeholder="Address (Area &amp; Street)"
+																	></textarea>
+																</div>
 															</div>
-															<div class="col-lg-6">
-																<input
-																	type="text"
-																	class="editProfileDetails"
-																	value=""
-																	placeholder="Locality"
-																/>
+															<div className="formGroup no-gutters align-items-center row  justify-content-between">
+																<div className="col-lg-6">
+																	<input
+																		type="text"
+																		className="editProfileDetails"
+																		value=""
+																		pattern="[0-9]{1}[0-9]{9}"
+																		maxLength="10"
+																		placeholder="Phone Number"
+																	/>
+																</div>
+																<div className="col-lg-6">
+																	<input
+																		type="email"
+																		className="editProfileDetails"
+																		value=""
+																		placeholder="Email Address"
+																	/>
+																</div>
 															</div>
-														</div>
-														<div class="formGroup no-gutters align-items-center row justify-content-start">
-															<div class="col-12">
-																<textarea
-																	name=""
-																	id=""
-																	cols="30"
-																	rows="4"
-																	class="mb-0"
-																	placeholder="Address (Area &amp; Street)"
-																></textarea>
+															<div className="formGroup no-gutters align-items-center row justify-content-between">
+																<div className="col-12">
+																	<input
+																		type="submit"
+																		name=""
+																		className=""
+																		id=""
+																		value="Add Address"
+																	/>
+																</div>
 															</div>
-														</div>
-														<div class="formGroup no-gutters align-items-center row  justify-content-between">
-															<div class="col-lg-6">
-																<input
-																	type="text"
-																	class="editProfileDetails"
-																	value=""
-																	pattern="[0-9]{1}[0-9]{9}"
-																	maxlength="10"
-																	placeholder="Phone Number"
-																/>
-															</div>
-															<div class="col-lg-6">
-																<input
-																	type="email"
-																	class="editProfileDetails"
-																	value=""
-																	placeholder="Email Address"
-																/>
-															</div>
-														</div>
-														<div class="formGroup no-gutters align-items-center row justify-content-between">
-															<div class="col-12">
-																<input
-																	type="submit"
-																	name=""
-																	class=""
-																	id=""
-																	value="Add Address"
-																/>
-															</div>
-														</div>
-													</form>
+														</form>
+													) : null}
 												</div>
 												<div
-													class="tab-pane fade"
+													className="tab-pane fade"
 													id="profile"
 													role="tabpanel"
 													aria-labelledby="profile-tab"
 												>
-													<AddDetails />
+													<AddDetails
+														cls={this.state.cssColor}
+														loadEditDelete="0"
+													/>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="userWrapper mt-4">
-									<div class="userHeader">
+								<div className="userWrapper mt-4">
+									<div className="userHeader">
 										<h2>Deliver at home or pickup from shop</h2>
 									</div>
-									<div class="userDetails addressChange">
-										<div class="pickdrropWrap">
+									<div className="userDetails addressChange">
+										<div className="pickdrropWrap">
 											<ul
-												class="nav nav-tabs mb-4 pb-2"
+												className="nav nav-tabs mb-4 pb-2"
 												id="myTabTwo"
 												role="tablist"
 											>
-												<li class="nav-item">
+												<li className="nav-item">
 													<a
-														class="nav-link active"
+														className="nav-link active"
 														id="homedelivery-tab"
 														data-toggle="tab"
 														href="#homedelivery"
@@ -201,9 +226,9 @@ export default class Checkout extends Component {
 														Home Delivery
 													</a>
 												</li>
-												<li class="nav-item ml-3">
+												<li className="nav-item ml-3">
 													<a
-														class="nav-link"
+														className="nav-link"
 														id="pickshop-tab"
 														data-toggle="tab"
 														href="#pickshop"
@@ -215,16 +240,16 @@ export default class Checkout extends Component {
 													</a>
 												</li>
 											</ul>
-											<div class="tab-content" id="myTabContentTwo">
+											<div className="tab-content" id="myTabContentTwo">
 												<div
-													class="tab-pane fade show active"
+													className="tab-pane fade show active"
 													id="homedelivery"
 													role="tabpanel"
 													aria-labelledby="homedelivery-tab"
 												>
 													<a
-														class="addAddress d-block gradientText"
-														href="javasscript:void(0)"
+														className="addAddress d-block gradientText"
+														onClick={this.formTwoHandler}
 													>
 														<svg
 															xmlns="http://www.w3.org/2000/svg"
@@ -237,15 +262,107 @@ export default class Checkout extends Component {
 														</svg>
 														ADD NEW ADDRESS
 													</a>
-													<AddDetails />
+													<AddDetails
+														cls={this.state.cssColor}
+														loadEditDelete="0"
+													/>
 												</div>
+
+												{this.state.isFormTwoLoaded ? (
+													<form className="mt-4">
+														<div className="formGroup no-gutters align-items-center row justify-content-between">
+															<div className="col-lg-6">
+																<input
+																	type="text"
+																	className="editProfileDetails"
+																	value=""
+																	placeholder="First Name"
+																/>
+															</div>
+															<div className="col-lg-6">
+																<input
+																	type="text"
+																	className="editProfileDetails"
+																	value=""
+																	placeholder="Last Name"
+																/>
+															</div>
+														</div>
+														<div className="formGroup no-gutters align-items-center row justify-content-between">
+															<div className="col-lg-6">
+																<input
+																	type="text"
+																	className="editProfileDetails"
+																	value=""
+																	placeholder="Pincode"
+																	pattern="[0-9]{1}[0-9]{9}"
+																	maxLength="4"
+																/>
+															</div>
+															<div className="col-lg-6">
+																<input
+																	type="text"
+																	className="editProfileDetails"
+																	value=""
+																	placeholder="Locality"
+																/>
+															</div>
+														</div>
+														<div className="formGroup no-gutters align-items-center row justify-content-start">
+															<div className="col-12">
+																<textarea
+																	name=""
+																	id=""
+																	cols="30"
+																	rows="4"
+																	className="mb-0"
+																	placeholder="Address (Area &amp; Street)"
+																></textarea>
+															</div>
+														</div>
+														<div className="formGroup no-gutters align-items-center row  justify-content-between">
+															<div className="col-lg-6">
+																<input
+																	type="text"
+																	className="editProfileDetails"
+																	value=""
+																	pattern="[0-9]{1}[0-9]{9}"
+																	maxLength="10"
+																	placeholder="Phone Number"
+																/>
+															</div>
+															<div className="col-lg-6">
+																<input
+																	type="email"
+																	className="editProfileDetails"
+																	value=""
+																	placeholder="Email Address"
+																/>
+															</div>
+														</div>
+														<div className="formGroup no-gutters align-items-center row justify-content-between">
+															<div className="col-12">
+																<input
+																	type="submit"
+																	name=""
+																	className=""
+																	id=""
+																	value="Add Address"
+																/>
+															</div>
+														</div>
+													</form>
+												) : null}
 												<div
-													class="tab-pane fade"
+													className="tab-pane fade"
 													id="pickshop"
 													role="tabpanel"
 													aria-labelledby="pickshop-tab"
 												>
-													<AddDetails />
+													<AddDetails
+														cls={this.state.cssColor}
+														loadEditDelete="1"
+													/>
 												</div>
 											</div>
 										</div>

@@ -1,24 +1,7 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 
 export default class HeadBar extends PureComponent {
-	componentDidMount() {
-		//TOPBAR TEXT CHANGER
-		(function() {
-			var words = [
-					"contact us today for repairing your phone",
-					"apply coupon <span>'newuser'</span> for getting special discount"
-				],
-				i = 0;
-			setInterval(function() {
-				window.$("#changingword").fadeOut(function() {
-					window
-						.$(this)
-						.html(words[(i = (i + 1) % words.length)])
-						.fadeIn();
-				});
-			}, 4000);
-		})();
-	}
 	render() {
 		return (
 			<React.Fragment>
@@ -28,10 +11,10 @@ export default class HeadBar extends PureComponent {
 							<div className="col-4 mr-auto d-none d-lg-block text-left">
 								<div className="topBarMenu">
 									<div className="menuItem">
-										<a href="javascript:void(0);">mail@mdds.com</a>
+										<Link to="/profile">mail@mdds.com</Link>
 									</div>
 									<div className="menuItem">
-										<a href="javascript:void(0);">7980538443</a>
+										<Link to="/profile">7980538443</Link>
 									</div>
 								</div>
 							</div>
@@ -41,10 +24,10 @@ export default class HeadBar extends PureComponent {
 							<div className="col-4 ml-auto d-none d-lg-block text-right">
 								<div className="topBarMenu">
 									<div className="menuItem">
-										<a href="javascript:void(0);">Collaborate</a>
+										<Link to="/collaborate">Collaborate</Link>
 									</div>
 									<div className="menuItem">
-										<a href="javascript:void(0);">Blog</a>
+										<Link to="javascript:void(0);">Blog</Link>
 									</div>
 								</div>
 							</div>

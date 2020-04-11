@@ -6,10 +6,10 @@ export default class Footer extends PureComponent {
 		return (
 			<React.Fragment>
 				<footer>
-					<div class="sectionWrapper">
-						<div class="footerWrapper d-flex flex-wrap justify-content-center">
-							<div class="footerComponent about">
-								<Link to="" class="logo">
+					<div className="sectionWrapper">
+						<div className="footerWrapper d-flex flex-wrap justify-content-center">
+							<div className="footerComponent about">
+								<Link to="" className="logo">
 									<img src="assets/images/logo.png" width="100" alt="" />
 								</Link>
 								<p>
@@ -18,7 +18,7 @@ export default class Footer extends PureComponent {
 									cupiditate reiciendis illum minima soluta asperiores, modi
 								</p>
 							</div>
-							<div class="footerComponent">
+							<div className="footerComponent">
 								<h3>Company</h3>
 								<ul>
 									<li>
@@ -32,7 +32,7 @@ export default class Footer extends PureComponent {
 									</li>
 								</ul>
 							</div>
-							<div class="footerComponent">
+							<div className="footerComponent">
 								<h3>Help & Support</h3>
 								<ul>
 									<li>
@@ -45,11 +45,11 @@ export default class Footer extends PureComponent {
 										<Link to="">Sitemap</Link>
 									</li>
 									<li>
-										<Link to="">Feedback</Link>
+										<Link to="/feedback">Feedback</Link>
 									</li>
 								</ul>
 							</div>
-							<div class="footerComponent">
+							<div className="footerComponent">
 								<h3>Policies</h3>
 								<ul>
 									<li>
@@ -68,31 +68,34 @@ export default class Footer extends PureComponent {
 							</div>
 						</div>
 					</div>
-					<div class="absolutefooter">
-						<div class="sectionWrapper">
-							<div class="row">
-								<div class="col-12 col-lg-6">
-									<p class="mb-0">
+					<div className="absolutefooter">
+						<div className="sectionWrapper">
+							<div className="row">
+								<div className="col-12 col-lg-6">
+									<p className="mb-0">
 										Copyright © 2020 MDDS. All Rights Reserved.
 									</p>
 								</div>
-								<div class="col-12 col-lg-6">
-									<div class="socialIconsWrapper d-flex flex-wrap justify-content-end">
-										<Link to="facebook:void(0)" class="d-block socialIcons">
+								<div className="col-12 col-lg-6">
+									<div className="socialIconsWrapper d-flex flex-wrap justify-content-end">
+										<Link to="facebook:void(0)" className="d-block socialIcons">
 											<img
 												src="/assets/images/icons/facebook.png"
 												width="16"
 												alt=""
 											/>
 										</Link>
-										<Link to="instagram:void(0)" class="d-block socialIcons">
+										<Link
+											to="instagram:void(0)"
+											className="d-block socialIcons"
+										>
 											<img
 												src="/assets/images/icons/instagram.png"
 												width="16"
 												alt=""
 											/>
 										</Link>
-										<Link to="twitter:void(0)" class="d-block socialIcons">
+										<Link to="twitter:void(0)" className="d-block socialIcons">
 											<img
 												src="/assets/images/icons/twitter.png"
 												width="16"

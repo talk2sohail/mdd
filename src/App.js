@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import apiCall from "./axios";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Banner from "./components/banner";

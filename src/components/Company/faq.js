@@ -4,15 +4,60 @@ import Footer from "../footer";
 import CollaborateBanner from "../collabrateBanner";
 
 export default class Faq extends PureComponent {
+	componentDidMount() {
+		window.$(".slider-for").slick({
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			arrows: false,
+			fade: true,
+			asNavFor: ".slider-nav",
+		});
+		window.$(".slider-nav").slick({
+			slidesToShow: 4,
+			slidesToScroll: 1,
+			asNavFor: ".slider-for",
+			dots: false,
+			centerMode: false,
+			infinite: false,
+			focusOnSelect: true,
+			responsive: [
+				{
+					breakpoint: 991,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 1,
+						dots: true,
+						variableWidth: true,
+						infinite: true,
+						centerMode: true,
+					},
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 1,
+						dots: true,
+						variableWidth: true,
+						infinite: true,
+						centerMode: true,
+					},
+				},
+				// You can unslick at a given breakpoint now by adding:
+				// settings: "unslick"
+				// instead of a settings object
+			],
+		});
+	}
 	render() {
 		return (
 			<React.Fragment>
 				<Header />
-				<section class="supportPageBanner">
-					<div class="contentWrap">
-						<div class="sectionWrapper">
-							<div class="row align-items-center justify-content-center no-gutters">
-								<div class="col-lg-7 mx-auto text-center">
+				<section className="supportPageBanner">
+					<div className="contentWrap">
+						<div className="sectionWrapper">
+							<div className="row align-items-center justify-content-center no-gutters">
+								<div className="col-lg-7 mx-auto text-center">
 									<h1>
 										Have any doubts? <br />
 										Let us solve it for you
@@ -24,7 +69,7 @@ export default class Faq extends PureComponent {
 									</p>
 									<img
 										src="/assets/images/icons/faqa.svg"
-										class="mt-1"
+										className="mt-1"
 										width="350"
 										alt=""
 									/>
@@ -33,46 +78,46 @@ export default class Faq extends PureComponent {
 						</div>
 					</div>
 				</section>
-				<section class="faqsWrap">
-					<div class="sectionWrapper">
-						<div class="row no-gutters justify-content-center">
-							<div class="col-12">
-								<div class="slider slider-nav">
-									<div class="faqNavBlock">
-										<i class="glyph-icon flaticon-user"></i>
+				<section className="faqsWrap">
+					<div className="sectionWrapper">
+						<div className="row no-gutters justify-content-center">
+							<div className="col-12">
+								<div className="slider slider-nav">
+									<div className="faqNavBlock">
+										<i className="glyph-icon flaticon-user"></i>
 										<p>General</p>
 									</div>
-									<div class="faqNavBlock">
-										<i class="glyph-icon flaticon-configuration"></i>
+									<div className="faqNavBlock">
+										<i className="glyph-icon flaticon-configuration"></i>
 										<p>Repair</p>
 									</div>
-									<div class="faqNavBlock">
-										<i class="glyph-icon flaticon-payment-method"></i>
+									<div className="faqNavBlock">
+										<i className="glyph-icon flaticon-payment-method"></i>
 										<p>Payment</p>
 									</div>
-									<div class="faqNavBlock">
-										<i class="glyph-icon flaticon-box"></i>
+									<div className="faqNavBlock">
+										<i className="glyph-icon flaticon-box"></i>
 										<p>Pick Up, Drop & Delivery</p>
 									</div>
 								</div>
 							</div>
-							<div class="col-12">
-								<div class="slider slider-for">
-									<div id="accordionExample" class="accordion">
+							<div className="col-12">
+								<div className="slider slider-for">
+									<div id="accordionExample" className="accordion">
 										{/* <!-- Accordion item 1 --> */}
-										<div class="card">
+										<div className="card">
 											<div
 												id="headingOne"
-												class="card-header bg-white border-0 m-0"
+												className="card-header bg-white border-0 m-0"
 											>
-												<h2 class="mb-0">
+												<h2 className="mb-0">
 													<button
 														type="button"
 														data-toggle="collapse"
 														data-target="#collapseOne"
 														aria-expanded="false"
 														aria-controls="collapseOne"
-														class="btn btn-link collapsed w-100 position-relative text-left collapsible-link"
+														className="btn btn-link collapsed w-100 position-relative text-left collapsible-link"
 													>
 														Will your technician also fix any other issue of my
 														phone?
@@ -83,10 +128,10 @@ export default class Faq extends PureComponent {
 												id="collapseOne"
 												aria-labelledby="headingOne"
 												data-parent="#accordionExample"
-												class="collapse"
+												className="collapse"
 											>
-												<div class="card-body">
-													<p class="font-weight-light m-0">
+												<div className="card-body">
+													<p className="font-weight-light m-0">
 														It is definitely on the cards but for now, we only
 														offer the services listed on our platform. Please
 														let us know in advance for any issue with your
@@ -97,21 +142,21 @@ export default class Faq extends PureComponent {
 										</div>
 										{/* <!-- End --> */}
 									</div>
-									<div id="accordionExampleTwo" class="accordion">
+									<div id="accordionExampleTwo" className="accordion">
 										{/* <!-- Accordion item 2 --> */}
-										<div class="card">
+										<div className="card">
 											<div
 												id="headingTwo"
-												class="card-header bg-white border-0"
+												className="card-header bg-white border-0"
 											>
-												<h2 class="mb-0">
+												<h2 className="mb-0">
 													<button
 														type="button"
 														data-toggle="collapse"
 														data-target="#collapseTwo"
 														aria-expanded="false"
 														aria-controls="collapseTwo"
-														class="btn btn-link collapsed w-100 position-relative text-left  collapsible-link"
+														className="btn btn-link collapsed w-100 position-relative text-left  collapsible-link"
 													>
 														Will your technician also fix any other issue of my
 														phone?
@@ -122,10 +167,10 @@ export default class Faq extends PureComponent {
 												id="collapseTwo"
 												aria-labelledby="headingTwo"
 												data-parent="#accordionExampleTwo"
-												class="collapse"
+												className="collapse"
 											>
-												<div class="card-body">
-													<p class="font-weight-light m-0">
+												<div className="card-body">
+													<p className="font-weight-light m-0">
 														It is definitely on the cards but for now, we only
 														offer the services listed on our platform. Please
 														let us know in advance for any issue with your
@@ -136,21 +181,21 @@ export default class Faq extends PureComponent {
 										</div>
 										{/* <!-- End --> */}
 									</div>
-									<div id="accordionExampleThree" class="accordion">
+									<div id="accordionExampleThree" className="accordion">
 										{/* <!-- Accordion item 3 --> */}
-										<div class="card">
+										<div className="card">
 											<div
 												id="headingFour"
-												class="card-header bg-white border-0"
+												className="card-header bg-white border-0"
 											>
-												<h2 class="mb-0">
+												<h2 className="mb-0">
 													<button
 														type="button"
 														data-toggle="collapse"
 														data-target="#collapseFour"
 														aria-expanded="false"
 														aria-controls="collapseFour"
-														class="btn btn-link collapsed w-100 position-relative text-left  collapsible-link"
+														className="btn btn-link collapsed w-100 position-relative text-left  collapsible-link"
 													>
 														Will your technician also fix any other issue of my
 														phone?
@@ -161,10 +206,10 @@ export default class Faq extends PureComponent {
 												id="collapseFour"
 												aria-labelledby="headingFour"
 												data-parent="#accordionExampleThree"
-												class="collapse"
+												className="collapse"
 											>
-												<div class="card-body">
-													<p class="font-weight-light m-0">
+												<div className="card-body">
+													<p className="font-weight-light m-0">
 														It is definitely on the cards but for now, we only
 														offer the services listed on our platform. Please
 														let us know in advance for any issue with your
@@ -175,21 +220,21 @@ export default class Faq extends PureComponent {
 										</div>
 										{/* <!-- End --> */}
 									</div>
-									<div id="accordionExampleFour" class="accordion">
+									<div id="accordionExampleFour" className="accordion">
 										{/* <!-- Accordion item 3 --> */}
-										<div class="card">
+										<div className="card">
 											<div
 												id="headingFive"
-												class="card-header bg-white border-0"
+												className="card-header bg-white border-0"
 											>
-												<h2 class="mb-0">
+												<h2 className="mb-0">
 													<button
 														type="button"
 														data-toggle="collapse"
 														data-target="#collapseFive"
 														aria-expanded="false"
 														aria-controls="collapseFive"
-														class="btn btn-link collapsed w-100 position-relative text-left  collapsible-link"
+														className="btn btn-link collapsed w-100 position-relative text-left  collapsible-link"
 													>
 														Will your technician also fix any other issue of my
 														phone?
@@ -200,10 +245,10 @@ export default class Faq extends PureComponent {
 												id="collapseFive"
 												aria-labelledby="headingFive"
 												data-parent="#accordionExampleFour"
-												class="collapse"
+												className="collapse"
 											>
-												<div class="card-body">
-													<p class="font-weight-light m-0">
+												<div className="card-body">
+													<p className="font-weight-light m-0">
 														It is definitely on the cards but for now, we only
 														offer the services listed on our platform. Please
 														let us know in advance for any issue with your
@@ -213,19 +258,19 @@ export default class Faq extends PureComponent {
 											</div>
 										</div>
 										{/* <!-- End --> */}
-										<div class="card">
+										<div className="card">
 											<div
 												id="headingSix"
-												class="card-header bg-white border-0"
+												className="card-header bg-white border-0"
 											>
-												<h2 class="mb-0">
+												<h2 className="mb-0">
 													<button
 														type="button"
 														data-toggle="collapse"
 														data-target="#collapseSix"
 														aria-expanded="false"
 														aria-controls="collapseSix"
-														class="btn btn-link collapsed w-100 position-relative text-left  collapsible-link"
+														className="btn btn-link collapsed w-100 position-relative text-left  collapsible-link"
 													>
 														Will your technician also fix any other issue of my
 														phone?
@@ -236,10 +281,10 @@ export default class Faq extends PureComponent {
 												id="collapseSix"
 												aria-labelledby="headingSix"
 												data-parent="#accordionExampleFour"
-												class="collapse"
+												className="collapse"
 											>
-												<div class="card-body">
-													<p class="font-weight-light m-0">
+												<div className="card-body">
+													<p className="font-weight-light m-0">
 														It is definitely on the cards but for now, we only
 														offer the services listed on our platform. Please
 														let us know in advance for any issue with your

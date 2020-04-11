@@ -4,21 +4,49 @@ import HeadBar from "./headBar";
 import Modal from "./modal";
 export default class Header extends PureComponent {
 	componentDidMount() {
+		//TOPBAR TEXT CHANGER
+		(function () {
+			var words = [
+					"contact us today for repairing your phone",
+					"apply coupon <span>'newuser'</span> for getting special discount",
+				],
+				i = 0;
+			setInterval(function () {
+				window.$("#changingword").fadeOut(function () {
+					window
+						.$(this)
+						.html(words[(i = (i + 1) % words.length)])
+						.fadeIn();
+				});
+			}, 4000);
+		})();
 		//Sticky Header
-		window.$(window).on("scroll load", function() {
+		window.$(window).on("scroll load", function () {
 			window.$(window).scrollTop() > window.$(".siteHeader").outerHeight()
 				? window.$(".siteHeader").addClass("sticky")
 				: window.$(".siteHeader").removeClass("sticky");
 		});
 
 		// mobile menu js
-		window.$(".mobileMenuTrigger").click(function() {
+		window.$(".mobileMenuTrigger").click(function () {
 			window.$(".mobileMenuWrapperOuter").addClass("on");
 			window.$("body").addClass("mobileMenuActive");
 		});
-		window.$(".mobileMenuCloseWrapper").click(function() {
+		window.$(".mobileMenuCloseWrapper").click(function () {
 			window.$(".mobileMenuWrapperOuter").removeClass("on");
 			window.$("body").removeClass("mobileMenuActive");
+		});
+		//Login Signup Popup
+		const signUpButton = document.getElementById("signUp");
+		const signInButton = document.getElementById("signIn");
+		const container = document.getElementById("container");
+
+		signUpButton.addEventListener("click", () => {
+			container.classList.add("right-panel-active");
+		});
+
+		signInButton.addEventListener("click", () => {
+			container.classList.remove("right-panel-active");
 		});
 	}
 	render() {
@@ -30,13 +58,13 @@ export default class Header extends PureComponent {
 						<div className="row align-items-center justify-content-between no-gutters">
 							{/* <!-- hamburger --> */}
 							<div className="col-4 d-block d-lg-none">
-								<Link href="javascript:void(0)" className="mobileMenuTrigger">
+								<a className="mobileMenuTrigger">
 									<button type="button" className="">
 										<span className="icon-bar top-bar"></span>
 										<span className="icon-bar middle-bar"></span>
 										<span className="icon-bar bottom-bar m-0"></span>
 									</button>
-								</Link>
+								</a>
 							</div>
 							{/* <!-- logo --> */}
 							<div className="col-4 col-lg-2">
@@ -56,38 +84,31 @@ export default class Header extends PureComponent {
 										<Link to="/repair">Repair</Link>
 									</div>
 									<div className="menuItem">
-										<Link href="javascript:void(0);">New Offers</Link>
+										<Link to="javascript:void(0);">New Offers</Link>
 									</div>
 									<div className="menuItem">
-										<Link href="javascript:void(0);">Our Stores</Link>
+										<Link to="javascript:void(0);">Our Stores</Link>
 									</div>
-									{/* <!-- <div className="menuItem">
-                <Link href="javascript:void(0);">Collaborate</Link>
-              </div> -->
-                <!-- <div className="menuItem">
-                <Link href="javascript:void(0);">Contact Us</Link>
-              </div> --> */}
 								</div>
 								<div className="iconsWrapper">
 									<div className="iconsItem d-inline-block d-md-block d-lg-none">
-										<Link href="index.html" className="active">
+										<Link to="/" className="active">
 											<i className="glyph-icon flaticon-home-1"></i>
 										</Link>
 									</div>
 									<div className="iconsItem d-inline-block d-md-block d-lg-none">
-										<Link href="repair.html">
+										<Link to="/repair">
 											<i className="glyph-icon flaticon-settings"></i>
 										</Link>
 									</div>
 									<div className="iconsItem  d-lg-inline-block d-md-block  ">
-										<Link
-											href="javascript:void(0)"
+										<a
 											data-toggle="modal"
 											data-target="#loginModalCenter"
 											className="logInBtn"
 										>
 											<i className="glyph-icon flaticon-user"></i>
-										</Link>
+										</a>
 										<ul className="subMenu">
 											<li>
 												<Link to="/profile">My Profile</Link>
@@ -111,12 +132,12 @@ export default class Header extends PureComponent {
 										</ul>
 									</div>
 									<div className="iconsItem d-none d-lg-inline-block">
-										<Link href="faq.html">
+										<Link to="/faq">
 											<i className="glyph-icon flaticon-headphones"></i>
 										</Link>
 									</div>
 									<div className="iconsItem  d-lg-inline-block d-md-block hasItems">
-										<Link href="checkout.html">
+										<Link to="/checkout">
 											<i className="glyph-icon flaticon-note"></i>
 											<div className="circleWrapper">
 												<div className="circle"></div>
@@ -124,7 +145,10 @@ export default class Header extends PureComponent {
 										</Link>
 										<ul className="subMenu">
 											<li>
-												<Link className="d-flex justify-content-center product">
+												<Link
+													to="/checkout"
+													className="d-flex justify-content-center product"
+												>
 													<div className="imgWrap">
 														<img
 															src="/assets/images/mobiles/oneplus/oneplussixt.png"
@@ -149,7 +173,7 @@ export default class Header extends PureComponent {
 							<div className="col-4">
 								<div className="whatsappWrapper">
 									<Link
-										href="https://wa.me/7278885292?text=I'm%20interested%20in%20your%20car%20for%20sale"
+										to="https://wa.me/7278885292?text=I'm%20interested%20in%20your%20car%20for%20sale"
 										target="_blank"
 									>
 										<img src="/assets/images/icons/whatsapp.png" alt="" />
@@ -165,10 +189,7 @@ export default class Header extends PureComponent {
 					<div className="mobileMenuWrapperOuter d-lg-none">
 						<div className="mobileMenuWrapper">
 							<div className="mobile-menu-wrapper-header d-flex align-items-center position-relative">
-								<Link
-									className="mobileMenuCloseWrapper"
-									href="javascript:void(0);"
-								>
+								<a className="mobileMenuCloseWrapper">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="18"
@@ -178,18 +199,18 @@ export default class Header extends PureComponent {
 									>
 										<path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
 									</svg>
-								</Link>
+								</a>
 								<img
 									src="/assets/images/icons/collaborate.svg"
 									width="100"
 									alt=""
 								/>
 								<div className="mobile-menu-header-inner">
-									<Link href="javascript:void(0)">Hey Javed,</Link>
+									<Link to="">Hey Javed,</Link>
 									<span>Welcome back</span>
 
 									<Link
-										href=""
+										to=""
 										className="d-none"
 										data-toggle="modal"
 										data-target="#loginModalCenter"
@@ -228,7 +249,7 @@ export default class Header extends PureComponent {
 									</Link>
 								</div>
 								<div className="borders">
-									<Link to="javascript:void(0)" className="mobileMenuLink">
+									<Link to="/collaborate" className="mobileMenuLink">
 										Collaborate
 									</Link>
 									<Link to="javascript:void(0)" className="mobileMenuLink">
@@ -236,10 +257,10 @@ export default class Header extends PureComponent {
 									</Link>
 								</div>
 								<div className="borders">
-									<Link to="faq.html" className="mobileMenuLink">
+									<Link to="/faq" className="mobileMenuLink">
 										FAQs
 									</Link>
-									<Link to="javascript:void(0)" className="mobileMenuLink">
+									<Link to="/feedback" className="mobileMenuLink">
 										Feedback
 									</Link>
 								</div>

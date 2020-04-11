@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
-export default class Collabrate extends PureComponent {
+export default class CollabprateBanner extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>

@@ -105,7 +105,7 @@ $colors: (
   primary: #007fff,
   font-dark: #1b1b1b,
   red-delete: #ea425c,
-  success-green: #3ecf8e
+  success-green: #3ecf8e,
 );
 @function color($color-name) {
   @return map-get($colors, $color-name);
@@ -3197,7 +3197,6 @@ footer {
     .orderBlock {
       .orderBody {
         border-bottom: 0;
-
         .imgWrap {
           max-width: 12%;
           flex-basis: 12%;
@@ -3220,6 +3219,17 @@ footer {
             max-width: 73%;
             flex-basis: 73%;
           }
+        }
+      }
+    }
+    .savedAddress {
+      cursor: pointer;
+      &.selected {
+        border: 1px solid color(success-green);
+        background: lighten(color(success-green), 45);
+        h3,
+        p {
+          color: darken(color(success-green), 15);
         }
       }
     }

@@ -1,0 +1,168 @@
+<style>
+  .blobWrapper {
+    svg {
+      width: 100%;
+      position: absolute;
+      z-index: -1;
+      path {
+        d: path(
+          "M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45	c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2	c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7	c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z"
+        );
+        animation: morph 5s infinite;
+      }
+      &:hover {
+        path {
+          d: path(
+            "M51,171.3c-6.1-17.7-15.3-17.2-20.7-32c-8-21.9,0.7-54.6,20.7-67.1c19.5-12.3,32.8,5.5,67.7-3.4C145.2,62,145,49.9,173,43.4 c12-2.8,41.4-9.6,60.2,6.6c19,16.4,16.7,47.5,16,57.7c-1.7,22.8-10.3,25.5-9.4,46.4c1,22.5,11.2,25.8,9.1,42.6	c-2.2,17.6-16.3,37.5-33.5,40.8c-22,4.1-29.4-22.4-54.9-22.6c-31-0.2-40.8,39-68.3,35.7c-17.3-2-32.2-19.8-37.3-34.8	C48.9,198.6,57.8,191,51,171.3z"
+          );
+        }
+      }
+    }
+  }
+  @keyframes morph {
+    0%,
+    100% {
+      d: path(
+        "M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45	c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2	c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7	c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z"
+      );
+    }
+    50% {
+      d: path(
+        "M51,171.3c-6.1-17.7-15.3-17.2-20.7-32c-8-21.9,0.7-54.6,20.7-67.1c19.5-12.3,32.8,5.5,67.7-3.4C145.2,62,145,49.9,173,43.4 c12-2.8,41.4-9.6,60.2,6.6c19,16.4,16.7,47.5,16,57.7c-1.7,22.8-10.3,25.5-9.4,46.4c1,22.5,11.2,25.8,9.1,42.6	c-2.2,17.6-16.3,37.5-33.5,40.8c-22,4.1-29.4-22.4-54.9-22.6c-31-0.2-40.8,39-68.3,35.7c-17.3-2-32.2-19.8-37.3-34.8	C48.9,198.6,57.8,191,51,171.3z"
+      );
+    }
+  }
+  .colorSlider {
+    margin: 8px 0 0;
+    .slick-list {
+      padding: 0 !important;
+      margin: 0 auto;
+      .slick-track {
+        width: max-content !important;
+        transform: translate3d(0, 0, 0) !important;
+        .slick-slide {
+          width: 18px !important;
+          transform: scale(0.8, 0.8);
+          border: 0;
+          outline: none;
+          &.slick-current {
+            transform: scale(1.05, 1.05);
+          }
+          .colorCode {
+            width: 15px;
+            height: 15px;
+            border-radius: 100%;
+            background: #000;
+            border: 1px solid #000;
+            &.mirrorBlack {
+              background: #d4e1ec;
+              border: 1px solid #d4e1ec;
+            }
+            &.midnightBlack {
+              background: #000316;
+              border: 1px solid #000316;
+            }
+          }
+        }
+        .slick-slide + .slick-slide {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+</style>
+<!-- offers -->
+<section class="offersWrapper">
+  <div class="sectionWrapper">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-12">
+        <div class="title">
+          <h2 class="text-center">Offers</h2>
+          <p class="w-50 m-auto text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            placeat eos enim quibusdam illo dignissimos vel
+          </p>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <a class="d-block" href="javascript:void(0);">
+          <img
+            src="https://cdn6.f-cdn.com/contestentries/1627935/17892241/5d9e94e2c0d22_thumb900.jpg"
+            alt=""
+          />
+        </a>
+      </div>
+      <div class="col-12 col-lg-6">
+        <a class="d-block" href="javascript:void(0);">
+          <img
+            src="https://www.greatphones.uk/wp-content/uploads/2018/09/banner-1.jpg"
+            alt=""
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <div>
+        <svg
+          style="fill: #73b0ef8a;position: absolute;
+          z-index: -1;
+          top: 10px;"
+          id="svg-top"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          preserveAspectRatio="xMidYMid"
+          width="195.875"
+          height="1318.28"
+          viewBox="0 0 195.875 1318.28"
+        >
+          <defs>
+            <filter id="gradient-overlay-2" filterUnits="userSpaceOnUse">
+              <feImage
+                x="-829.406"
+                y="0"
+                width="1025.281"
+                height="1318.2800000000002"
+                preserveAspectRatio="none"
+                xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAyNS4yODEiIGhlaWdodD0iMTMxOC4yODAwMDAwMDAwMDAyIj48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB5MT0iMTQ2LjUiIHgyPSIxMDI1LjI4IiB5Mj0iMTE3MS43OCI+CiAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWJkZDg4Ii8+CiAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMzJlYjlhIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiLz48L3N2Zz4="
+              ></feImage>
+              <feComposite operator="in" in2="SourceGraphic"></feComposite>
+              <feBlend in2="SourceGraphic" result="gradientFill"></feBlend>
+            </filter>
+          </defs>
+          <path
+            style="fill: #73b0ef8a"
+            d="M-540.968,20.684 C-540.968,20.684 -687.378,86.487 -694.760,174.843 C-702.142,263.200 -643.186,274.374 -667.132,338.769 C-691.079,403.164 -765.483,413.324 -785.981,496.763 C-807.750,585.376 -722.107,571.956 -727.171,690.819 C-732.235,809.683 -978.187,852.597 -688.556,1167.735 C-398.925,1482.874 -139.906,1235.432 -115.898,1040.448 C-91.891,845.463 42.695,803.563 95.851,754.793 C149.006,706.023 316.246,497.102 46.140,203.210 C-223.966,-90.683 -540.968,20.684 -540.968,20.684 Z"
+            class="cls-2"
+          ></path>
+        </svg>
+      </div> -->
+<div class="d-flex">
+  <input type="submit" name="" class="" id="" value="Save Changes" />
+  <a href="javascript:void(0)" class="cancel text-center">Cancel</a>
+</div>
+<!-- <div class="background">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            height="100%"
+          >
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop
+                  offset="0%"
+                  style="stop-color: rgba(86, 204, 242, 0.75) ;stop-opacity:1"
+                />
+                <stop
+                  offset="60%"
+                  style="stop-color:rgba(47, 128, 237, 0.75);stop-opacity:1"
+                />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#grad1)"
+              fill-opacity="1"
+              d="M0,192L80,213.3C160,235,320,277,480,277.3C640,277,800,235,960,218.7C1120,203,1280,213,1360,218.7L1440,224L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+            ></path>
+          </svg>
+        </div> -->

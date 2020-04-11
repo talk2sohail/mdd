@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 
 export default class howToHelp extends PureComponent {
 	render() {
@@ -28,7 +29,7 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<a href="javascript:void(0)">View More</a>
+											<Link to="">View More</Link>
 										</div>
 									</div>
 								</div>
@@ -50,7 +51,7 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<a href="javascript:void(0)">View More</a>
+											<Link to="">View More</Link>
 										</div>
 									</div>
 								</div>
@@ -72,7 +73,7 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<a href="javascript:void(0)">View More</a>
+											<Link to="">View More</Link>
 										</div>
 									</div>
 								</div>
@@ -94,7 +95,7 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<a href="javascript:void(0)">View More</a>
+											<Link to="">View More</Link>
 										</div>
 									</div>
 								</div>
@@ -116,7 +117,7 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<a href="javascript:void(0)">View More</a>
+											<Link to="">View More</Link>
 										</div>
 									</div>
 								</div>

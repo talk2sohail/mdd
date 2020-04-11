@@ -18,8 +18,8 @@ export default class Services extends PureComponent {
 					breakpoint: 1199,
 					settings: {
 						slidesToShow: 3,
-						slidesToScroll: 3
-					}
+						slidesToScroll: 3,
+					},
 				},
 				{
 					breakpoint: 991,
@@ -27,20 +27,20 @@ export default class Services extends PureComponent {
 						slidesToShow: 3,
 						slidesToScroll: 2,
 						infinite: true,
-						variableWidth: false
-					}
+						variableWidth: false,
+					},
 				},
 				{
 					breakpoint: 480,
 					settings: {
 						slidesToShow: 1,
-						slidesToScroll: 1
-					}
-				}
+						slidesToScroll: 1,
+					},
+				},
 				// You can unslick at a given breakpoint now by adding:
 				// settings: "unslick"
 				// instead of a settings object
-			]
+			],
 		});
 	}
 	render() {
@@ -68,15 +68,15 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
+										// href="javascript:void(0)"
 										className="text-center"
 									>
 										<img
 											src="/assets/images/background/brokenscreen.jpg"
 											alt=""
 										/>
-										<div class="content">
-											<h2 class="text-center">Broken Screen</h2>
+										<div className="content">
+											<h2 className="text-center">Broken Screen</h2>
 										</div>
 									</a>
 								</div>
@@ -89,7 +89,7 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
+										// href="javascript:void(0)"
 										className="text-center"
 									>
 										<img
@@ -110,7 +110,7 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
+										// href="javascript:void(0)"
 										className="text-center"
 									>
 										<img
@@ -131,7 +131,7 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
+										// href="javascript:void(0)"
 										className="text-center"
 									>
 										<img src="/assets/images/background/battery.jpg" alt="" />
@@ -149,7 +149,7 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
+										// href="javascript:void(0)"
 										className="text-center"
 									>
 										<img
@@ -170,8 +170,8 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
-										class="text-center"
+										// href="javascript:void(0)"
+										className="text-center"
 									>
 										<img
 											src="/assets/images/background/waterdamage.png"
@@ -191,7 +191,7 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
+										// href="javascript:void(0)"
 										className="text-center"
 									>
 										<img src="/assets/images/background/micrepair.png" alt="" />
@@ -209,7 +209,7 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
+										// href="javascript:void(0)"
 										className="text-center"
 									>
 										<img
@@ -230,7 +230,7 @@ export default class Services extends PureComponent {
 									<a
 										// data-tilt
 										// data-tilt-reverse="true"
-										href="javascript:void(0)"
+										// href="javascript:void(0)"
 										className="text-center"
 									>
 										<img
