@@ -1,10 +1,44 @@
 import React, { Component } from "react";
+import apiCall from "../../axios";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "../header";
 import Footer from "../footer";
 
 export default class Profile extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			userDetails: {
+				first_name: "--",
+				last_name: "--",
+				gender: "--",
+				email: "",
+				contact: "",
+			},
+		};
+	}
+
+	componentDidMount() {
+		const token = apiCall.getToken();
+		// console.log(accessToken);
+		const accessToken = `Bearer ${token}`;
+		apiCall
+			.get("/user/profile", accessToken)
+			.then((response) => {
+				this.setState((state) => {
+					const userDetails = { ...response.data.user };
+
+					return {
+						state,
+						userDetails,
+					};
+				});
+			})
+			.catch((error) => {
+				console.log(error.response.data.msg);
+			});
+	}
 	render() {
 		return (
 			<React.Fragment>
@@ -30,7 +64,7 @@ export default class Profile extends Component {
 														type="text"
 														className="plainText"
 														readOnly
-														defaultValue="Md Javed"
+														value={this.state.userDetails.first_name}
 													/>
 												</div>
 											</div>
@@ -43,7 +77,7 @@ export default class Profile extends Component {
 														type="text"
 														className="plainText"
 														readOnly
-														defaultValue="Akhtar"
+														value={this.state.userDetails.last_name}
 													/>
 												</div>
 											</div>
@@ -56,7 +90,7 @@ export default class Profile extends Component {
 														type="text"
 														className="plainText"
 														readOnly
-														defaultValue="Male"
+														value={this.state.userDetails.gender}
 													/>
 												</div>
 											</div>
@@ -69,7 +103,7 @@ export default class Profile extends Component {
 														type="email"
 														className="plainText"
 														readOnly
-														defaultValue="javed@mailinator.com"
+														value={this.state.userDetails.email}
 													/>
 												</div>
 											</div>
@@ -82,7 +116,7 @@ export default class Profile extends Component {
 														type="number"
 														className="plainText"
 														readOnly
-														defaultValue={9831983198}
+														value={this.state.userDetails.contact}
 													/>
 												</div>
 											</div>
@@ -98,7 +132,8 @@ export default class Profile extends Component {
 														type="password"
 														className="plainText"
 														readOnly
-														defaultValue={9831983198}
+														name="password"
+														value={9007112199}
 													/>
 												</div>
 											</div>

@@ -1,11 +1,10 @@
-import axios from "axios";
+// import axios from "axios";
 // import { getToken } from "./store";
+const axios = require("axios");
 const environment = process.env.NODE_ENV;
 
 let api_url =
-	environment === "production"
-		? "production_url"
-		: "http://localhost:5000/api/";
+	environment === "production" ? "production_url" : "http://localhost:5000/api";
 
 class apiCall {
 	getToken = () => {
@@ -15,23 +14,24 @@ class apiCall {
 			localStorage.getItem("token") !== undefined
 				? localStorage.getItem("token")
 				: null;
-
 		if (token !== null) {
 			return token;
 		} else {
-			return false;
+			return null;
 		}
 	};
-	post = (url, data, token = null) =>
+	post = (url, payload, token = null) =>
 		new Promise((resolve, reject) => {
-			token = this.getToken();
-
-			var headers = {
-				Authorization: "Bearer " + token,
-			};
-
-			axios
-				.post(api_url + url, data, token !== null ? { headers } : undefined)
+			axios({
+				url: `${api_url}${url}`,
+				method: "POST",
+				headers: {
+					Authorization: token !== null ? token : undefined,
+					"Content-Type": "application/json",
+				},
+				data: payload,
+			})
+				// .post(api_url + url, data, token !== null ? { headers } : undefined)
 				.then(function (response) {
 					resolve(response);
 				})
@@ -42,13 +42,14 @@ class apiCall {
 
 	get = (url, token) =>
 		new Promise((resolve, reject) => {
-			token = this.getToken();
-			var headers = {
-				Authorization: "Bearer " + token,
-			};
-
-			axios
-				.get(api_url + url, { headers })
+			axios({
+				url: `${api_url}${url}`,
+				method: "GET",
+				headers: {
+					Authorization: token !== null ? token : undefined,
+				},
+			})
+				// .get(api_url + url, { headers })
 				.then(function (response) {
 					resolve(response);
 				})
@@ -59,3 +60,7 @@ class apiCall {
 }
 
 export default new apiCall();
+
+// const api = new apiCall();
+// const token = api.getToken();
+// console.log(token);

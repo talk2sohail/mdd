@@ -3,18 +3,31 @@ import apiCall from "../../axios";
 import Header from "../header";
 import CollabrateBannr from "../collabrateBanner";
 import Footer from "../footer";
+import validate from "./formValidation";
+
+const getInitialState = () => {
+	return {
+		first_name: "",
+		last_name: "",
+		email: "",
+		contact: "",
+		subject: "",
+		message: "",
+		formError: {
+			firstNameError: "",
+			lastNameError: "",
+			emailError: "",
+			contactError: "",
+			subjectError: "",
+			messageError: "",
+		},
+	};
+};
 
 export default class Feedback extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			first_name: "",
-			last_name: "",
-			email: "",
-			ph_no: "",
-			subject: "",
-			message: "",
-		};
+		this.state = getInitialState();
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -31,22 +44,52 @@ export default class Feedback extends Component {
 	handleSubmit = (e) => {
 		console.log(this.state);
 		e.preventDefault();
-		const feedbacks = { ...this.state };
-		const user_details = {};
-		const feedback = {};
-		user_details.first_name = feedbacks.first_name;
-		user_details.last_name = feedbacks.last_name;
-		user_details.email = feedbacks.email;
-		user_details.ph_no = feedbacks.ph_no;
-		feedback.subject = feedbacks.subject;
-		feedback.message = feedbacks.message;
+
+		const err = validate({ ...this.state });
+		console.log(err);
+		if (err.isError) {
+			this.setState({
+				formError: err.errors,
+			});
+			return;
+		}
+		// const feedbacks = { ...this.state };
+		// const user_details = {};
+		// const feedback = {};
+		// user_details.first_name = feedbacks.first_name;
+		// user_details.last_name = feedbacks.last_name;
+		// user_details.email = feedbacks.email;
+		// user_details.ph_no = feedbacks.ph_no;
+		// feedback.subject = feedbacks.subject;
+		// feedback.message = feedbacks.message;
+		const {
+			first_name,
+			last_name,
+			email,
+			contact,
+			subject,
+			message,
+		} = this.state;
+
 		apiCall
-			.post("/feedback", { user_details, feedback })
+			.post("/feedback", {
+				first_name,
+				last_name,
+				email,
+				contact,
+				subject,
+				message,
+			})
 			.then((response) => {
-				console.log(response);
+				// console.log(response.data);
+				const { msg, success } = response.data;
+				if (success && msg) {
+					console.log(msg);
+					this.props.history.push("/");
+				}
 			})
 			.catch((error) => {
-				console.log(error);
+				console.log(error.response.data);
 			});
 	};
 
@@ -119,6 +162,14 @@ export default class Feedback extends Component {
 								<form className="bg-white" onSubmit={this.handleSubmit}>
 									<div className="row no-gutters">
 										<div className="col-12 col-lg-6">
+											<p
+												style={{
+													color: "red",
+													fontSize: 12,
+												}}
+											>
+												{this.state.formError.firstNameError}
+											</p>
 											<input
 												type="text"
 												name="first_name"
@@ -128,6 +179,14 @@ export default class Feedback extends Component {
 											/>
 										</div>
 										<div className="col-12 col-lg-6">
+											<p
+												style={{
+													color: "red",
+													fontSize: 12,
+												}}
+											>
+												{this.state.formError.lastNameError}
+											</p>
 											<input
 												name="last_name"
 												value={this.state.last_name}
@@ -140,6 +199,14 @@ export default class Feedback extends Component {
 									</div>
 									<div className="row no-gutters">
 										<div className="col-12 col-lg-6">
+											<p
+												style={{
+													color: "red",
+													fontSize: 12,
+												}}
+											>
+												{this.state.formError.emailError}
+											</p>
 											<input
 												type="email"
 												name="email"
@@ -149,9 +216,17 @@ export default class Feedback extends Component {
 											/>
 										</div>
 										<div className="col-12 col-lg-6">
+											<p
+												style={{
+													color: "red",
+													fontSize: 12,
+												}}
+											>
+												{this.state.formError.contactError}
+											</p>
 											<input
-												name="ph_no"
-												value={this.state.ph_no}
+												name="contact"
+												value={this.state.contact}
 												onChange={this.handleChange}
 												type="text"
 												placeholder="Phone Number"
@@ -161,6 +236,14 @@ export default class Feedback extends Component {
 									</div>
 									<div className="row no-gutters">
 										<div className="col-12">
+											<p
+												style={{
+													color: "red",
+													fontSize: 12,
+												}}
+											>
+												{this.state.formError.subjectError}
+											</p>
 											<input
 												name="subject"
 												value={this.state.subject}
@@ -173,6 +256,14 @@ export default class Feedback extends Component {
 									</div>
 									<div className="row no-gutters">
 										<div className="col-12">
+											<p
+												style={{
+													color: "red",
+													fontSize: 12,
+												}}
+											>
+												{this.state.formError.messageError}
+											</p>
 											<textarea
 												name="message"
 												value={this.state.message}
@@ -187,9 +278,9 @@ export default class Feedback extends Component {
 									<div className="row no-gutters">
 										<div className="col-12">
 											<input
-												// onClick={this.handleSubmit}
 												type="submit"
-												value="Send Feedback"
+												// value="Send Feedback"
+												value="Submit"
 												className="w-100 mb-0"
 											/>
 										</div>

@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import $ from "jquery";
 
 export default class Banner extends PureComponent {
 	componentDidMount() {
@@ -9,7 +10,7 @@ export default class Banner extends PureComponent {
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			autoplay: true,
-			autoplaySpeed: 2000
+			autoplaySpeed: 2000,
 		});
 	}
 	render() {

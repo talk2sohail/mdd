@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Route, Link, Switch, withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import IssueSelection from "./issueSelection";
 import BrandsSelection from "./brandsSelection";
 import MobileSelection from "./mobileSelection";
@@ -8,7 +8,7 @@ import SearchBar from "./searchBar";
 class RepairSelection extends PureComponent {
 	state = {
 		componentNeedToRender: null,
-		search: true
+		search: true,
 	};
 	componentDidMount() {
 		window.$(".brands").click(() => {

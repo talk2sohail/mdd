@@ -133,7 +133,7 @@
                     <i class="glyph-icon flaticon-settings"></i>
                   </a>
                 </div>
-                <div class="iconsItem  d-lg-inline-block d-md-block  ">
+                <div class="iconsItem d-lg-inline-block d-md-block">
                   <a
                     href="javascript:void(0)"
                     data-toggle="modal"
@@ -169,7 +169,7 @@
                     <i class="glyph-icon flaticon-headphones"></i>
                   </a>
                 </div>
-                <div class="iconsItem  d-lg-inline-block d-md-block hasItems">
+                <div class="iconsItem d-lg-inline-block d-md-block hasItems">
                   <a href="checkout.html">
                     <i class="glyph-icon flaticon-note"></i>
                     <div class="circleWrapper">
@@ -356,15 +356,15 @@
           <div class="row align-items-center justify-content-between">
             <div class="col-12">
               <div class="title">
-                <h2 class="text-center ">Procedure</h2>
-                <p class="text-center  m-auto  ">
+                <h2 class="text-center">Procedure</h2>
+                <p class="text-center m-auto">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Eligendi placeat eos enim quibusdam illo dignissimos vel
                 </p>
               </div>
             </div>
             <div class="col-12 col-md-6 col-lg-3">
-              <div class="procedure blueBg ">
+              <div class="procedure blueBg">
                 <div class="imgWrap">
                   <div class="icon mobile">
                     <i class="glyph-icon flaticon-smartphone"></i>
@@ -437,7 +437,7 @@
             <div class="col-12">
               <div class="title">
                 <h2 class="text-center">Services</h2>
-                <p class=" m-auto text-center">
+                <p class="m-auto text-center">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Eligendi placeat eos enim quibusdam illo dignissimos vel
                 </p>
@@ -568,7 +568,7 @@
             <div class="col-12">
               <div class="title">
                 <h2 class="text-center">Brands</h2>
-                <p class=" m-auto text-center">
+                <p class="m-auto text-center">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Eligendi placeat eos enim quibusdam illo dignissimos vel
                 </p>
@@ -775,11 +775,30 @@
                   >&times;</span
                 >
               </button>
+              <h3>Forgot Password ?</h3>
               <form action="#">
-                <h3>Forgot Password ?</h3>
                 <p class="mb-3">We will email you a link to reset it.</p>
                 <input type="email" placeholder="Email" />
-                <input type="submit" value="send" class="gradientBtn" />
+                <input
+                  type="text"
+                  value=""
+                  pattern="[0-9]{1}[0-9]{9}"
+                  placeholder="Enter OTP"
+                  maxlength="4"
+                  class="d-none"
+                />
+                <a
+                  class="gradientText resendOTP font-weight-light d-none"
+                  href="javascript:void(0)"
+                  >Resend OTP</a
+                >
+                <input type="submit" value="submit" class="gradientBtn" />
+              </form>
+              <form action="#" class="d-none">
+                <p class="mb-3">Enter Your New Password</p>
+                <input type="password" placeholder="Enter New Password" />
+                <input type="password" placeholder="Confirm New Password" />
+                <input type="submit" value="submit" class="gradientBtn" />
               </form>
               <p class="font-weight-light">
                 Just remembered ?
@@ -985,7 +1004,7 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2500
+        autoplaySpeed: 2500,
       });
       $(".services").slick({
         dots: false,
@@ -1002,8 +1021,8 @@
             breakpoint: 1199,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 3
-            }
+              slidesToScroll: 3,
+            },
           },
           {
             breakpoint: 991,
@@ -1011,20 +1030,20 @@
               slidesToShow: 3,
               slidesToScroll: 2,
               infinite: true,
-              variableWidth: false
-            }
+              variableWidth: false,
+            },
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
+              slidesToScroll: 1,
+            },
+          },
           // You can unslick at a given breakpoint now by adding:
           // settings: "unslick"
           // instead of a settings object
-        ]
+        ],
       });
     </script>
   </body>

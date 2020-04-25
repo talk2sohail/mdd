@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import $ from "jquery";
 import HeadBar from "./headBar";
 import Modal from "./modal";
 export default class Header extends PureComponent {
@@ -12,29 +13,27 @@ export default class Header extends PureComponent {
 				],
 				i = 0;
 			setInterval(function () {
-				window.$("#changingword").fadeOut(function () {
-					window
-						.$(this)
+				$("#changingword").fadeOut(function () {
+					$(this)
 						.html(words[(i = (i + 1) % words.length)])
 						.fadeIn();
 				});
 			}, 4000);
 		})();
 		//Sticky Header
-		window.$(window).on("scroll load", function () {
-			window.$(window).scrollTop() > window.$(".siteHeader").outerHeight()
-				? window.$(".siteHeader").addClass("sticky")
-				: window.$(".siteHeader").removeClass("sticky");
+		$(window).on("scroll load", function () {
+			$(window).scrollTop() > $(".siteHeader").outerHeight()
+				? $(".siteHeader").addClass("sticky")
+				: $(".siteHeader").removeClass("sticky");
 		});
-
 		// mobile menu js
-		window.$(".mobileMenuTrigger").click(function () {
-			window.$(".mobileMenuWrapperOuter").addClass("on");
-			window.$("body").addClass("mobileMenuActive");
+		$(".mobileMenuTrigger").click(function () {
+			$(".mobileMenuWrapperOuter").addClass("on");
+			$("body").addClass("mobileMenuActive");
 		});
-		window.$(".mobileMenuCloseWrapper").click(function () {
-			window.$(".mobileMenuWrapperOuter").removeClass("on");
-			window.$("body").removeClass("mobileMenuActive");
+		$(".mobileMenuCloseWrapper").click(function () {
+			$(".mobileMenuWrapperOuter").removeClass("on");
+			$("body").removeClass("mobileMenuActive");
 		});
 		//Login Signup Popup
 		const signUpButton = document.getElementById("signUp");
