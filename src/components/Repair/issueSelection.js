@@ -26,8 +26,8 @@ export default class IssueSelection extends PureComponent {
 									Rs 999
 								</p>
 							</div>
-							<a href="javascript:void(0)" className>
-								<span className>+ Add</span>
+							<a href="javascript:void(0)">
+								<span>+ Add</span>
 								<span className="d-none">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -57,8 +57,8 @@ export default class IssueSelection extends PureComponent {
 								</p>
 							</div>
 							<a href="javascript:void(0)" className="remove">
-								<span className>+ Add</span>
-								<span className>
+								<span>+ Add</span>
+								<span>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width={18}

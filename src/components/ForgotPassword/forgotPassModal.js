@@ -32,8 +32,7 @@ export default class ForgotPassModal extends Component {
 		});
 	};
 	render() {
-		const { step } = this.state;
-		const { email, new_password, confirm_password, otp } = this.state;
+		const { step, email, new_password, confirm_password, otp } = this.state;
 		const values = { email, new_password, confirm_password, otp };
 		let form = null;
 		switch (step) {
