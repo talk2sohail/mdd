@@ -12,8 +12,9 @@ class RepairSelection extends PureComponent {
 		this.state = {
 			brand: "",
 			mobile: "",
-			issues: [],
+			issue: [],
 			step: 1,
+			errorMsg: "",
 			search: true,
 		};
 
@@ -21,7 +22,11 @@ class RepairSelection extends PureComponent {
 		this.previousStep = this.previousStep.bind(this);
 	}
 
-	nextStep = (brandName = "", mobileName = "", search = true) => {
+	nextStep = (
+		brandName = this.state.brand,
+		mobileName = this.state.mobile,
+		search = true
+	) => {
 		this.setState({
 			brand: brandName,
 			mobile: mobileName,
@@ -29,7 +34,11 @@ class RepairSelection extends PureComponent {
 			step: this.state.step + 1,
 		});
 	};
-	previousStep = (brandName = "", mobileName = "", search = true) => {
+	previousStep = (
+		brandName = this.state.brand,
+		mobileName = this.state.mobile,
+		search = true
+	) => {
 		this.setState({
 			brand: brandName,
 			mobile: mobileName,
@@ -37,22 +46,7 @@ class RepairSelection extends PureComponent {
 			step: this.state.step - 1,
 		});
 	};
-	// componentDidMount() {
-	// 	$(".brands").click(() => {
-	// 		$(".mobiles").removeClass("active");
-	// 		this.state.search = true;
-	// 	});
-	// 	$(".mobiles").click(() => {
-	// 		$(".brands").addClass("active");
-	// 		$(".mobiles").removeClass("active");
-	// 		this.state.search = true;
-	// 	});
-	// 	$(".issues").click(() => {
-	// 		$(".brands").addClass("active");
-	// 		$(".mobiles").addClass("active");
-	// 		this.state.search = false;
-	// 	});
-	// }
+
 	render() {
 		let componentToRender = null;
 		const { step, mobile, brand, issues } = this.state;
@@ -100,8 +94,8 @@ class RepairSelection extends PureComponent {
 								<a
 									className="text-center progressBooking brands"
 									onClick={
-										this.state.step == 2 || this.state.step == 3
-											? () => this.previousStep()
+										this.state.step > 1
+											? () => this.previousStep("")
 											: () => this.nextStep()
 									}
 								>
@@ -112,8 +106,8 @@ class RepairSelection extends PureComponent {
 								<a
 									className="text-center progressBooking mobiles"
 									onClick={
-										this.state.step == 3
-											? () => this.previousStep()
+										this.state.step > 2
+											? () => this.previousStep(this.state.brand, "")
 											: () => this.nextStep()
 									}
 								>
@@ -129,7 +123,13 @@ class RepairSelection extends PureComponent {
 								</a>
 							</div>
 						</div>
-						{this.state.search ? <SearchBar /> : null}
+						{this.state.search ? (
+							<SearchBar
+								showId={this.state.step}
+								brandTxt={this.state.brand}
+								mobileTxt={this.state.mobile}
+							/>
+						) : null}
 						{componentToRender}
 					</div>
 				</section>
