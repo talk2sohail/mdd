@@ -1,16 +1,13 @@
 import React, { PureComponent } from "react";
-import apiCall from "../axios";
-import { Alert } from "antd";
+import { store } from "react-notifications-component";
 
+import apiCall from "../axios";
+import Auth from "../Auth";
+
+// regexpr for the valid email check
 const emailRegex = new RegExp(
 	/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
-
-const resetError = () => {
-	return {
-		emailError: "",
-	};
-};
 
 export default class ModalSignIn extends PureComponent {
 	constructor(props) {
@@ -20,10 +17,9 @@ export default class ModalSignIn extends PureComponent {
 			password: "",
 			successMsg: "",
 			errorMsg: "",
-			isValid: false,
-			formError: {
-				emailError: "",
-			},
+			isUserInputError: false,
+			isErrorFromServer: false,
+			inputErrorMsg: "",
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,38 +28,43 @@ export default class ModalSignIn extends PureComponent {
 	handleChange = (event) => {
 		const { name, value } = event.target;
 		this.setState({
+			isErrorFromServer: false,
+			isUserInputError: false,
 			[name]: value,
 		});
 	};
 	validate = () => {
-		let isError = false;
 		const errors = {
-			emailError: "",
+			message: "",
+			isError: false,
 		};
+		if (!this.state.email || !this.state.password)
+			errors.message = "All fields are required";
+
 		if (!emailRegex.test(this.state.email)) {
-			isError = true;
-			errors.emailError = "Requires valid email";
+			errors.message = "Requires valid email";
 		}
 
-		return {
-			isError,
-			errors,
-		};
+		//check if there was any error
+		if (errors.message.length > 0) errors.isError = true;
+
+		return errors;
 	};
-	handleSubmit = (event) => {
-		event.preventDefault();
+
+	handleSubmit = (e) => {
+		e.preventDefault();
 		const err = this.validate();
+		console.log(this.state);
 		console.log(err);
+
 		if (err.isError) {
 			this.setState({
-				formError: err.errors,
-				errorMsg: "",
+				isUserInputError: true,
+				inputErrorMsg: err.message,
 			});
 			return;
 		}
-		this.setState({
-			formError: resetError(),
-		});
+
 		const { email, password } = this.state;
 		apiCall
 			.post("/signIn", { email, password })
@@ -71,20 +72,31 @@ export default class ModalSignIn extends PureComponent {
 				console.log(response.data);
 				const { success, token } = response.data;
 				if (success && token != undefined) {
-					localStorage.setItem("token", token);
-					this.setState({
-						errorMsg: "",
-						successMsg: response.data.msg,
+					Auth.signInAuth(token);
+					store.addNotification({
+						title: "Welcome Back!",
+						message: "It's good to see you here.",
+						type: "default",
+						insert: "top",
+						container: "top-right",
+						dismiss: {
+							duration: 600,
+						},
 					});
-					window.location.reload();
+					setTimeout(() => {
+						window.location.reload();
+					}, 500);
 				}
 			})
 			.catch((error) => {
-				const { msg } = error.response.data;
-				this.setState({
-					isValid: true,
-					errorMsg: msg,
-				});
+				if (!error.response) {
+					console.log("Something went Wrong");
+				} else {
+					this.setState({
+						isErrorFromServer: true,
+						errorMsg: error.response.data.msg,
+					});
+				}
 			});
 	};
 
@@ -100,13 +112,20 @@ export default class ModalSignIn extends PureComponent {
 								fontSize: 14,
 							}}
 						>
-							{this.state.isValid
-								? this.state.errorMsg
-								: this.state.formError.emailError}
+							{!this.state.isUserInputError ? null : this.state.inputErrorMsg}
+						</p>
+						<p
+							style={{
+								color: "red",
+								fontSize: 14,
+							}}
+						>
+							{!this.state.isErrorFromServer ? null : this.state.errorMsg}
 						</p>
 						<input
 							type="email"
 							name="email"
+							required
 							value={this.state.email}
 							onChange={this.handleChange}
 							placeholder="Email"
@@ -114,6 +133,7 @@ export default class ModalSignIn extends PureComponent {
 						<input
 							type="password"
 							name="password"
+							required
 							value={this.state.password}
 							onChange={this.handleChange}
 							placeholder="Password"
@@ -121,6 +141,7 @@ export default class ModalSignIn extends PureComponent {
 						<a
 							// href="javascript:void(0)"
 							// to=""
+							style={{ cursor: "pointer" }}
 							data-target="#forgotPass"
 							className="fogotPassword"
 							data-toggle="modal"
@@ -137,7 +158,7 @@ export default class ModalSignIn extends PureComponent {
 						/>
 						<p className="login-info-text">- OR -</p>
 						<a className="gLogin">
-							<img src="/assets/images/icons/google.png" alt="" />
+							<img src="/assets/images/icons/google.png" alt="google" />
 							&nbsp;&nbsp;sign in using gmail
 						</a>
 					</form>

@@ -1,54 +1,28 @@
 import React, { PureComponent } from "react";
 import apiCall from "../../axios";
+import $ from "jquery";
+import LocalMobileFromDB from "./LocalMobileFromDB";
 export default class MobileSelection extends PureComponent {
-	constructor(props) {
-		super(props);
-		this.state = {
-			error: "",
-			mobiles: [],
-		};
-	}
-
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		error: "",
+	// 		mobiles: [],
+	// 	};
+	// }
 	componentDidMount() {
-		const brand = this.props.values.brand;
-		brand.toLowerCase();
-		apiCall
-			.get(`/${brand}/${brand}`)
-			.then((response) => {
-				// console.log(response.data.mobiles);
-				if (response) {
-					this.setState({
-						mobiles: response.data.mobiles,
-					});
-				}
-			})
-			.catch((error) => {
-				if (!error.response) {
-					console.log("Something went wrong");
-				} else {
-					console.log(error.response.data);
-					this.setState({
-						error: error.response.data.msg,
-					});
-				}
-			});
+		window.scrollTo(0, 500);
 	}
-	continue = (mobileName) => () => {
-		this.props.nextStep(this.props.values.brand, mobileName, false);
+	continue = (mobileName, img) => () => {
+		this.props.nextStep(this.props.values.brand, mobileName, img, false);
 	};
 	render() {
 		return (
 			<React.Fragment>
-				{/* <div className="row no-gutters justify-content-start align-items-center selectOption mobileSelect">
-					<div className="col-4 col-md-4 col-lg-2">
-						<div className="series branWrap">
-							<h4>V4 Series</h4>
-						</div>
-					</div>
-				</div> */}
 				<div className="row no-gutters justify-content-start align-items-center selectOption mobileSelect">
-					{this.state.mobiles
-						? this.state.mobiles.map((mobile, index) => {
+					{this.props.mobileList.length !== 0 ? (
+						<>
+							{this.props.mobileList.map((mobile, index) => {
 								return (
 									<div className="col-6 col-md-4 col-lg-2" key={index}>
 										<div className="branWrap">
@@ -58,15 +32,38 @@ export default class MobileSelection extends PureComponent {
 													src={mobile.img}
 													className="d-block text-center mx-auto"
 													alt=""
-													onClick={this.continue(`${mobile.name}`)}
+													onClick={this.continue(
+														`${mobile.name}`,
+														`${mobile.img}`
+													)}
 												/>
 											</div>
 											<h3 className="text-center uppercase">{mobile.name}</h3>
 										</div>
 									</div>
 								);
-						  })
-						: null}
+							})}
+							<div
+								style={{
+									color: "blue",
+									paddingTop: "25px",
+									cursor: "pointer",
+								}}
+								onClick={() => {
+									$(window).scrollTop(500);
+								}}
+							>
+								...Cannot find your Mobile? Click me to get to search bar.
+							</div>
+						</>
+					) : (
+						<>
+							<LocalMobileFromDB
+								brand={this.props.values.brand}
+								nextStep={this.props.nextStep.bind(this)}
+							/>
+						</>
+					)}
 				</div>
 			</React.Fragment>
 		);

@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import { Link } from "react-router-dom";
-
+import $ from "jquery";
 export default class howToHelp extends PureComponent {
 	render() {
 		return (
@@ -18,7 +17,7 @@ export default class howToHelp extends PureComponent {
 										<img
 											src="https://demo.cmssuperheroes.com/themeforest/wp-tekhfixers/wp-content/uploads/2019/06/Icon@3x.png"
 											width="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="contentHolder">
@@ -29,7 +28,19 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<Link to="">View More</Link>
+											<a
+												style={{ cursor: "pointer" }}
+												onClick={() =>
+													$("html, body").animate(
+														{
+															scrollTop: $(".typesOfrepair").offset().top,
+														},
+														600
+													)
+												}
+											>
+												View More
+											</a>
 										</div>
 									</div>
 								</div>
@@ -40,7 +51,7 @@ export default class howToHelp extends PureComponent {
 										<img
 											src="https://demo.cmssuperheroes.com/themeforest/wp-tekhfixers/wp-content/uploads/2019/06/Icon@3x1.png"
 											width="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="contentHolder">
@@ -51,7 +62,19 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<Link to="">View More</Link>
+											<a
+												style={{ cursor: "pointer" }}
+												onClick={() =>
+													$("html, body").animate(
+														{
+															scrollTop: $(".typesOfrepair").offset().top,
+														},
+														600
+													)
+												}
+											>
+												View More
+											</a>
 										</div>
 									</div>
 								</div>
@@ -62,7 +85,7 @@ export default class howToHelp extends PureComponent {
 										<img
 											src="https://demo.cmssuperheroes.com/themeforest/wp-tekhfixers/wp-content/uploads/2019/06/Icon@3x3.png"
 											width="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="contentHolder">
@@ -73,7 +96,19 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<Link to="">View More</Link>
+											<a
+												style={{ cursor: "pointer" }}
+												onClick={() =>
+													$("html, body").animate(
+														{
+															scrollTop: $(".typesOfrepair").offset().top,
+														},
+														600
+													)
+												}
+											>
+												View More
+											</a>
 										</div>
 									</div>
 								</div>
@@ -84,7 +119,7 @@ export default class howToHelp extends PureComponent {
 										<img
 											src="https://demo.cmssuperheroes.com/themeforest/wp-tekhfixers/wp-content/uploads/2019/06/Icon@3x4.png"
 											width="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="contentHolder">
@@ -95,7 +130,19 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<Link to="">View More</Link>
+											<a
+												style={{ cursor: "pointer" }}
+												onClick={() =>
+													$("html, body").animate(
+														{
+															scrollTop: $(".typesOfrepair").offset().top,
+														},
+														600
+													)
+												}
+											>
+												View More
+											</a>
 										</div>
 									</div>
 								</div>
@@ -106,7 +153,7 @@ export default class howToHelp extends PureComponent {
 										<img
 											src="https://demo.cmssuperheroes.com/themeforest/wp-tekhfixers/wp-content/uploads/2019/06/Icon@3x2.png"
 											width="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="contentHolder">
@@ -117,7 +164,19 @@ export default class howToHelp extends PureComponent {
 										</p>
 										<div className="readMore d-flex justify-content-between">
 											<p>from Rs 100</p>
-											<Link to="">View More</Link>
+											<a
+												style={{ cursor: "pointer" }}
+												onClick={() =>
+													$("html, body").animate(
+														{
+															scrollTop: $(".typesOfrepair").offset().top,
+														},
+														600
+													)
+												}
+											>
+												View More
+											</a>
 										</div>
 									</div>
 								</div>

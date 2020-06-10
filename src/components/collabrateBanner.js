@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
-export default class CollabprateBanner extends PureComponent {
+export default class CollaborateBanner extends PureComponent {
 	render() {
 		return (
 			<React.Fragment>
@@ -8,7 +8,10 @@ export default class CollabprateBanner extends PureComponent {
 					<div className="sectionWrapper">
 						<div className="row align-items-center justify-content-between">
 							<div className="col-12 col-lg-6 text-center d-none d-lg-block">
-								<img src="/assets/images/icons/collaborate.svg" alt="" />
+								<img
+									src="/assets/images/icons/collaborate.svg"
+									alt="collaborate"
+								/>
 							</div>
 							<div className="col-12 col-lg-6">
 								<p className="pill text-capitalize">repair</p>

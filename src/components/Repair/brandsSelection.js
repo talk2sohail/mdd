@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from "react";
-
+import LocalBrands from "./LocalBrands";
+import apiCall from "../../axios";
 export default class BrandsSelection extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -25,33 +26,40 @@ export default class BrandsSelection extends PureComponent {
 		this.continue = this.continue.bind(this);
 	}
 
-	continue = (brandName) => () => {
+	continue = (brandName) => (e) => {
+		e.preventDefault();
 		this.props.nextStep(brandName);
 	};
 	render() {
 		return (
 			<Fragment>
 				<div className="row no-gutters justify-content-start align-items-center selectOption">
-					{this.state.brands.map((brand) => {
-						return (
-							<div className="col-6 col-md-4 col-lg-2" key={brand}>
-								<div className="branWrap">
-									<div className="imgWrapBrand">
-										<img
-											src={`/assets/images/brandLogos/${brand.toLowerCase()}.png`}
-											className="d-block text-center mx-auto"
-											alt=""
-											onClick={this.continue(`${brand}`)}
-										/>
-									</div>
+					{this.props.brandList.length !== 0 ? (
+						this.props.brandList.map((brand) => {
+							return (
+								<div className="col-6 col-md-4 col-lg-2" key={brand.name}>
+									<div className="branWrap">
+										<div className="imgWrapBrand">
+											<img
+												src={`/assets/images/brandLogos/apple.png`}
+												className="d-block text-center mx-auto"
+												alt=""
+												onClick={this.continue(`${brand.name}`)}
+											/>
+										</div>
 
-									<h3 className="text-center uppercase">{brand}</h3>
+										<h3 className="text-center uppercase">{brand.name}</h3>
+									</div>
 								</div>
-							</div>
-						);
-					})}
+							);
+						})
+					) : (
+						<LocalBrands nextStep={this.props.nextStep.bind(this)} />
+					)}
 				</div>
 			</Fragment>
 		);
 	}
+}
+{
 }

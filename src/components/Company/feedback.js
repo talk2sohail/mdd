@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import apiCall from "../../axios";
 import Header from "../header";
 import CollabrateBannr from "../collabrateBanner";
+import Modal from "../modal";
 import Footer from "../footer";
 import validate from "./formValidation";
 
@@ -31,13 +32,13 @@ export default class Feedback extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-
+	componentDidMount() {
+		window.scroll(0, 0);
+	}
 	handleChange = (e) => {
-		const target = e.target;
-		const name = target.name;
-
+		const { name, value } = e.target;
 		this.setState({
-			[name]: target.value,
+			[name]: value,
 		});
 	};
 
@@ -53,15 +54,9 @@ export default class Feedback extends Component {
 			});
 			return;
 		}
-		// const feedbacks = { ...this.state };
-		// const user_details = {};
-		// const feedback = {};
-		// user_details.first_name = feedbacks.first_name;
-		// user_details.last_name = feedbacks.last_name;
-		// user_details.email = feedbacks.email;
-		// user_details.ph_no = feedbacks.ph_no;
-		// feedback.subject = feedbacks.subject;
-		// feedback.message = feedbacks.message;
+		this.setState((state) => {
+			return getInitialState();
+		});
 		const {
 			first_name,
 			last_name,
@@ -115,7 +110,7 @@ export default class Feedback extends Component {
 													<img
 														src="/assets/images/icons/gmail.svg"
 														width="18"
-														alt=""
+														alt="imageWrapper"
 													/>
 												</div>
 												<div className="content">support@mdds.com</div>
@@ -125,7 +120,7 @@ export default class Feedback extends Component {
 													<img
 														src="/assets/images/icons/telephone.svg"
 														width="18"
-														alt=""
+														alt="imageWrapper"
 													/>
 												</div>
 												<div className="content">9831983198</div>
@@ -136,7 +131,7 @@ export default class Feedback extends Component {
 														src="/assets/images/icons/whatsapp.png"
 														width="24"
 														className="mr-1"
-														alt=""
+														alt="imageWrapper"
 													/>
 												</div>
 												<div className="content">9831983198</div>
@@ -147,13 +142,14 @@ export default class Feedback extends Component {
 										src="/assets/images/icons/contact_us.svg"
 										width="550"
 										className="img-fluid"
-										alt=""
+										alt="imageWrapper"
 									/>
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
+
 				{/* <!-- form --> */}
 				<section className="feedbackFormWrap">
 					<div className="sectionWrapper">
@@ -292,6 +288,7 @@ export default class Feedback extends Component {
 				</section>
 				<CollabrateBannr />
 				<Footer />
+				<Modal />
 			</React.Fragment>
 		);
 	}

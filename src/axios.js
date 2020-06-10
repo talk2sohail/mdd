@@ -4,34 +4,33 @@ const axios = require("axios");
 const environment = process.env.NODE_ENV;
 
 let api_url =
-	environment === "production" ? "production_url" : "http://localhost:5000/api";
+	environment === "production" ? "https://imran-bhai.herokuapp.com/api" : "http://localhost:5000/api";
 
 class apiCall {
 	getToken = () => {
 		// This method return the token of the logged user
-		let token =
-			localStorage.getItem("token") !== null ||
-			localStorage.getItem("token") !== undefined
-				? localStorage.getItem("token")
-				: null;
+		let token = localStorage.getItem("uuid")
+			? localStorage.getItem("uuid")
+			: sessionStorage.getItem("uuid")
+			? sessionStorage.getItem("uuid")
+			: null;
+
 		if (token !== null) {
 			return token;
 		} else {
 			return null;
 		}
 	};
-	post = (url, payload, token = null) =>
+	post = (url, payload = null, token = null) =>
 		new Promise((resolve, reject) => {
 			axios({
 				url: `${api_url}${url}`,
 				method: "POST",
 				headers: {
 					Authorization: token !== null ? token : undefined,
-					"Content-Type": "application/json",
 				},
-				data: payload,
+				data: payload ? payload : null,
 			})
-				// .post(api_url + url, data, token !== null ? { headers } : undefined)
 				.then(function (response) {
 					resolve(response);
 				})
@@ -60,7 +59,3 @@ class apiCall {
 }
 
 export default new apiCall();
-
-// const api = new apiCall();
-// const token = api.getToken();
-// console.log(token);

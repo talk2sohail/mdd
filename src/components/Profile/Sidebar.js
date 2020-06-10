@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
+import Auth from "../../Auth";
 export default class Sidebar extends PureComponent {
 	render() {
 		return (
@@ -39,7 +40,8 @@ export default class Sidebar extends PureComponent {
 						<p>Status of Repair Appointments, Past Repairs</p>
 					</Link>
 					<Link
-						to="/logout"
+						to="/"
+						onClick={() => Auth.logout()}
 						className={
 							this.props.activeNumber === "4"
 								? "sideBarBlock active"

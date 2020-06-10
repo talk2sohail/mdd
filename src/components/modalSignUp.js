@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
+import { store } from "react-notifications-component";
 import apiCall from "../axios";
+import Auth from "../Auth";
 // import { Alert } from "antd";
 // import validate from "./Company/formValidation";
 
@@ -26,59 +28,47 @@ export default class ModalSignUp extends PureComponent {
 			email: "",
 			password: "",
 			contact: "",
-			isValid: false,
 			errorMsg: "",
-			formError: {
-				usernameError: "",
-				emailError: "",
-				passwordError: "",
-				contactError: "",
-			},
+			userInputError: "",
+			isErrorFromServer: false,
+			isUserInputError: false,
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	validate = () => {
-		let isError = false;
 		const errors = {
-			usernameError: "",
-			emailError: "",
-			passwordError: "",
-			contactError: "",
+			isError: false,
+			message: "",
 		};
-		if (!this.state.username || this.state.username.length < 5) {
-			isError = true;
-			errors.usernameError = "Name needs to be atleast 5 characters.";
-		}
-		if (!this.state.password || this.state.password.length < 6) {
-			isError = true;
-			errors.passwordError = "Password needs to be atleast 6 characters.";
+		if (
+			!this.state.username ||
+			!this.state.password ||
+			!this.state.email ||
+			!this.state.contact
+		) {
+			errors.message = "All fields are required";
 		}
 
-		if (!emailRegex.test(this.state.email)) {
-			isError = true;
-			errors.emailError = "Requires valid email";
-		}
 		if (
-			!this.state.contact ||
-			this.state.contact.length != 10 ||
+			!emailRegex.test(this.state.email) ||
 			!phoneRegex.test(this.state.contact)
 		) {
-			isError = true;
-			errors.contactError = "Contact Number must 10 digits.";
+			errors.message = "Requires valid email or contact";
 		}
 
-		return {
-			isError,
-			errors,
-		};
+		//check if there was any error
+		if (errors.message.length > 0) errors.isError = true;
+
+		return errors;
 	};
 	handleChange = (event) => {
-		const target = event.target;
-		const name = target.name;
+		const { name, value } = event.target;
 		this.setState({
-			[name]: target.value,
+			isUserInputError: false,
+			isErrorFromServer: false,
+			[name]: value,
 		});
 	};
 
@@ -88,40 +78,50 @@ export default class ModalSignUp extends PureComponent {
 		console.log(err);
 		if (err.isError) {
 			this.setState({
-				errorMsg: "",
-				formError: err.errors,
+				isUserInputError: true,
+				userInputError: err.message,
 			});
-			console.log(this.state);
-			return;
-		}
-		this.setState({
-			formError: resetError(),
-		});
-		const { username, contact, password, email } = this.state;
-		apiCall
-			.post("/signUp", { username, contact, password, email })
-			.then((response) => {
-				console.log(response.data);
-				const { success, token } = response.data;
-				if (success && token != undefined) {
-					localStorage.setItem("token", token);
-					this.setState({
-						errorMsg: "",
-					});
-					window.location.reload();
-				}
-			})
-			.catch((error) => {
-				const { msg } = error.response.data;
-				this.setState((state) => {
-					state.errorMsg = msg;
+		} else {
+			const { username, contact, password, email } = this.state;
+			apiCall
+				.post("/signUp", { username, contact, password, email })
+				.then((response) => {
+					console.log(response.data);
+					const { success, token } = response.data;
+					if (success && token != undefined) {
+						//set the auth for user in LS & SS
 
-					return {
-						...state,
-						isValid: true,
-					};
+						store.addNotification({
+							title: "Email Verification",
+							message: "Please verify your email",
+							type: "warning",
+							insert: "top",
+							container: "top-right",
+							dismiss: {
+								duration: 900,
+							},
+						});
+
+						//authorize the user
+						Auth.signUpAuth(token);
+
+						//wait for the message to be shown to the user
+						setTimeout(() => {
+							window.location.reload();
+						}, 1000);
+					}
+				})
+				.catch((error) => {
+					if (!error.response) {
+						console.log("Something went wrong");
+					} else {
+						this.setState({
+							isErrorFromServer: true,
+							errorMsg: error.response.data.msg,
+						});
+					}
 				});
-			});
+		}
 	};
 	render() {
 		return (
@@ -132,11 +132,20 @@ export default class ModalSignUp extends PureComponent {
 						<p
 							style={{
 								color: "red",
-								fontSize: 12,
+								fontSize: 13,
 							}}
 						>
-							{this.state.formError.usernameError}
+							{this.state.isUserInputError ? this.state.userInputError : null}
 						</p>
+						<p
+							style={{
+								color: "red",
+								fontSize: 13,
+							}}
+						>
+							{this.state.isErrorFromServer ? this.state.errorMsg : null}
+						</p>
+
 						<input
 							type="text"
 							placeholder="Name"
@@ -145,16 +154,6 @@ export default class ModalSignUp extends PureComponent {
 							required
 							onChange={this.handleChange}
 						/>
-						<p
-							style={{
-								color: "red",
-								fontSize: 12,
-							}}
-						>
-							{this.state.isValid
-								? this.state.errorMsg
-								: this.state.formError.emailError}
-						</p>
 						<input
 							type="email"
 							placeholder="Email"
@@ -162,14 +161,6 @@ export default class ModalSignUp extends PureComponent {
 							value={this.state.email}
 							onChange={this.handleChange}
 						/>
-						<p
-							style={{
-								color: "red",
-								fontSize: 12,
-							}}
-						>
-							{this.state.formError.passwordError}
-						</p>
 						<input
 							type="password"
 							placeholder="Password"
@@ -178,14 +169,6 @@ export default class ModalSignUp extends PureComponent {
 							required
 							onChange={this.handleChange}
 						/>
-						<p
-							style={{
-								color: "red",
-								fontSize: 12,
-							}}
-						>
-							{this.state.formError.contactError}
-						</p>
 						<input
 							type="text"
 							placeholder="Phone Number"
@@ -204,7 +187,7 @@ export default class ModalSignUp extends PureComponent {
 						/>
 						<p className="login-info-text">- OR -</p>
 						<Link to="" className="gLogin">
-							<img src="/assets/images/icons/google.png" alt="" />
+							<img src="/assets/images/icons/google.png" alt="google" />
 							&nbsp;&nbsp;sign in using gmail
 						</Link>
 					</form>

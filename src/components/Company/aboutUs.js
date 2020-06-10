@@ -1,7 +1,9 @@
 import React, { PureComponent } from "react";
-import collaborateBanner from "../collabrateBanner";
 import Header from "../header";
 import Footer from "../footer";
+import Modal from "../modal";
+
+import CollaborateBanner from "../collabrateBanner";
 
 export default class About extends PureComponent {
 	render() {
@@ -22,7 +24,10 @@ export default class About extends PureComponent {
 							</div>
 						</div>
 						<div className="col-12 col-lg-6">
-							<img src="/assets/images/background/mobirepair.jpg" alt="" />
+							<img
+								src="/assets/images/background/mobirepair.jpg"
+								alt="imageWrapper"
+							/>
 						</div>
 					</div>
 					<div className="floatingCont">
@@ -68,15 +73,16 @@ export default class About extends PureComponent {
 								<img
 									className="d-block mx-auto img-fluid"
 									src="/assets/images/icons/team_spirit.svg"
-									alt=""
+									alt="imageWrapper"
 									height={400}
 								/>
 							</div>
 						</div>
 					</div>
 				</section>
-				<collaborateBanner />
+				<CollaborateBanner />
 				<Footer />
+				<Modal />
 			</React.Fragment>
 		);
 	}

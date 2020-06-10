@@ -1,9 +1,23 @@
 import React, { PureComponent } from "react";
 import ForgotPassModal from "./ForgotPassword/forgotPassModal";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import ModalSignUp from "./modalSignUp";
 import ModalSignIn from "./modalSignIn";
 class Modal extends PureComponent {
+	componentDidMount() {
+		//Login Signup Popup
+		const signUpButton = document.getElementById("signUp");
+		const signInButton = document.getElementById("signIn");
+		const container = document.getElementById("container");
+
+		signUpButton.addEventListener("click", () => {
+			container.classList.add("right-panel-active");
+		});
+
+		signInButton.addEventListener("click", () => {
+			container.classList.remove("right-panel-active");
+		});
+	}
 	render() {
 		return (
 			<React.Fragment>
@@ -39,7 +53,7 @@ class Modal extends PureComponent {
 											</p>
 											<a
 												// to=""
-												// href="javascript:void(0)"
+												// href="#"
 												className="ghost gradientBtn"
 												id="signIn"
 											>
@@ -52,7 +66,7 @@ class Modal extends PureComponent {
 												Enter your personal details and start journey with us
 											</p>
 											<a
-												// href="javascript:void(0)"
+												// href="#"
 												className="ghost gradientBtn"
 												id="signUp"
 											>

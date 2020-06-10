@@ -4,7 +4,7 @@ export default class EmailAndOtp extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			message: "Email sent successfully.",
+			message: "OTP sent",
 			error: "",
 			isValid: false,
 		};
@@ -26,18 +26,21 @@ export default class EmailAndOtp extends Component {
 				this.props.nextStep();
 			})
 			.catch((error) => {
-				console.log(error.response.data);
-				this.setState({
-					isValid: true,
-					error: error.response.data.msg,
-				});
+				if (!error.response) {
+					console.log("SOmething went wong, try refresh");
+				} else {
+					this.setState({
+						isValid: true,
+						error: error.response.data.msg,
+					});
+				}
 			});
 	};
 
 	render() {
 		const { values, handleChange } = this.props;
 
-		let errorCheck = this.state.isError ? (
+		let errorCheck = this.state.isValid ? (
 			<p
 				style={{
 					color: "red",
@@ -73,14 +76,20 @@ export default class EmailAndOtp extends Component {
 						name="otp"
 						value={values.otp}
 						onChange={handleChange("otp")}
-						pattern="[0-9]{1}[0-9]{9}"
+						// pattern="[0-9]{1}[0-9]{9}"
 						placeholder="Enter OTP"
-						maxLength="10"
+						// maxLength="10"
 						className="d-block"
 					/>
 					<a
 						className="gradientText resendOTP font-weight-light d-block"
-						href="javascript:void(0)"
+						href="#"
+						onClick={() => {
+							this.props.resentOTPHandler();
+							this.setState({
+								message: "OTP Resent",
+							});
+						}}
 					>
 						Resend OTP
 					</a>

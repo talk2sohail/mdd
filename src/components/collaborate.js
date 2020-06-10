@@ -1,9 +1,13 @@
 import React, { PureComponent } from "react";
 import Header from "./header";
 import CollaborateBanner from "./collabrateBanner";
+import Modal from "./modal";
 import Footer from "./footer";
 
 export default class Collaborate extends PureComponent {
+	componentDidMount() {
+		window.scroll(0, 0);
+	}
 	render() {
 		return (
 			<React.Fragment>
@@ -27,7 +31,7 @@ export default class Collaborate extends PureComponent {
 						<div className="col-12 col-lg-7">
 							<img
 								src="https://image.freepik.com/free-photo/modern-man-working-electronics-service-shop_1098-15487.jpg"
-								alt=""
+								alt="imageWrapper"
 							/>
 						</div>
 					</div>
@@ -53,7 +57,7 @@ export default class Collaborate extends PureComponent {
 										<img
 											src="assets/images/icons/faqa.svg"
 											height="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="content">
@@ -71,7 +75,7 @@ export default class Collaborate extends PureComponent {
 										<img
 											src="assets/images/icons/faqa.svg"
 											height="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="content">
@@ -89,7 +93,7 @@ export default class Collaborate extends PureComponent {
 										<img
 											src="assets/images/icons/faqa.svg"
 											height="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="content">
@@ -107,7 +111,7 @@ export default class Collaborate extends PureComponent {
 										<img
 											src="assets/images/icons/faqa.svg"
 											height="80"
-											alt=""
+											alt="imageWrapper"
 										/>
 									</div>
 									<div className="content">
@@ -141,7 +145,7 @@ export default class Collaborate extends PureComponent {
 										src="assets/images/icons/faqa.svg"
 										height="120"
 										className="mb-4"
-										alt=""
+										alt="imageWrapper"
 									/>
 									<p className="font-weight-light mb-0">
 										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -156,7 +160,7 @@ export default class Collaborate extends PureComponent {
 										src="assets/images/icons/faqa.svg"
 										height="120"
 										className="mb-4"
-										alt=""
+										alt="imageWrapper"
 									/>
 									<p className="font-weight-light mb-0">
 										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -171,7 +175,7 @@ export default class Collaborate extends PureComponent {
 										src="assets/images/icons/faqa.svg"
 										height="120"
 										className="mb-4"
-										alt=""
+										alt="imageWrapper"
 									/>
 									<p className="font-weight-light mb-0">
 										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -185,6 +189,7 @@ export default class Collaborate extends PureComponent {
 				</section>
 				<CollaborateBanner />
 				<Footer />
+				<Modal />
 			</React.Fragment>
 		);
 	}

@@ -5,43 +5,41 @@ import Sidebar from "./Sidebar";
 import Header from "../header";
 import Footer from "../footer";
 
+//arg: bcoz the user will be logged in before comming here
+import Modal from "../modal";
+
 export default class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userDetails: {
-				first_name: "--",
-				last_name: "--",
-				gender: "--",
-				email: "",
-				contact: "",
-			},
+			userDetails: {},
+			isDataLoaded: false,
 		};
 	}
 
 	componentDidMount() {
 		const token = apiCall.getToken();
-		// console.log(accessToken);
 		const accessToken = `Bearer ${token}`;
 		apiCall
 			.get("/user/profile", accessToken)
 			.then((response) => {
-				this.setState((state) => {
-					const userDetails = { ...response.data.user };
-
-					return {
-						state,
-						userDetails,
-					};
+				console.log(response.data);
+				this.setState({
+					userDetails: response.data.user,
+					isDataLoaded: true,
 				});
 			})
 			.catch((error) => {
-				console.log(error.response.data.msg);
+				if (!error.respsonse) {
+					console.log("Something went Wrong");
+				} else {
+					console.log(error.response.data.msg);
+				}
 			});
 	}
 	render() {
 		return (
-			<React.Fragment>
+			<>
 				<Header />
 				<section className="profileWrapper">
 					<div className="sectionWrapper">
@@ -49,26 +47,33 @@ export default class Profile extends Component {
 							<Sidebar activeNumber="1" />
 							<div className="col-lg-9 col-12">
 								<div className="userWrapper">
+									{!this.state.isDataLoaded ? null : !this.state.userDetails
+											.isVerified ? (
+										<p style={{ color: "red", fontSize: 16 }}>
+											Your Email is not Verfied.
+										</p>
+									) : null}
 									<div className="userHeader">
 										<h2>Profile Information</h2>
 										<Link to="/editprofile">Edit Info</Link>
 									</div>
+
 									<div className="userDetails">
 										<form>
 											<div className="formGroup row no-gutters justify-content-between">
 												<div className="col-5 col-lg-4">
-													<h3>First Name</h3>
+													<h3>Name</h3>
 												</div>
 												<div className="col-7 col-lg-8">
 													<input
 														type="text"
 														className="plainText"
 														readOnly
-														value={this.state.userDetails.first_name}
+														defaultValue={this.state.userDetails.username}
 													/>
 												</div>
 											</div>
-											<div className="formGroup row no-gutters justify-content-between">
+											{/* <div className="formGroup row no-gutters justify-content-between">
 												<div className="col-5 col-lg-4">
 													<h3>Last Name</h3>
 												</div>
@@ -77,10 +82,10 @@ export default class Profile extends Component {
 														type="text"
 														className="plainText"
 														readOnly
-														value={this.state.userDetails.last_name}
+														defaultValue={this.state.userDetails.last_name}
 													/>
 												</div>
-											</div>
+											</div> */}
 											<div className="formGroup row no-gutters justify-content-between">
 												<div className="col-5 col-lg-4">
 													<h3>Gender</h3>
@@ -90,20 +95,30 @@ export default class Profile extends Component {
 														type="text"
 														className="plainText"
 														readOnly
-														value={this.state.userDetails.gender}
+														defaultValue={this.state.userDetails.gender}
 													/>
 												</div>
 											</div>
 											<div className="formGroup row no-gutters justify-content-between">
 												<div className="col-5 col-lg-4">
 													<h3>Email</h3>
+													{!this.state.userDetails.isVerified ? (
+														<a
+															// onClick={this.handleContactChange}
+															href="/emailverification"
+															className="changePassword"
+															style={{ fontSize: 13 }}
+														>
+															[Verify Email]
+														</a>
+													) : null}
 												</div>
 												<div className="col-7 col-lg-8">
 													<input
 														type="email"
 														className="plainText"
 														readOnly
-														value={this.state.userDetails.email}
+														defaultValue={this.state.userDetails.email}
 													/>
 												</div>
 											</div>
@@ -113,17 +128,21 @@ export default class Profile extends Component {
 												</div>
 												<div className="col-7 col-lg-8">
 													<input
-														type="number"
+														type="text"
 														className="plainText"
 														readOnly
-														value={this.state.userDetails.contact}
+														defaultValue={this.state.userDetails.contact}
 													/>
 												</div>
 											</div>
 											<div className="formGroup row no-gutters justify-content-between">
 												<div className="col-5 col-lg-4">
 													<h3>Password</h3>
-													<Link to="" className="changePassword">
+													<Link
+														to="/changepassword"
+														className="changePassword"
+														style={{ fontSize: 13 }}
+													>
 														(Change Password)
 													</Link>
 												</div>
@@ -133,7 +152,7 @@ export default class Profile extends Component {
 														className="plainText"
 														readOnly
 														name="password"
-														value={9007112199}
+														defaultValue="**********"
 													/>
 												</div>
 											</div>
@@ -145,7 +164,8 @@ export default class Profile extends Component {
 					</div>
 				</section>
 				<Footer />
-			</React.Fragment>
+				<Modal />
+			</>
 		);
 	}
 }

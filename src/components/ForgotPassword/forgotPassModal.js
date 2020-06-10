@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import EmailAndOtp from "./emailAndOtp";
 import NewPassword from "./newPassword";
 import EmailOnly from "./emailOnly";
+
+import apiCall from "../../axios";
 
 export default class ForgotPassModal extends Component {
 	constructor(props) {
@@ -31,9 +33,30 @@ export default class ForgotPassModal extends Component {
 			step: step + 1,
 		});
 	};
+	resentOTP = async () => {
+		const { values } = this.props;
+		try {
+			const response = await apiCall.post("/changepassword", {
+				email: this.state.email,
+			});
+			console.log(response.data.msg);
+			// const { msg } = response.data;
+		} catch (error) {
+			if (!error.response) {
+				console.log("Something went wrong");
+			} else {
+				console.log("Cannot sent the OTP.");
+			}
+		}
+	};
 	render() {
 		const { step, email, new_password, confirm_password, otp } = this.state;
-		const values = { email, new_password, confirm_password, otp };
+		const values = {
+			email,
+			new_password,
+			confirm_password,
+			otp,
+		};
 		let form = null;
 		switch (step) {
 			case 1:
@@ -51,6 +74,7 @@ export default class ForgotPassModal extends Component {
 						nextStep={this.nextStep}
 						values={values}
 						handleChange={this.handleChange}
+						resentOTPHandler={this.resentOTP.bind(this)}
 					/>
 				);
 				break;
@@ -93,7 +117,7 @@ export default class ForgotPassModal extends Component {
 									Just remembered ?
 									<a
 										className="gradientText"
-										href="javascript:void(0)"
+										href="#"
 										data-target="#loginModalCenter"
 										data-toggle="modal"
 										data-dismiss="modal"
@@ -106,7 +130,7 @@ export default class ForgotPassModal extends Component {
 									Don’t have an account ? Please
 									<a
 										className="gradientText"
-										href="javascript:void(0)"
+										href="#"
 										data-target="#loginModalCenter"
 										data-toggle="modal"
 										data-dismiss="modal"

@@ -46,6 +46,7 @@ export default class EmailOnly extends Component {
 				emailError: errors.emailError,
 				isValid: false,
 				error: "",
+				resentOTPmsg: "",
 			});
 			console.log(this.state);
 			return;
@@ -58,18 +59,21 @@ export default class EmailOnly extends Component {
 				email: values.email,
 			});
 			const { msg } = response.data;
-			this.props.values.successMsg = msg;
-			this.props.values.errorMsg = "";
+			// this.props.values.successMsg = msg;
+			// this.props.values.errorMsg = "";
 			this.props.nextStep();
 		} catch (error) {
-			console.log(error.response.data);
-			const { msg } = error.response.data;
-			this.setState({
-				isValid: true,
-				error: msg,
-			});
+			if (!error.response) {
+				console.log("Something went wrong");
+			} else {
+				this.setState({
+					isValid: true,
+					error: error.response.data.msg,
+				});
+			}
 		}
 	};
+
 	render() {
 		const { values, handleChange } = this.props;
 

@@ -324,6 +324,33 @@ a {
   padding: 0 20px;
   margin: 0 auto;
 }
+.siteBtn {
+  background: #56ccf2;
+  background: linear-gradient(-60deg, #2f80ed, #56ccf2);
+  color: color(font-white);
+  padding: 10px 15px;
+  display: block;
+  width: max-content;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  &:focus,
+  &:hover {
+    color: color(font-white);
+  }
+}
+.removeBtn {
+  background: #e83350;
+  color: color(font-white);
+  padding: 10px 15px;
+  display: block;
+  width: max-content;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  &:focus,
+  &:hover {
+    color: color(font-white);
+  }
+}
 input,
 select,
 textarea {
@@ -2828,9 +2855,17 @@ footer {
             font-size: 12px;
             letter-spacing: 0.5px;
           }
+
           span {
             opacity: 0.6;
             font-weight: 400;
+          }
+        }
+        p {
+          font-size: 14px;
+          @include breakpoint(xlr) {
+            font-size: 12px;
+            letter-spacing: 0.5px;
           }
         }
         .orderStatus {
@@ -2854,7 +2889,7 @@ footer {
       }
       .orderFoooter {
         border: 0;
-        @include media-breakpoint-down(sm) {
+        @include media-breakpoint-down(md) {
           flex-wrap: wrap;
         }
         p,
@@ -2862,6 +2897,30 @@ footer {
           @include media-breakpoint-down(md) {
             font-size: 15px;
             line-height: 26px;
+            max-width: 100%;
+            flex-basis: 100%;
+          }
+        }
+        .buttons {
+          a {
+            color: color(font-white);
+            font-size: 12px;
+            display: block;
+            width: max-content;
+            margin-left: auto;
+            font-weight: 500;
+            @include media-breakpoint-down(md) {
+              width: 100%;
+              text-align: center;
+              margin: 15px 0 0;
+            }
+            @include media-breakpoint-down(sm) {
+              font-size: 11px;
+            }
+          }
+          @include media-breakpoint-down(md) {
+            max-width: 100%;
+            flex-basis: 100%;
           }
         }
       }
@@ -3175,7 +3234,7 @@ footer {
         width: 100%;
         overflow-y: scroll;
         height: 100vh;
-        padding: 28px 18px 85px;
+        padding: 28px 18px 0;
       }
       h3 {
         @include media-breakpoint-down(sm) {
@@ -3183,11 +3242,90 @@ footer {
           padding: 0 0 10px;
         }
       }
-
+      .userDetails {
+        @include media-breakpoint-down(md) {
+          padding: 0 0 85px;
+        }
+      }
       .changePassword {
         @include media-breakpoint-down(sm) {
           font-size: 12px !important;
           margin: 3px 0 0 11px !important;
+        }
+      }
+    }
+    .emptyBlock {
+      text-align: center;
+      img {
+        width: 300px;
+        @include media-breakpoint-down(sm) {
+          width: 220px;
+        }
+      }
+      p {
+        font-size: 18px;
+        margin: 20px 0;
+      }
+    }
+  }
+  .errorWrapper {
+    background: color(font-white);
+    padding: 50px 12px;
+    text-align: center;
+    img {
+      width: 400px;
+      @include media-breakpoint-down(sm) {
+        width: 250px;
+      }
+    }
+    p {
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin: 20px 0;
+      @include media-breakpoint-down(sm) {
+        font-size: 16px;
+      }
+    }
+    .siteBtn {
+      text-transform: uppercase;
+      @include media-breakpoint-down(sm) {
+        font-size: 14px;
+      }
+    }
+  }
+  .thankuWrapper {
+    background: color(font-white);
+    text-align: center;
+    padding: 50px 12px;
+    img {
+      width: 300px;
+      @include media-breakpoint-down(sm) {
+        width: 200px;
+      }
+    }
+    p {
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin: 20px 0;
+      @include media-breakpoint-down(sm) {
+        font-size: 16px;
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      a {
+        padding: 10px 20px;
+        &:first-child {
+          background: #56ccf2;
+          background: linear-gradient(-60deg, #2f80ed, #56ccf2);
+          color: #fff;
+        }
+        @include media-breakpoint-down(sm) {
+          max-width: 100%;
+          flex-basis: 100%;
+          margin: 0 0 15px;
         }
       }
     }

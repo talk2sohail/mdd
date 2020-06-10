@@ -1,11 +1,81 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import AddDetails from "./AddressDetails/addDetails";
+import AddDetails from "./Address/AddressDetails/addDetails";
 import Sidebar from "./Sidebar";
 import Header from "../header";
 import Footer from "../footer";
+import Modal from "../modal";
+
+import apiCall from "../../axios";
 
 export default class Address extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: "",
+			userAddress: [],
+		};
+	}
+	componentDidMount() {
+		const token = apiCall.getToken();
+		// console.log(accessToken);
+		const accessToken = `Bearer ${token}`;
+		apiCall
+			.get("/user/profile", accessToken)
+			.then((response) => {
+				console.log(response.data);
+				this.setState({
+					email: response.data.user.email,
+					userAddress: response.data.user.address,
+				});
+				setTimeout(() => {
+					console.log(this.state);
+				}, 1200);
+			})
+			.catch((error) => {
+				// console.log(error.response.data.msg);
+				if (!error.respsonse) {
+					console.log("Something went Wrong");
+				} else {
+					console.log(error.response.data);
+				}
+			});
+	}
+
+	removeAddress = (address) => {
+		//copy the state, so that id does not mutate state
+		const array = [...this.state.userAddress];
+		let removed;
+		//get the index of the selected address in the temporary address state 'array'
+		let index = array.indexOf(address);
+		if (index !== -1) {
+			//remove the that specific address from the list of address
+			removed = array.splice(index, 1);
+			//update the address list
+			this.setState({
+				userAddress: array,
+			});
+		}
+		//get the _id of the address being removed from the list
+		const { _id } = removed[0];
+		const { email } = this.state;
+		const token = apiCall.getToken();
+		const accessToken = `Bearer ${token}`;
+		//call the api to remove address
+		apiCall
+			.post("/user/deleteaddress", { email, _id }, accessToken)
+			.then((response) => {
+				const { success, msg } = response.data;
+				if (success) console.log(msg);
+			})
+			.catch((error) => {
+				if (!error.response) {
+					console.log("Something went wrong");
+				} else {
+					console.log(error.response.data);
+				}
+			});
+	};
 	render() {
 		return (
 			<React.Fragment>
@@ -35,7 +105,10 @@ export default class Address extends Component {
 											</svg>
 											ADD NEW ADDRESS
 										</Link>
-										<AddDetails />
+										<AddDetails
+											userDetails={this.state.userAddress}
+											handleRemoveAddress={this.removeAddress.bind(this)}
+										/>
 									</div>
 								</div>
 							</div>
@@ -43,6 +116,7 @@ export default class Address extends Component {
 					</div>
 				</section>
 				<Footer />
+				<Modal />
 			</React.Fragment>
 		);
 	}

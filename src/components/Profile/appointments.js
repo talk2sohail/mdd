@@ -1,12 +1,166 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import Header from "../header";
 import Footer from "../footer";
+import Modal from "../modal";
+
+import apiCall from "../../axios";
+import Completed from "./Appointments/completed";
+import Cancelled from "./Appointments/cancelled";
+import Repairing from "./Appointments/repairing";
+import Revision from "./Appointments/revision";
+import BookingDetails from "./Appointments/bookingDetails";
 
 export default class Appointments extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			loaded: false,
+			error: "",
+			activeTab: "all",
+			details_tab: false,
+			booking_id: "",
+			appointments: [],
+			cancelled_appointments: [],
+			revisions_appointments: [],
+			repairing_appointments: [],
+			completed_appointments: [],
+		};
+
+		this.tabHandler = this.tabHandler.bind(this);
+	}
+	// static getDerivedStateFromProps(props, state) {
+	// 	return {
+	// 		details_tab: false,
+	// 	};
+	// }
+	componentDidMount() {
+		const token = apiCall.getToken();
+		const accessToken = `Bearer ${token}`;
+		apiCall
+			.get("/appointments", accessToken)
+			.then((response) => {
+				const cancelled_app = response.data.appointments.filter(
+					(app) => app.isCancelled === true
+				);
+				const revision_app = response.data.appointments.filter(
+					(app) => app.booking_status === 2
+				);
+				const completed_app = response.data.appointments.filter(
+					(app) => app.booking_status === 1
+				);
+				const repairing_app = response.data.appointments.filter(
+					(app) => app.booking_status === 0
+				);
+
+				this.setState({
+					appointments: response.data.appointments,
+					completed_appointments: completed_app,
+					revisions_appointments: revision_app,
+					repairing_appointments: repairing_app,
+					cancelled_appointments: cancelled_app,
+					loaded: true,
+				});
+			})
+			.catch((err) => {
+				if (!err.response) {
+					console.log("Something went wrong");
+				} else {
+					this.setState({
+						error: err.response.data.msg,
+						loaded: true,
+					});
+				}
+			});
+		setTimeout(() => {
+			console.log(this.state);
+		}, 1000);
+	}
+	tabHandler = (tab) => {
+		this.setState({
+			activeTab: tab,
+		});
+	};
+
+	getBackHandler = () => {
+		this.setState({
+			details_tab: !this.state.details_tab,
+		});
+	};
+
+	changeToDetailTabHanlder = (id) => {
+		this.setState({
+			details_tab: !this.state.details_tab,
+			booking_id: id,
+		});
+	};
 	render() {
+		let componentTorender = null;
+		const tab = this.state.activeTab;
+		switch (tab) {
+			case "completed":
+				componentTorender = (
+					<Completed
+						tabHandler={this.changeToDetailTabHanlder.bind(this)}
+						order={this.state.completed_appointments}
+					/>
+				);
+				break;
+			case "repairing":
+				componentTorender = (
+					<Repairing
+						tabHandler={this.changeToDetailTabHanlder.bind(this)}
+						order={this.state.repairing_appointments}
+					/>
+				);
+				break;
+			case "revision":
+				componentTorender = (
+					<Revision
+						tabHandler={this.changeToDetailTabHanlder.bind(this)}
+						order={this.state.revisions_appointments}
+					/>
+				);
+				break;
+			case "cancelled":
+				componentTorender = (
+					<Cancelled
+						tabHandler={this.changeToDetailTabHanlder.bind(this)}
+						order={this.state.cancelled_appointments}
+					/>
+				);
+				break;
+			case "all":
+				componentTorender = (
+					<Fragment>
+						<Repairing
+							tabHandler={this.changeToDetailTabHanlder.bind(this)}
+							order={this.state.repairing_appointments}
+						/>
+						{this.state.completed_appointments.length === 0 ? null : (
+							<Completed
+								tabHandler={this.changeToDetailTabHanlder.bind(this)}
+								order={this.state.completed_appointments}
+							/>
+						)}
+						{this.state.cancelled_appointments.length === 0 ? null : (
+							<Cancelled
+								tabHandler={this.changeToDetailTabHanlder.bind(this)}
+								order={this.state.cancelled_appointments}
+							/>
+						)}
+						{this.state.revisions_appointments.length === 0 ? null : (
+							<Revision
+								tabHandler={this.changeToDetailTabHanlder.bind(this)}
+								order={this.state.revisions_appointments}
+							/>
+						)}
+					</Fragment>
+				);
+				break;
+		}
 		return (
 			<React.Fragment>
 				<Header />
@@ -14,254 +168,96 @@ export default class Appointments extends Component {
 					<div className="sectionWrapper">
 						<div className="row justify-content-center">
 							<Sidebar activeNumber="3" />
-							<div className="col-lg-9 col-12">
-								<div className="userWrapper">
-									<div className="userHeader">
-										<h2>My Repair Appointments</h2>
-									</div>
-									<div className="userDetails">
-										<div className="typesofAppointments d-flex align-items-center justify-content-start">
-											<Link to="" className="active">
-												All
-											</Link>
-											<Link to="">Completed</Link>
-											<Link to="">Cancelled</Link>
-											<Link to="">Revisions</Link>
+							{!this.state.details_tab ? (
+								<div className="col-lg-9 col-12">
+									<div className="userWrapper">
+										<div className="userHeader">
+											<h2>My Repair Appointments</h2>
 										</div>
-										<div className="orderBlock">
-											<div className="orderHeader d-flex align-items-center justify-content-between">
-												<span className="orderStatus repairing">Repairing</span>
-												<p className="d-none d-lg-block">
-													<span>Order Time</span>
-													12-03-2020 02:28
-												</p>
-												<p className="d-none d-lg-block">
-													<span>Order Number</span>
-													201485136
-												</p>
-												<div>
-													<Link to="" className="gradientText">
-														Order Details
-													</Link>
-												</div>
-											</div>
-											<div className="orderBody d-flex justify-content-start flex-wrap ">
-												<div className="imgWrap">
+										{this.state.loaded ? (
+											this.state.appointments.length === 0 ? (
+												<div className="emptyBlock">
 													<img
-														src="/assets/images/mobiles/oneplus/oneplussixt.png"
+														src="assets/images/icons/no_data.svg"
+														className="img-fluid"
 														alt=""
 													/>
+													<p>No Repair Appointments</p>
 												</div>
-												<div className="contentWrap">
-													<h3>OnePlus 6T</h3>
-													<p>
-														<span>Color: </span> Midnight Black
-													</p>
-													<p>
-														<span>Issues: </span>
-														Screen Repair, Mic Repair
-													</p>
-													<p className="price">Rs 1399</p>
-												</div>
-												<div className="contentWrapTwo">
-													<h3>
-														<span className="underRepair" />
-														Repair to be completed by 13-03-2020
-													</h3>
-													<p>Device given at shop</p>
-													<div className="buttons">
-														<Link to="">Download Invoice</Link>
+											) : (
+												<div className="userDetails">
+													<div className="typesofAppointments d-flex align-items-center justify-content-start">
+														<Link
+															to="#"
+															className={
+																this.state.activeTab === "all" ? "active" : ""
+															}
+															onClick={() => this.tabHandler("all")}
+														>
+															All
+														</Link>
+														<Link
+															to="#"
+															className={
+																this.state.activeTab === "repairing"
+																	? "active"
+																	: ""
+															}
+															onClick={() => this.tabHandler("repairing")}
+														>
+															Repairing
+														</Link>
+														<Link
+															to="#"
+															className={
+																this.state.activeTab === "completed"
+																	? "active"
+																	: ""
+															}
+															onClick={() => this.tabHandler("completed")}
+														>
+															Completed
+														</Link>
+														<Link
+															to="#"
+															className={
+																this.state.activeTab === "cancelled"
+																	? "active"
+																	: ""
+															}
+															onClick={() => this.tabHandler("cancelled")}
+														>
+															Cancelled
+														</Link>
+														<Link
+															to="#"
+															className={
+																this.state.activeTab === "revision"
+																	? "active"
+																	: ""
+															}
+															onClick={() => this.tabHandler("revision")}
+														>
+															Revisions
+														</Link>
 													</div>
+													{componentTorender}
 												</div>
-											</div>
-											<div className="orderFoooter d-flex align-items-center justify-content-between">
-												<p>
-													<span>Shop Name</span>
-													Mobi Quick
-												</p>
-												<p>
-													<span>Contact Number</span>
-													9831983198
-												</p>
-											</div>
-										</div>
-										<div className="orderBlock">
-											<div className="orderHeader d-flex align-items-center justify-content-between">
-												<span className="orderStatus completed">Completed</span>
-												<p className="d-none d-lg-block">
-													<span>Order Time </span>12-03-2020 02:28
-												</p>
-												<p className="d-none d-lg-block">
-													<span>Order Number </span>
-													201485136
-												</p>
-												<div>
-													<Link to="" className="gradientText">
-														Order Details
-													</Link>
-												</div>
-											</div>
-											<div className="orderBody d-flex justify-content-start flex-wrap ">
-												<div className="imgWrap">
-													<img
-														src="/assets/images/mobiles/oneplus/oneplussixt.png"
-														alt=""
-													/>
-												</div>
-												<div className="contentWrap">
-													<h3>OnePlus 6T</h3>
-													<p>
-														<span>Color: </span> Midnight Black
-													</p>
-													<p>
-														<span>Issues: </span>
-														Screen Repair, Mic Repair
-													</p>
-													<p className="price">Rs 1399</p>
-												</div>
-												<div className="contentWrapTwo">
-													<h3>
-														<span className="repairCompleted" />
-														Repair completed on 13-03-2020
-													</h3>
-													<p>Device picked up from home</p>
-													<div className="buttons">
-														<Link to="">Download Invoice</Link>
-													</div>
-												</div>
-											</div>
-											<div className="orderFoooter d-flex align-items-center justify-content-between">
-												<p>
-													<span>Shop Name</span>
-													Mobi Quick
-												</p>
-												<p>
-													<span>Contact Number</span>
-													9831983198
-												</p>
-											</div>
-										</div>
-										<div className="orderBlock">
-											<div className="orderHeader d-flex align-items-center justify-content-between">
-												<span className="orderStatus cancelled">Cancelled</span>
-												<p className="d-none d-lg-block">
-													<span>Order Time</span>
-													12-03-2020 02:28
-												</p>
-												<p className="d-none d-lg-block">
-													<span>Order Number</span>
-													201485136
-												</p>
-												<div>
-													<Link to="" className="gradientText">
-														Order Details
-													</Link>
-												</div>
-											</div>
-											<div className="orderBody d-flex justify-content-start flex-wrap ">
-												<div className="imgWrap">
-													<img
-														src="/assets/images/mobiles/oneplus/oneplussixt.png"
-														alt=""
-													/>
-												</div>
-												<div className="contentWrap">
-													<h3>OnePlus 6T</h3>
-													<p>
-														<span>Color: </span> Midnight Black
-													</p>
-													<p>
-														<span>Issues: </span>
-														Screen Repair, Mic Repair
-													</p>
-													<p className="price">Rs 1399</p>
-												</div>
-												<div className="contentWrapTwo">
-													<h3>
-														<span className="cancelled" />
-														Repair cancelled
-													</h3>
-												</div>
-											</div>
-											<div className="orderFoooter d-flex align-items-center justify-content-between">
-												<p>
-													<span>Shop Name</span>
-													Mobi Quick
-												</p>
-												<p>
-													<span>Contact Number</span>
-													9831983198
-												</p>
-											</div>
-										</div>
-										<div className="orderBlock">
-											<div className="orderHeader d-flex align-items-center justify-content-between">
-												<span className="orderStatus revision">Revision</span>
-												<p className="d-none d-lg-block">
-													<span>Order Time</span>
-													12-03-2020 02:28
-												</p>
-												<p className="d-none d-lg-block">
-													<span>Order Number</span>
-													201485136
-												</p>
-												<div>
-													<Link to="" className="gradientText">
-														Order Details
-													</Link>
-												</div>
-											</div>
-											<div className="orderBody d-flex justify-content-start flex-wrap ">
-												<div className="imgWrap">
-													<img
-														src="/assets/images/mobiles/oneplus/oneplussixt.png"
-														alt=""
-													/>
-												</div>
-												<div className="contentWrap">
-													<h3>OnePlus 6T</h3>
-													<p>
-														<span>Color: </span> Midnight Black
-													</p>
-													<p>
-														<span>Issues: </span>
-														Screen Repair, Mic Repair
-													</p>
-													<p>
-														<span>Revision: </span>
-														Screen Repair, Speaker Repair
-													</p>
-													<p className="price">Rs 1299</p>
-												</div>
-												<div className="contentWrapTwo">
-													<h3>
-														<span className="revision" />
-														Revision Added
-													</h3>
-													<p>Device picked up from home</p>
-													<div className="buttons">
-														<Link to="">Download Invoice</Link>
-													</div>
-												</div>
-											</div>
-											<div className="orderFoooter d-flex align-items-center justify-content-between">
-												<p>
-													<span>Shop Name</span>
-													Mobi Quick
-												</p>
-												<p>
-													<span>Contact Number</span>
-													9831983198
-												</p>
-											</div>
-										</div>
+											)
+										) : null}
 									</div>
 								</div>
-							</div>
+							) : (
+								<BookingDetails
+									b_id={this.state.booking_id}
+									getBack={this.getBackHandler.bind(this)}
+								/>
+							)}
 						</div>
 					</div>
 				</section>
 				<Footer />
+				<Modal />
 			</React.Fragment>
 		);
 	}

@@ -1,7 +1,44 @@
 import React, { PureComponent } from "react";
+import Select from "react-select";
+import $ from "jquery";
 
+const options = [
+	{ value: "Camera Repair", label: "Camera Repair" },
+	{ value: "Battery Repair", label: "Battery Repair" },
+	{ value: "Microphone Repair", label: "Microphone Repair" },
+	{ value: "Speaker Repair", label: "Speaker Repair" },
+	{ value: "Broken screen", label: "Broken screen" },
+	{ value: "Shattered Back", label: "Shattered Back" },
+	{ value: "Water Damage Repair", label: "Water Damage Repair" },
+	{ value: "Charging Jack", label: "Charging Jack" },
+];
 export default class RepairBanner extends PureComponent {
+	state = {
+		selectedOption: null,
+		selectedProblems: null,
+	};
+	handleChange = (selectedOption) => {
+		this.setState({ selectedOption });
+		// console.log(`Option selected:`, selectedOption);
+	};
+	handleSubmit = (e) => {
+		e.preventDefault();
+		const options = this.state.selectedOption;
+		const issue_names = options ? options.map((issue) => issue.value) : [];
+		// console.log(issue_names);
+		//update the localstorage
+		localStorage.setItem("searchItems", JSON.stringify(issue_names));
+		//scroll to bottom
+		$("html, body").animate(
+			{
+				scrollTop: $(".repairSelection").offset().top,
+			},
+			800
+		);
+	};
+
 	render() {
+		const { selectedOption } = this.state;
 		return (
 			<React.Fragment>
 				<section className="repairBannerWrapper">
@@ -14,8 +51,25 @@ export default class RepairBanner extends PureComponent {
 									powers remarkable businesses across the globe.
 								</p>
 								<form action="#" className="searchBar">
-									<input type="search" placeholder="Search Your Problem Here" />
-									<button type="submit">
+									{/* <input type="search" placeholder="Search Your Problem Here" /> */}
+									<Select
+										// defaultValue={[options[1]]}
+										value={this.state.selectedOption}
+										options={options}
+										onChange={this.handleChange}
+										isMulti
+										placeholder="Search Your Problem Here.."
+										// name="colors"
+										options={options}
+										// className="searchBar"
+										// styles={{}}
+										classNamePrefix="searchBar"
+									/>
+									<button
+										type="submit"
+										className=""
+										onClick={this.handleSubmit}
+									>
 										<img
 											src="/assets/images/icons/search.png"
 											alt=""
@@ -34,14 +88,14 @@ export default class RepairBanner extends PureComponent {
 								offset="0%"
 								style={{
 									stopColor: "rgba(86, 204, 242, 0.75)",
-									stopOpacity: 1
+									stopOpacity: 1,
 								}}
 							/>
 							<stop
 								offset="60%"
 								style={{
 									stopColor: "rgba(47, 128, 237, 0.75)",
-									stopOpacity: 1
+									stopOpacity: 1,
 								}}
 							/>
 						</linearGradient>

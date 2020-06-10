@@ -1,10 +1,20 @@
-import React, { PureComponent } from "react";
-import Header from "../header";
-import Footer from "../footer";
-import CollaborateBanner from "../collabrateBanner";
+import React, { PureComponent, lazy, Suspense } from "react";
+import $ from "jquery";
+
+const Header = lazy(() => import("../header"));
+const Footer = lazy(() => import("../footer"));
+const Modal = lazy(() => import("../modal"));
+
+const CollaborateBanner = lazy(() => import("../collabrateBanner"));
 
 export default class Faq extends PureComponent {
 	componentDidMount() {
+		$("html, body").animate(
+			{
+				scrollTop: 0,
+			},
+			0
+		);
 		window.$(".slider-for").slick({
 			slidesToShow: 1,
 			slidesToScroll: 1,
@@ -12,6 +22,7 @@ export default class Faq extends PureComponent {
 			fade: true,
 			asNavFor: ".slider-nav",
 		});
+
 		window.$(".slider-nav").slick({
 			slidesToShow: 4,
 			slidesToScroll: 1,
@@ -71,7 +82,7 @@ export default class Faq extends PureComponent {
 										src="/assets/images/icons/faqa.svg"
 										className="mt-1"
 										width="350"
-										alt=""
+										alt="faq"
 									/>
 								</div>
 							</div>
@@ -103,6 +114,7 @@ export default class Faq extends PureComponent {
 							</div>
 							<div className="col-12">
 								<div className="slider slider-for">
+									{/* <Slider {...settings}> */}
 									<div id="accordionExample" className="accordion">
 										{/* <!-- Accordion item 1 --> */}
 										<div className="card">
@@ -301,6 +313,7 @@ export default class Faq extends PureComponent {
 				</section>
 				<CollaborateBanner />
 				<Footer />
+				<Modal />
 			</React.Fragment>
 		);
 	}

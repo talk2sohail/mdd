@@ -66,14 +66,15 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
 										<img
 											src="/assets/images/background/brokenscreen.jpg"
-											alt=""
+											alt="imageWrapper"
 										/>
 										<div className="content">
 											<h2 className="text-center">Broken Screen</h2>
@@ -87,14 +88,15 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
 										<img
 											src="/assets/images/background/speakerrepair.png"
-											alt=""
+											alt="imageWrapper"
 										/>
 										<div className="content">
 											<h2 className="text-center">Speaker Repair</h2>
@@ -108,14 +110,15 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
 										<img
 											src="/assets/images/background/camerarepair.png"
-											alt=""
+											alt="imageWrapper"
 										/>
 										<div className="content">
 											<h2 className="text-center">Camera Repair</h2>
@@ -129,12 +132,16 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
-										<img src="/assets/images/background/battery.jpg" alt="" />
+										<img
+											src="/assets/images/background/battery.jpg"
+											alt="imageWrapper"
+										/>
 										<div className="content">
 											<h2 className="text-center">Battery Repair</h2>
 										</div>
@@ -147,14 +154,15 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
 										<img
 											src="/assets/images/background/chargingjack.png"
-											alt=""
+											alt="imageWrapper"
 										/>
 										<div className="content">
 											<h2 className="text-center">Charging Jack</h2>
@@ -168,14 +176,15 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
 										<img
 											src="/assets/images/background/waterdamage.png"
-											alt=""
+											alt="imageWrapper"
 										/>
 										<div className="content">
 											<h2 className="text-center">Water Damage Repair</h2>
@@ -189,12 +198,16 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
-										<img src="/assets/images/background/micrepair.png" alt="" />
+										<img
+											src="/assets/images/background/micrepair.png"
+											alt="imageWrapper"
+										/>
 										<div className="content">
 											<h2 className="text-center">Mic Repair</h2>
 										</div>
@@ -207,14 +220,15 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
 										<img
 											src="/assets/images/background/recieverepair.png"
-											alt=""
+											alt="imageWrapper"
 										/>
 										<div className="content">
 											<h2 className="text-center">Receiver Repair</h2>
@@ -228,14 +242,15 @@ export default class Services extends PureComponent {
 							>
 								<div className="Tilt-inner">
 									<a
+										style={{ cursor: "pointer" }}
 										// data-tilt
 										// data-tilt-reverse="true"
-										// href="javascript:void(0)"
+										href="/repair"
 										className="text-center"
 									>
 										<img
-											src="/assets/images/background/shatteredback.png"
-											alt=""
+											src="/assets/images/background/brokenscreen.jpg"
+											alt="imageWrapper"
 										/>
 										<div className="content">
 											<h2 className="text-center">Shattered Back</h2>
@@ -247,12 +262,18 @@ export default class Services extends PureComponent {
 						<div className="navWrapAchieve d-flex align-items-center justify-content-end">
 							<div className="prevAchieve slick-prev d-flex slick-slide">
 								<span>
-									<img src="/assets/images/icons/backward.png" alt="" />
+									<img
+										src="/assets/images/icons/backward.png"
+										alt="imageWrapper"
+									/>
 								</span>
 							</div>
 							<div className="nextAchieve slick-next d-flex text-right slick-slide">
 								<span>
-									<img src="/assets/images/icons/forward.png" alt="" />
+									<img
+										src="/assets/images/icons/forward.png"
+										alt="imageWrapper"
+									/>
 								</span>
 							</div>
 						</div>

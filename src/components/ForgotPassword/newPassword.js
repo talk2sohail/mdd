@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { store } from "react-notifications-component";
+
 import apiCall from "../../axios";
 const resetError = () => {
 	return {
@@ -71,14 +73,29 @@ export default class NewPassword extends Component {
 			})
 			.then((response) => {
 				console.log(response.data);
-				const { msg } = response.data;
-				values.successMsg = msg;
-				this.setState({
-					error: "",
-					passwordError: "",
-					matchError: "",
-				});
-				window.location.reload();
+				const { success, msg } = response.data;
+				if (success && msg) {
+					this.setState({
+						error: "",
+						passwordError: "",
+						matchError: "",
+					});
+
+					store.addNotification({
+						title: "Password Changed!",
+						message: "Your password has been changed.",
+						type: "success",
+						insert: "top",
+						container: "top-right",
+						dismiss: {
+							duration: 1500,
+						},
+					});
+
+					setTimeout(() => {
+						window.location.reload();
+					}, 1000);
+				}
 			})
 			.catch((error) => {
 				console.log(error.response.data);

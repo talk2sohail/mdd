@@ -19,16 +19,16 @@ export default class Banner extends PureComponent {
 				<section className="bannerWrapper">
 					<div className="bannerSingle">
 						<div className="bannerItem">
-							<img src="/assets/images/banner/bannerOne.jpg" alt="" />
+							<img src="/assets/images/banner/bannerOne.jpg" alt="banner" />
 						</div>
 						<div className="bannerItem">
-							<img src="/assets/images/banner/bannerTwo.jpg" alt="" />
+							<img src="/assets/images/banner/bannerTwo.jpg" alt="banner" />
 						</div>
 						<div className="bannerItem">
-							<img src="/assets/images/banner/bannerOne.jpg" alt="" />
+							<img src="/assets/images/banner/bannerOne.jpg" alt="banner" />
 						</div>
 						<div className="bannerItem">
-							<img src="/assets/images/banner/bannerTwo.jpg" alt="" />
+							<img src="/assets/images/banner/bannerTwo.jpg" alt="banner" />
 						</div>
 					</div>
 				</section>

@@ -10,7 +10,11 @@ export default class Footer extends PureComponent {
 						<div className="footerWrapper d-flex flex-wrap justify-content-center">
 							<div className="footerComponent about">
 								<Link to="" className="logo">
-									<img src="assets/images/logo.png" width="100" alt="" />
+									<img
+										src="assets/images/logo.png"
+										width="100"
+										alt="imageWrapper"
+									/>
 								</Link>
 								<p>
 									Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -40,9 +44,6 @@ export default class Footer extends PureComponent {
 									</li>
 									<li>
 										<Link to="/faq">FAQ</Link>
-									</li>
-									<li>
-										<Link to="">Sitemap</Link>
 									</li>
 									<li>
 										<Link to="/feedback">Feedback</Link>
@@ -82,7 +83,7 @@ export default class Footer extends PureComponent {
 											<img
 												src="/assets/images/icons/facebook.png"
 												width="16"
-												alt=""
+												alt="imageWrapper"
 											/>
 										</Link>
 										<Link
@@ -92,14 +93,14 @@ export default class Footer extends PureComponent {
 											<img
 												src="/assets/images/icons/instagram.png"
 												width="16"
-												alt=""
+												alt="imageWrapper"
 											/>
 										</Link>
 										<Link to="twitter:void(0)" className="d-block socialIcons">
 											<img
 												src="/assets/images/icons/twitter.png"
 												width="16"
-												alt=""
+												alt="imageWrapper"
 											/>
 										</Link>
 									</div>

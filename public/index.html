@@ -35,8 +35,21 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
-
-		<!-- <script src="/assets/js/common.js"></script> -->
-		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.js"></script> -->
+		<script>
+			(function () {
+				var words = [
+						"contact us today for repairing your phone",
+						"apply coupon <span>'newuser'</span> for getting special discount",
+					],
+					i = 0;
+				setInterval(function () {
+					$("#changingword").fadeOut(function () {
+						$(this)
+							.html(words[(i = (i + 1) % words.length)])
+							.fadeIn();
+					});
+				}, 4000);
+			})();
+		</script>
 	</body>
 </html>

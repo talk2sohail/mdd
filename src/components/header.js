@@ -1,53 +1,114 @@
 import React, { PureComponent } from "react";
-import { Link } from "react-router-dom";
-import $ from "jquery";
+import { Link, withRouter, useLocation } from "react-router-dom";
 import HeadBar from "./headBar";
-import Modal from "./modal";
-export default class Header extends PureComponent {
-	componentDidMount() {
-		//TOPBAR TEXT CHANGER
-		(function () {
-			var words = [
-					"contact us today for repairing your phone",
-					"apply coupon <span>'newuser'</span> for getting special discount",
-				],
-				i = 0;
-			setInterval(function () {
-				$("#changingword").fadeOut(function () {
-					$(this)
-						.html(words[(i = (i + 1) % words.length)])
-						.fadeIn();
-				});
-			}, 4000);
-		})();
-		//Sticky Header
-		$(window).on("scroll load", function () {
-			$(window).scrollTop() > $(".siteHeader").outerHeight()
-				? $(".siteHeader").addClass("sticky")
-				: $(".siteHeader").removeClass("sticky");
-		});
-		// mobile menu js
-		$(".mobileMenuTrigger").click(function () {
-			$(".mobileMenuWrapperOuter").addClass("on");
-			$("body").addClass("mobileMenuActive");
-		});
-		$(".mobileMenuCloseWrapper").click(function () {
-			$(".mobileMenuWrapperOuter").removeClass("on");
-			$("body").removeClass("mobileMenuActive");
-		});
-		//Login Signup Popup
-		const signUpButton = document.getElementById("signUp");
-		const signInButton = document.getElementById("signIn");
-		const container = document.getElementById("container");
+import Auth from "../Auth";
+import apiCall from "../axios";
+class Header extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			hasOrder: false,
+			order: {},
+			problems: "",
+			totalPrice: 0,
+		};
 
-		signUpButton.addEventListener("click", () => {
-			container.classList.add("right-panel-active");
-		});
-
-		signInButton.addEventListener("click", () => {
-			container.classList.remove("right-panel-active");
-		});
+		this.handleLogout = this.handleLogout.bind(this);
 	}
+	static getDerivedStateFromProps(props, state) {
+		//LOGGED IN SCENARIO
+		//user wont get the data first time  so componentWillMount will  call api
+		// and save the data to LS, further if user leave the site without loggout it will be there
+		// and if user did logout then serve only one api call to get the data
+
+		//get the cart_edit from the LS
+		if (localStorage.getItem("cart-item")) {
+			const order_info = localStorage.getItem("cart-item");
+			return {
+				hasOrder: true,
+				order: JSON.parse(order_info)[0],
+			};
+		}
+		return null;
+	}
+
+	updateCartData = () => {
+		//update the data for the header icon checkout
+		if (this.state.order !== undefined) {
+			if (this.state.order.issue !== undefined) {
+				const array = [...this.state.order.issue];
+				let total = 0;
+				array.forEach((issue) => {
+					total += issue.high;
+				});
+				const problmes_array = array.map((issue) => issue.issue_name);
+				this.setState({
+					totalPrice: total,
+					problems: problmes_array.join(),
+				});
+			}
+		}
+	};
+	componentDidMount() {
+		window.scroll(0, 0);
+
+		//save this api call if the user is in the /cart page
+		if (this.props.location.pathname === "/cart") {
+			this.updateCartData();
+			return;
+		}
+		//if there is user data in LS
+		if (this.state.hasOrder) {
+			this.updateCartData();
+		}
+		//get the data for icon when the user just logged in
+		if (Auth.getAuth() && this.state.hasOrder === false) {
+			const token = apiCall.getToken();
+			const accessToken = `Bearer ${token}`;
+			apiCall
+				.get("/getcart", accessToken)
+				.then((response) => {
+					//save the data in LS
+					localStorage.setItem(
+						"cart-item",
+						JSON.stringify(response.data.cart.carts)
+					);
+					this.setState({
+						hasOrder: true,
+					});
+					this.updateCartData();
+				})
+				.catch((err) => {
+					if (!err.response) console.log("Something went wrong.");
+					else {
+						const { msg, success } = err.response.data;
+						if (success) {
+							//empty cart
+							this.setState({
+								hasOrder: false,
+								order: {},
+							});
+						} else if (!success) {
+							//no cart dta
+							this.setState({
+								hasOrder: false,
+								order: {},
+							});
+						}
+					}
+				});
+		}
+	}
+	handleLogout = () => {
+		Auth.logout();
+		let location = this.props.location.pathname;
+		if (location === "/") {
+			window.location.reload();
+		} else {
+			this.props.history.push("/");
+		}
+	};
+
 	render() {
 		return (
 			<React.Fragment>
@@ -69,7 +130,11 @@ export default class Header extends PureComponent {
 							<div className="col-4 col-lg-2">
 								<div className="logoWrapper">
 									<Link to="/">
-										<img src="/assets/images/logo.png" width="120" alt="" />
+										<img
+											src="/assets/images/logo.png"
+											width="120"
+											alt="imageWrapper"
+										/>
 									</Link>
 								</div>
 							</div>
@@ -83,10 +148,10 @@ export default class Header extends PureComponent {
 										<Link to="/repair">Repair</Link>
 									</div>
 									<div className="menuItem">
-										<Link to="javascript:void(0);">New Offers</Link>
+										<Link to="#">New Offers</Link>
 									</div>
 									<div className="menuItem">
-										<Link to="javascript:void(0);">Our Stores</Link>
+										<Link to="#;">Our Stores</Link>
 									</div>
 								</div>
 								<div className="iconsWrapper">
@@ -100,35 +165,36 @@ export default class Header extends PureComponent {
 											<i className="glyph-icon flaticon-settings"></i>
 										</Link>
 									</div>
-									<div className="iconsItem  d-lg-inline-block d-md-block  ">
-										<a
-											data-toggle="modal"
+									<div className="iconsItem itemHover  d-lg-inline-block d-md-block ">
+										<Link
+											data-toggle={Auth.getAuth() ? "" : "modal"}
+											to={Auth.getAuth() ? "/profile" : "#"}
 											data-target="#loginModalCenter"
 											className="logInBtn"
 										>
 											<i className="glyph-icon flaticon-user"></i>
-										</a>
-										<ul className="subMenu">
-											<li>
-												<Link to="/profile">My Profile</Link>
-											</li>
-
-											<li className="rule"></li>
-											<li>
-												<Link to="/address">Saved Address</Link>
-											</li>
-
-											<li className="rule"></li>
-											<li>
-												<Link to="/appointments">Repair Appointments</Link>
-											</li>
-
-											<li className="rule"></li>
-
-											<li>
-												<Link to="/logout">Log Out</Link>
-											</li>
-										</ul>
+										</Link>
+										{Auth.getAuth() ? (
+											<ul className="subMenu">
+												<li>
+													<Link to="/profile">My Profile</Link>
+												</li>
+												<li className="rule"></li>
+												<li>
+													<Link to="/address">Saved Address</Link>
+												</li>
+												<li className="rule"></li>
+												<li>
+													<Link to="/appointments">Repair Appointments</Link>
+												</li>
+												<li className="rule"></li>
+												<li>
+													<Link to="#" onClick={this.handleLogout}>
+														Log Out
+													</Link>
+												</li>
+											</ul>
+										) : null}
 									</div>
 									<div className="iconsItem d-none d-lg-inline-block">
 										<Link to="/faq">
@@ -136,35 +202,51 @@ export default class Header extends PureComponent {
 										</Link>
 									</div>
 									<div className="iconsItem  d-lg-inline-block d-md-block hasItems">
-										<Link to="/checkout">
+										<Link to="/cart">
 											<i className="glyph-icon flaticon-note"></i>
 											<div className="circleWrapper">
 												<div className="circle"></div>
 											</div>
 										</Link>
-										<ul className="subMenu">
-											<li>
-												<Link
-													to="/checkout"
-													className="d-flex justify-content-center product"
-												>
-													<div className="imgWrap">
-														<img
-															src="/assets/images/mobiles/oneplus/oneplussixt.png"
-															height="60"
-															alt=""
-														/>
-													</div>
-													<div className="content">
-														<h3>OnePlus 6T</h3>
-														<p>Screen Repair, Mic Repair</p>
-														<p>
-															Total Price: <span>Rs 1399</span>
-														</p>
-													</div>
-												</Link>
-											</li>
-										</ul>
+										{Auth.getAuth() &&
+										this.state.hasOrder &&
+										this.state.order !== undefined ? (
+											<ul className="subMenu">
+												<li>
+													<Link
+														to="/cart"
+														className="d-flex justify-content-center product"
+													>
+														<div className="imgWrap">
+															<img
+																src={this.state.order.img}
+																height="60"
+																alt="imageWrapperorder"
+															/>
+														</div>
+														<div className="content">
+															<h3>{this.state.order.brand}</h3>
+															<p>{this.state.order.mobile}</p>
+															<p>{this.state.problems}</p>
+															<p>
+																Total Price:&nbsp;
+																<span>{this.state.totalPrice}</span>
+															</p>
+														</div>
+													</Link>
+												</li>
+											</ul>
+										) : (
+											<ul className="subMenu">
+												<li>
+													<a className="d-flex justify-content-center product">
+														<div className="content">
+															<h3>No Item in your Cart</h3>
+														</div>
+													</a>
+												</li>
+											</ul>
+										)}
 									</div>
 								</div>
 							</div>
@@ -175,15 +257,19 @@ export default class Header extends PureComponent {
 										to="https://wa.me/7278885292?text=I'm%20interested%20in%20your%20car%20for%20sale"
 										target="_blank"
 									>
-										<img src="/assets/images/icons/whatsapp.png" alt="" />
+										<img
+											src="/assets/images/icons/whatsapp.png"
+											alt="imageWrapper"
+										/>
 									</Link>
 									<span className="pulse-ring"></span>
 								</div>
 							</div>
 						</div>
 					</div>
-					{/* Signup modal */}
-					<Modal />
+					{/* Auth modal */}
+					{/* <Modal /> */}
+
 					{/* mobile menu modal */}
 					<div className="mobileMenuWrapperOuter d-lg-none">
 						<div className="mobileMenuWrapper">
@@ -202,11 +288,11 @@ export default class Header extends PureComponent {
 								<img
 									src="/assets/images/icons/collaborate.svg"
 									width="100"
-									alt=""
+									alt="imageWrapper"
 								/>
 								<div className="mobile-menu-header-inner">
-									<Link to="">Hey Javed,</Link>
-									<span>Welcome back</span>
+									<Link to="/profile">{`Hey ${Auth.getNameFromJWT()},`}</Link>
+									<span style={{ display: "block" }}>Welcome back</span>
 
 									<Link
 										to=""
@@ -229,29 +315,34 @@ export default class Header extends PureComponent {
 									<Link to="/repair" className="mobileMenuLink">
 										Repair
 									</Link>
-									<Link to="javascript:void(0)" className="mobileMenuLink">
+									<Link to="#" className="mobileMenuLink">
 										New Offers
 									</Link>
-									<Link to="javascript:void(0)" className="mobileMenuLink">
+									<Link to="#" className="mobileMenuLink">
 										Our Stores
 									</Link>
 								</div>
-								<div className="borders">
-									<Link to="/profile" className="mobileMenuLink">
-										Profile
-									</Link>
-									<Link to="/appointments" className="mobileMenuLink">
-										Repair Appointments
-									</Link>
-									<Link to="/address" className="mobileMenuLink">
-										Saved Address
-									</Link>
-								</div>
+								{Auth.getAuth() ? (
+									<div className="borders">
+										<Link to="/profile" className="mobileMenuLink">
+											Profile
+										</Link>
+										<Link to="/appointments" className="mobileMenuLink">
+											Repair Appointments
+										</Link>
+										<Link to="/address" className="mobileMenuLink">
+											Saved Address
+										</Link>
+										<Link to="#" onClick={this.handleLogout}>
+											Log Out
+										</Link>
+									</div>
+								) : null}
 								<div className="borders">
 									<Link to="/collaborate" className="mobileMenuLink">
 										Collaborate
 									</Link>
-									<Link to="javascript:void(0)" className="mobileMenuLink">
+									<Link to="#" className="mobileMenuLink">
 										Blog
 									</Link>
 								</div>
@@ -271,3 +362,5 @@ export default class Header extends PureComponent {
 		);
 	}
 }
+
+export default withRouter(Header);
