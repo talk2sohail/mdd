@@ -6,25 +6,6 @@ import Header from "../header";
 import Footer from "../footer";
 import Modal from "../modal";
 
-const contactRegex = new RegExp(/^\d{8}$/);
-
-// const getInitialState = () => {
-// 	return {
-// 		username: "",
-// 		gender: "Select Gender",
-// 		email: "",
-// 		contact: "",
-// 		oldContact: "",
-// 		code: "",
-// 		otpSentMsg: "",
-
-// 		doesUserChangeNameOrGender: false,
-// 		doesUserChangedContact: false,
-// 		//handle OTP
-// 		errorMsg: "",
-// 	};
-// };
-
 class EditProfile extends Component {
 	constructor(props) {
 		super(props);

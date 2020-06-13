@@ -12,6 +12,15 @@ const options = [
 	{ value: "Water Damage Repair", label: "Water Damage Repair" },
 	{ value: "Charging Jack", label: "Charging Jack" },
 ];
+
+const colourStyles = {
+	option: (provided, state) => ({
+		...provided,
+		borderBottom: "1px dotted pink",
+		color: state.isSelected ? "red" : "black",
+		padding: 13,
+	}),
+};
 export default class RepairBanner extends PureComponent {
 	state = {
 		selectedOption: null,
@@ -19,21 +28,19 @@ export default class RepairBanner extends PureComponent {
 	};
 	handleChange = (selectedOption) => {
 		this.setState({ selectedOption });
-		// console.log(`Option selected:`, selectedOption);
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const options = this.state.selectedOption;
 		const issue_names = options ? options.map((issue) => issue.value) : [];
-		// console.log(issue_names);
-		//update the localstorage
-		localStorage.setItem("searchItems", JSON.stringify(issue_names));
+		//update the sessionStorage
+		sessionStorage.setItem("searchItems", JSON.stringify(issue_names));
 		//scroll to bottom
 		$("html, body").animate(
 			{
 				scrollTop: $(".repairSelection").offset().top,
 			},
-			800
+			400
 		);
 	};
 
@@ -54,21 +61,18 @@ export default class RepairBanner extends PureComponent {
 									{/* <input type="search" placeholder="Search Your Problem Here" /> */}
 									<Select
 										// defaultValue={[options[1]]}
-										value={this.state.selectedOption}
+										value={selectedOption}
 										options={options}
 										onChange={this.handleChange}
 										isMulti
 										placeholder="Search Your Problem Here.."
-										// name="colors"
 										options={options}
-										// className="searchBar"
-										// styles={{}}
-										classNamePrefix="searchBar"
+										styles={colourStyles}
 									/>
 									<button
 										type="submit"
-										className=""
 										onClick={this.handleSubmit}
+										style={{ float: "left" }}
 									>
 										<img
 											src="/assets/images/icons/search.png"
@@ -76,6 +80,8 @@ export default class RepairBanner extends PureComponent {
 											width={20}
 										/>
 									</button>
+									{/* i don't what am i doing */}
+									<div id="clear" style={{ clear: "both" }}></div>
 								</form>
 							</div>
 						</div>

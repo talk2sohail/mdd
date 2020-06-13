@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+import $ from "jquery";
+import { store } from "react-notifications-component";
+
 import apiCall from "../../axios";
 import Header from "../header";
 import CollabrateBannr from "../collabrateBanner";
 import Modal from "../modal";
 import Footer from "../footer";
-import validate from "./formValidation";
 
+const emailRegex = RegExp(
+	/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
 const getInitialState = () => {
 	return {
 		first_name: "",
@@ -14,14 +19,9 @@ const getInitialState = () => {
 		contact: "",
 		subject: "",
 		message: "",
-		formError: {
-			firstNameError: "",
-			lastNameError: "",
-			emailError: "",
-			contactError: "",
-			subjectError: "",
-			messageError: "",
-		},
+		//hanlding input from user elegantly
+		wrongInputFromUser: "",
+		isUserInputError: false,
 	};
 };
 
@@ -33,59 +33,101 @@ export default class Feedback extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	componentDidMount() {
-		window.scroll(0, 0);
+		document.title = "FEEDBACK | Get your phone repair | MDDS";
+
+		$("html, body").animate(
+			{
+				scrollTop: 0,
+			},
+			0
+		);
 	}
 	handleChange = (e) => {
 		const { name, value } = e.target;
 		this.setState({
+			isUserInputError: false,
 			[name]: value,
 		});
 	};
 
-	handleSubmit = (e) => {
-		console.log(this.state);
-		e.preventDefault();
+	validate = () => {
+		const errors = {
+			isError: false,
+			message: "",
+		};
+		for (let field of [
+			"first_name",
+			"last_name",
+			"email",
+			"contact",
+			"subject",
+			"message",
+		]) {
+			if (!this.state[field]) {
+				errors.message = "*All fields are required.";
+			}
+		}
 
-		const err = validate({ ...this.state });
-		console.log(err);
+		if (!emailRegex.test(this.state.email)) {
+			errors.message = "*Requires valid Email";
+		}
+		if (this.state.contact.length !== 10 || isNaN(+this.state.contact)) {
+			errors.message = "*Requies valid Phone Number";
+		}
+		if (errors.message.length > 0) errors.isError = true;
+
+		return errors;
+	};
+
+	handleSubmit = (e) => {
+		e.preventDefault();
+		const err = this.validate();
 		if (err.isError) {
 			this.setState({
-				formError: err.errors,
+				isUserInputError: true,
+				wrongInputFromUser: err.message,
 			});
-			return;
-		}
-		this.setState((state) => {
-			return getInitialState();
-		});
-		const {
-			first_name,
-			last_name,
-			email,
-			contact,
-			subject,
-			message,
-		} = this.state;
-
-		apiCall
-			.post("/feedback", {
+		} else {
+			const {
 				first_name,
 				last_name,
 				email,
 				contact,
 				subject,
 				message,
-			})
-			.then((response) => {
-				// console.log(response.data);
-				const { msg, success } = response.data;
-				if (success && msg) {
-					console.log(msg);
-					this.props.history.push("/");
-				}
-			})
-			.catch((error) => {
-				console.log(error.response.data);
-			});
+			} = this.state;
+
+			apiCall
+				.post("/feedback", {
+					first_name,
+					last_name,
+					email,
+					contact,
+					subject,
+					message,
+				})
+				.then((response) => {
+					const { success } = response.data;
+					if (success) {
+						store.addNotification({
+							title: "Thank You.",
+							message: "Thanks for the feedback.",
+							type: "success",
+							insert: "top",
+							container: "top-right",
+							dismiss: {
+								duration: 500,
+							},
+						});
+
+						this.props.history.push("/");
+					}
+				})
+				.catch((error) => {
+					if (!error.response) console.log("Something went wrong");
+					else console.log(error.response.data.msg);
+				});
+		}
 	};
 
 	render() {
@@ -156,16 +198,13 @@ export default class Feedback extends Component {
 						<div className="row no-gutters justify-content-center">
 							<div className="col-12 col-lg-9 mx-auto">
 								<form className="bg-white" onSubmit={this.handleSubmit}>
+									<p style={{ color: "red" }}>
+										{this.state.isUserInputError
+											? this.state.wrongInputFromUser
+											: null}
+									</p>
 									<div className="row no-gutters">
 										<div className="col-12 col-lg-6">
-											<p
-												style={{
-													color: "red",
-													fontSize: 12,
-												}}
-											>
-												{this.state.formError.firstNameError}
-											</p>
 											<input
 												type="text"
 												name="first_name"
@@ -175,14 +214,6 @@ export default class Feedback extends Component {
 											/>
 										</div>
 										<div className="col-12 col-lg-6">
-											<p
-												style={{
-													color: "red",
-													fontSize: 12,
-												}}
-											>
-												{this.state.formError.lastNameError}
-											</p>
 											<input
 												name="last_name"
 												value={this.state.last_name}
@@ -195,14 +226,6 @@ export default class Feedback extends Component {
 									</div>
 									<div className="row no-gutters">
 										<div className="col-12 col-lg-6">
-											<p
-												style={{
-													color: "red",
-													fontSize: 12,
-												}}
-											>
-												{this.state.formError.emailError}
-											</p>
 											<input
 												type="email"
 												name="email"
@@ -212,14 +235,6 @@ export default class Feedback extends Component {
 											/>
 										</div>
 										<div className="col-12 col-lg-6">
-											<p
-												style={{
-													color: "red",
-													fontSize: 12,
-												}}
-											>
-												{this.state.formError.contactError}
-											</p>
 											<input
 												name="contact"
 												value={this.state.contact}
@@ -232,14 +247,6 @@ export default class Feedback extends Component {
 									</div>
 									<div className="row no-gutters">
 										<div className="col-12">
-											<p
-												style={{
-													color: "red",
-													fontSize: 12,
-												}}
-											>
-												{this.state.formError.subjectError}
-											</p>
 											<input
 												name="subject"
 												value={this.state.subject}
@@ -252,14 +259,6 @@ export default class Feedback extends Component {
 									</div>
 									<div className="row no-gutters">
 										<div className="col-12">
-											<p
-												style={{
-													color: "red",
-													fontSize: 12,
-												}}
-											>
-												{this.state.formError.messageError}
-											</p>
 											<textarea
 												name="message"
 												value={this.state.message}

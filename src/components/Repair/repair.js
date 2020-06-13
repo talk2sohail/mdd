@@ -19,6 +19,7 @@ import Modal from "../modal";
 
 export default class Repair extends PureComponent {
 	componentDidMount() {
+		document.title = "REPAIR | Get your phone repair | MDDS";
 		$("html, body").animate(
 			{
 				scrollTop: 0,

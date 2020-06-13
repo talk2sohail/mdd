@@ -9,6 +9,8 @@ const CollaborateBanner = lazy(() => import("../collabrateBanner"));
 
 export default class Faq extends PureComponent {
 	componentDidMount() {
+		document.title = "FAQ | Get your phone repair | MDDS";
+
 		$("html, body").animate(
 			{
 				scrollTop: 0,

@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import $ from "jquery";
 import { withRouter } from "react-router-dom";
 
 import { store } from "react-notifications-component";
@@ -82,8 +83,15 @@ class Checkout extends PureComponent {
 		}
 	};
 	componentDidMount() {
+		//set the tab name
+		document.title = " CHECKOUT | Get your phone repaired | MDDS";
 		//come to the top
-		window.scroll(0, 0);
+		$("html, body").animate(
+			{
+				scrollTop: 0,
+			},
+			0
+		);
 		//get the cart details from the backend
 		const token = apiCall.getToken();
 		const accessToken = `Bearer ${token}`;
@@ -140,20 +148,12 @@ class Checkout extends PureComponent {
 			add_1_index: i,
 			receiving_user_add: address,
 		});
-		// setTimeout(() => {
-		// 	console.log(this.state);
-		// }, 1000);
 	};
 	onAddTwoSelect = (address, i) => {
-		console.log(this.state);
 		this.setState({
 			add_2_index: i,
 			delivery_user_add: address,
 		});
-
-		// setTimeout(() => {
-		// 	console.log(this.state);
-		// }, 1000);
 	};
 
 	onBook = (e) => {
@@ -166,7 +166,7 @@ class Checkout extends PureComponent {
 				insert: "top",
 				container: "top-right",
 				dismiss: {
-					duration: 2000,
+					duration: 1200,
 				},
 			});
 			return;
@@ -179,7 +179,7 @@ class Checkout extends PureComponent {
 				insert: "top",
 				container: "top-right",
 				dismiss: {
-					duration: 2000,
+					duration: 1200,
 					// onScreen: true,
 				},
 			});
@@ -279,9 +279,7 @@ class Checkout extends PureComponent {
 				}
 			});
 	};
-	componentWillUpdate() {
-		console.log(this.state);
-	}
+
 	render() {
 		return (
 			<React.Fragment>

@@ -1,29 +1,26 @@
 import React, { PureComponent } from "react";
 import apiCall from "../../axios";
 
+const emailRegex = RegExp(
+	/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
+
 const getInitialState = () => {
 	return {
 		firstName: "",
 		lastName: "",
 		email: "",
 		contact: "",
-		street: "",
-		city: "",
 		zipcode: "",
 		state: "",
 		locality: "",
-		error: "",
-		formError: {
-			firstNameError: "",
-			lastNameError: "",
-			emailError: "",
-			contactError: "",
-			subjectError: "",
-			messageError: "",
-		},
+		street: "",
+		city: "",
+		//hanlding input from user elegantly
+		wrongInputFromUser: "",
+		isUserInputError: false,
 	};
 };
-
 export default class AddressForm extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -31,80 +28,115 @@ export default class AddressForm extends PureComponent {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	handleSubmit = (e) => {
-		e.preventDefault();
-		// const err = validate({ ...this.state });
-		// console.log(err);
-		// if (err.isError) {
-		// 	this.setState({
-		// 		formError: err.errors,
-		// 	});
-		// 	return;
-		// }
-		// this.setState((state) => {
-		// 	return getInitialState();
-		// });
-
-		const token = apiCall.getToken();
-		const accessToken = `Bearer ${token}`;
-		const {
-			firstName,
-			lastName,
-			email,
-			contact,
-			city,
-			street,
-			state,
-			zipcode,
-			locality,
-		} = this.state;
-
-		apiCall
-			.post(
-				"/user/addaddress",
-				{
-					firstName,
-					lastName,
-					email,
-					contact,
-					city,
-					street,
-					state,
-					zipcode,
-					email,
-					locality,
-				},
-				accessToken
-			)
-			.then((response) => {
-				// console.log(response.data);
-				const { success, msg } = response.data;
-				if (success) {
-					console.log(msg);
-					window.location.reload();
-				}
-			})
-			.catch((error) => {
-				if (!error.response) {
-					console.log("Something went wrong");
-				} else {
-					this.setState({
-						error: error.response.data.msg,
-					});
-				}
-			});
-	};
 	handleChange = (e) => {
 		const { name, value } = e.target;
 		this.setState({
+			isUserInputError: false,
 			[name]: value,
 		});
 	};
+	validate = () => {
+		const errors = {
+			isError: false,
+			message: "",
+		};
+		for (let field of [
+			"firstName",
+			"lastName",
+			"street",
+			"zipcode",
+			"email",
+			"contact",
+			"state",
+			"city",
+		]) {
+			if (!this.state[field]) {
+				errors.message = "*All fields are required.";
+			}
+		}
+		if (this.state.zipcode.length !== 6 || isNaN(+this.state.zipcode)) {
+			errors.message = "*Requies valid Zipcode";
+		}
+		if (!emailRegex.test(this.state.email)) {
+			errors.message = "*Requires valid Email";
+		}
+		if (this.state.contact.length !== 10 || isNaN(+this.state.contact)) {
+			errors.message = "*Requies valid Phone Number";
+		}
+
+		if (errors.message.length > 0) errors.isError = true;
+
+		return errors;
+	};
+	handleSubmit = (e) => {
+		e.preventDefault();
+		const err = this.validate();
+		if (err.isError) {
+			console.log(this.state);
+
+			this.setState({
+				isUserInputError: true,
+				wrongInputFromUser: err.message,
+			});
+		} else {
+			const token = apiCall.getToken();
+			const accessToken = `Bearer ${token}`;
+			const {
+				firstName,
+				lastName,
+				email,
+				contact,
+				city,
+				street,
+				state,
+				zipcode,
+				locality,
+			} = this.state;
+
+			apiCall
+				.post(
+					"/user/addaddress",
+					{
+						firstName,
+						lastName,
+						email,
+						contact,
+						city,
+						street,
+						state,
+						zipcode,
+						email,
+						locality,
+					},
+					accessToken
+				)
+				.then((response) => {
+					const { success, msg } = response.data;
+					if (success) {
+						console.log(msg);
+						window.location.reload();
+					}
+				})
+				.catch((error) => {
+					if (!error.response) {
+						console.log("Something went wrong");
+					} else {
+						this.setState({
+							error: error.response.data.msg,
+						});
+					}
+				});
+		}
+	};
+
 	render() {
 		return (
 			<React.Fragment>
 				<form className="mt-4">
-					<div className="formGroup no-gutters align-items-center row justify-content-between">
+					<p style={{ color: "red" }}>
+						{this.state.isUserInputError ? this.state.wrongInputFromUser : null}
+					</p>
+					<div className="formGroup no-gutters align-items-center row justify-content-between form">
 						<div className="col-lg-6">
 							<input
 								type="text"

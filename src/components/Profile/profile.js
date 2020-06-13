@@ -18,6 +18,8 @@ export default class Profile extends Component {
 	}
 
 	componentDidMount() {
+		document.title = "PROFILE | Get your phone repair | MDDS";
+
 		const token = apiCall.getToken();
 		const accessToken = `Bearer ${token}`;
 		apiCall

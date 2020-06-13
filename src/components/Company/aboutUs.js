@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import $ from "jquery";
 import Header from "../header";
 import Footer from "../footer";
 import Modal from "../modal";
@@ -6,6 +7,16 @@ import Modal from "../modal";
 import CollaborateBanner from "../collabrateBanner";
 
 export default class About extends PureComponent {
+	componentDidMount() {
+		document.title = "ABOUT | Get your phone repair | MDDS";
+
+		$("html, body").animate(
+			{
+				scrollTop: 0,
+			},
+			0
+		);
+	}
 	render() {
 		return (
 			<React.Fragment>

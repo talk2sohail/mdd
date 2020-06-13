@@ -33,12 +33,12 @@ class IssueSelection extends PureComponent {
 		//this will fetch the issues from LS else call the api to restore issues from DB
 		if (localStorage.getItem("issues_info")) {
 			//this is the case when the user is comming after seacrhing the problems
-			if (localStorage.getItem("searchItems")) {
+			if (sessionStorage.getItem("searchItems")) {
 				// const issues_list_from_state = JSON.parse(
 				// 	localStorage.getItem("issues_info")
 				// );
 				const searched_issue_names = JSON.parse(
-					localStorage.getItem("searchItems")
+					sessionStorage.getItem("searchItems")
 				);
 				const issues_list_from_state = JSON.parse(
 					localStorage.getItem("issues_info")
@@ -46,16 +46,21 @@ class IssueSelection extends PureComponent {
 				const map_searched_issues = issues_list_from_state.filter((issue) =>
 					searched_issue_names.includes(issue.issue_name)
 				);
+
+				//calculate the prices
+				let low = 0;
+				let high = 0;
+				map_searched_issues.forEach((iss) => {
+					low += iss.low;
+					high += iss.high;
+				});
 				this.setState({
 					issues: map_searched_issues,
-					totalhigh: 0,
-					totallow: 0,
+					totalhigh: high,
+					totallow: low,
 					issues_names: searched_issue_names,
 					// problems: JSON.parse(localStorage.getItem("issues_info")),
 				});
-				setTimeout(() => {
-					console.log(this.state);
-				}, 1000);
 			}
 			//listing the issues on the page
 			this.setState({
@@ -66,7 +71,6 @@ class IssueSelection extends PureComponent {
 			apiCall
 				.get("/issues")
 				.then((respsonse) => {
-					console.log(respsonse.data);
 					localStorage.setItem(
 						"issues_info",
 						JSON.stringify(respsonse.data.issues)
@@ -76,30 +80,36 @@ class IssueSelection extends PureComponent {
 						// issues: respsonse.data.issues,
 					});
 					//this is the case when the user is comming after seacrhing the problems
-					if (localStorage.getItem("searchItems")) {
+					if (sessionStorage.getItem("searchItems")) {
 						// const issues_list_from_state = JSON.parse(
 						// 	localStorage.getItem("issues_info")
 						// );
 						const searched_issue_names = JSON.parse(
-							localStorage.getItem("searchItems")
+							sessionStorage.getItem("searchItems")
 						);
-						// const issues_list_from_state = this.state.s_issues;
 						console.log(this.state.s_issues);
 						const map_searched_issues = this.state.s_issues.map((issue) =>
 							searched_issue_names.includes(issue.issue_name) ? issue : null
 						);
-						this.setState({
-							search_updated_issue: map_searched_issues,
+						//calculate the prices
+						let low = 0;
+						let high = 0;
+						map_searched_issues.forEach((iss) => {
+							low += iss.low;
+							high += iss.high;
 						});
-
-						setTimeout(() => {
-							console.log(this.state);
-						}, 1000);
+						this.setState({
+							issues: map_searched_issues,
+							totalhigh: high,
+							totallow: low,
+							issues_names: searched_issue_names,
+							// problems: JSON.parse(localStorage.getItem("issues_info")),
+						});
 					}
 				})
 				.catch((error) => {
 					if (!error.respsonse) {
-						console.error("Network Error");
+						console.error("Something went wrong");
 					} else {
 						console.log(error.respsonse.data);
 					}
@@ -267,6 +277,10 @@ class IssueSelection extends PureComponent {
 			});
 			return;
 		}
+
+		//clear the serached items
+		sessionStorage.removeItem("searchItems");
+
 		const value = this.props.values;
 		const order_info = {
 			brand: value.brand,
