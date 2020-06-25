@@ -39,6 +39,7 @@ class EditProfile extends Component {
 
 	//whatever info user has, show it
 	componentDidMount() {
+		document.body.classList.add("editActive")
 		const token = apiCall.getToken();
 		const accessToken = `Bearer ${token}`;
 		apiCall
@@ -63,6 +64,10 @@ class EditProfile extends Component {
 					error: error.response.data.msg,
 				});
 			});
+	}
+	//remove class to make nav sticky
+	componentWillUnmount(){
+		document.body.classList.remove("editActive")
 	}
 	handleChange = (e) => {
 		const { name, value } = e.target;
@@ -216,7 +221,7 @@ class EditProfile extends Component {
 
 		return errors;
 	};
-
+	
 	render() {
 		return (
 			<React.Fragment>

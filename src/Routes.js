@@ -15,7 +15,7 @@ import ChangePassword from "./components/ChangePassword/changePassword";
 const App = lazy(() => import("./App"));
 const Repair = lazy(() => import("./components/Repair/repair"));
 const Collaborate = lazy(() => import("./components/collaborate"));
-const Faq = lazy(() => import("./components/Company/faq"));
+const Faq = lazy(() => import("./components/Company/FAQ/faq"));
 const Feedback = lazy(() => import("./components/Company/feedback"));
 const Carts = lazy(() => import("./components/Cart/carts"));
 const Checkout = lazy(() => import("./components/Checkout/checkout"));

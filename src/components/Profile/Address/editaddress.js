@@ -28,6 +28,8 @@ class Editaddress extends Component {
 		this.onAddressSubmit = this.onAddressSubmit.bind(this);
 	}
 	componentDidMount() {
+
+		//get the address from the local storage
 		const address = JSON.parse(sessionStorage.getItem("user_add"));
 		console.log(address);
 		this.setState({

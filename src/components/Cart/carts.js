@@ -51,6 +51,8 @@ class Carts extends PureComponent {
 					// .then() always catch 2** repsonse
 					const { success, cart, isVerified } = response.data;
 					if (success) {
+						console.log('data loaded');
+						
 						this.setState({
 							isCartLoaded: true,
 							isVerified: isVerified,
