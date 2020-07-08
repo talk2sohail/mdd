@@ -13,7 +13,7 @@ import RepairBanner from "../Repair/repairBanner";
 import RepairSelection from "../Repair/repairSelection";
 import Footer from "../footer";
 import Header from "../header";
-import Services from "../services";
+import Services from "../Services/services";
 import CollabprateBanner from "../collabrateBanner";
 import Modal from "../modal";
 
