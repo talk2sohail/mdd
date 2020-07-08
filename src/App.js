@@ -7,7 +7,7 @@ import Footer from "./components/footer";
 import Banner from "./components/banner";
 import HowToHelp from "./components/howToHelp";
 import Procedure from "./components/procedure";
-import Services from "./components/Services/services";
+import Services from "./components/services";
 import Brand from "./components/brandList";
 import CollaborateBanner from "./components/collabrateBanner";
 
