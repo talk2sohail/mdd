@@ -68,7 +68,7 @@ export default class BookingDetails extends PureComponent {
 							</a>
 						</div>
 						{this.state.loaded ? (
-							<div className="userDetails">
+							<div className="userDetails isRepairing">
 								<div className="d-flex justify-content-between align-items-center flex-wrap">
 									<h3>{`Order Number: #${this.state.details.booking_no}`}</h3>
 									<h3>{`Order Time: ${this.state.details.booking_date} ${this.state.details.booking_time}`}</h3>
@@ -179,8 +179,8 @@ export default class BookingDetails extends PureComponent {
 										? this.state.mobiles.map((mobile, i) => {
 												return (
 													<div
-														className="orderStatus d-flex justify-content-start flex-wrap"
-														key={i}
+														className="orderStatus d-flex justify-content-start flex-wrap mt-0"
+														key={i} style={{border:0,borderTop:'1px solid #67718029'}}
 													>
 														<div className="imgWrap">
 															<img src={mobile.img} alt="" />

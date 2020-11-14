@@ -490,20 +490,21 @@ class Checkout extends PureComponent {
 																<ul
 																	style={{
 																		paddingLeft: 0,
-																		display: "flex",
-																		justifyContent: "space-between",
+																		listStyle: "none",
 																	}}
 																	key={j}
 																>
-																	<li style={{ listStyle: "none" }}>
+																	<li style={{ display: "flex",
+																	justifyContent: "space-between", }}>
 																		{iss.issue_name}
-																	</li>
-																	<span
-																		style={{ paddingLeft: 85 }}
+																		<span
+																		
 																		className="float-right"
 																	>
 																		Rs {iss.low} - Rs {iss.high}
 																	</span>
+																	</li>
+																
 																</ul>
 															);
 														})}

@@ -183,7 +183,7 @@ class Editaddress extends Component {
 														placeholder="State"
 													/>
 												</div>
-												<div className="col-12 col-md-6">
+												<div className="col-12 col-lg-6">
 													<select
 														className="editProfileDetails"
 														name={this.state.city}
@@ -202,7 +202,7 @@ class Editaddress extends Component {
 													<textarea
 														id=""
 														cols="30"
-														rows="4"
+														rows="3"
 														className="mb-0"
 														value={this.state.street}
 														onChange={this.handleChange}
@@ -225,9 +225,16 @@ class Editaddress extends Component {
 													/>
 												</div>
 												<div className="col-lg-6">
-													<p style={{ color: "red", fontSize: 15 }}>
+													{
+														this.state.error ? (
+															<p style={{ color: "red", fontSize: 15 }}>
+																{this.state.error}
+															</p>
+															) : (null)
+													}
+													{/*<p style={{ color: "red", fontSize: 15 }}>
 														{this.state.error ? this.state.error : null}
-													</p>
+												</p>*/}
 													<input
 														type="email"
 														className="editProfileDetails"

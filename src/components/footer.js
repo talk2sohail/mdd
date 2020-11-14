@@ -39,14 +39,15 @@ export default class Footer extends PureComponent {
 							<div className="footerComponent">
 								<h3>Help & Support</h3>
 								<ul>
-									<li>
-										<Link to="">Contact Us</Link>
-									</li>
+								
 									<li>
 										<Link to="/faq">FAQ</Link>
 									</li>
 									<li>
 										<Link to="/feedback">Feedback</Link>
+									</li>
+									<li>
+										<Link to="/collaborate">Collaborate</Link>
 									</li>
 								</ul>
 							</div>
@@ -61,9 +62,6 @@ export default class Footer extends PureComponent {
 									</li>
 									<li>
 										<Link to="">Warranty Policy</Link>
-									</li>
-									<li>
-										<Link to="">Terms of Use</Link>
 									</li>
 								</ul>
 							</div>

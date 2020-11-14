@@ -212,7 +212,7 @@ class Header extends PureComponent {
 										{Auth.getAuth() &&
 										this.state.hasOrder &&
 										this.state.order !== undefined ? (
-											<ul className="subMenu">
+											<ul className="subMenu mb-0">
 												<li>
 													<Link
 														to="/cart"
@@ -225,24 +225,24 @@ class Header extends PureComponent {
 																alt="imageWrapperorder"
 															/>
 														</div>
-														<div className="content">
-															<h3>{this.state.order.brand}</h3>
-															<p>{this.state.order.mobile}</p>
-															<p>{this.state.problems}</p>
-															<p>
+														<div className="content ml-3">
+															<h3 style={{marginBottom:'5px'}}>{this.state.order.brand}</h3>
+															<p style={{fontSize:'10px',marginBottom:'0px'}}>{this.state.order.mobile}</p>
+															<p style={{fontSize:'12px'}}>{this.state.problems}</p>
+															{/*<p>
 																Total Price:&nbsp;
 																<span>{this.state.totalPrice}</span>
-															</p>
+															</p>*/}
 														</div>
 													</Link>
 												</li>
 											</ul>
 										) : (
-											<ul className="subMenu">
+											<ul className="subMenu mb-0">
 												<li>
 													<a className="d-flex justify-content-center product">
-														<div className="content">
-															<h3>No Item in your Cart</h3>
+														<div className="content ml-0">
+															<h3 className="mb-0">No Item in your Cart</h3>
 														</div>
 													</a>
 												</li>
